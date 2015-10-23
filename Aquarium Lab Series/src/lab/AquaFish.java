@@ -91,9 +91,28 @@ public class AquaFish {
         myID = nextAvailableID++;
         myColor = color;
 
-        // Initialize size, position, and direction).
-        initSize();
-        initPos();
+        //  Fish are evenly distributed among 4 different sizes based on their
+        //  ID numbers.
+        myLength = 30 + (myID % 4) * 15;
+        myHeight = (int)Math.round(0.4*myLength);
+        halfLength = (int)Math.round(myLength/2.0);
+        halfHeight = (int)Math.round(myHeight/2.0);
+
+        // Find random position within the bounds of the aquarium.
+        int padding = 20;
+        int myX = generator.nextInt(theAquarium.width() - myLength
+                   - padding) + padding/2;
+        int myY = generator.nextInt(theAquarium.height() - myHeight
+                   - padding) + padding/2;
+
+        // Since myX and myY indicate CENTER of fish, shift over half
+        // the length and half the width.
+        myX += halfLength;
+        myY += halfHeight;
+
+        // Initialize my position and direction.
+        myPos = new AquaPoint(myX, myY);
+        myDir = Direction.EAST;
     }
 
     /**
@@ -240,45 +259,6 @@ public class AquaFish {
      **/
     public void changeDir() {
         myDir = myDir.reverse();
-    }
-
-    /**
-     *  Initialize fish size:
-     *  This helper function determines the height and length of the fish.
-     *  Fish are evenly distributed among 4 different sizes based on their
-     *  ID numbers.
-     **/
-    private void initSize() {
-        myLength = 30 + (myID % 4) * 15;
-        myHeight = (int)Math.round(0.4*myLength);
-        halfLength = (int)Math.round(myLength/2.0);
-        halfHeight = (int)Math.round(myHeight/2.0);
-    }
-
-    /**
-     *  Initialize fish position and direction.
-     *  This helper function assigns coordinates to a fish such that the
-     *  fish is placed within the bounds of the Aquarium.
-     *  Precondition: the aquarium must be big enough to accomodate
-     *  the biggest fish (currently 75 pixels long and 30 pixels high)
-     *  plus 10 pixels of padding in all four directions.
-     **/
-    private void initPos() {
-        // Find random position within the bounds of the aquarium.
-        int padding = 20;
-        int myX = generator.nextInt(theAquarium.width() - myLength
-                   - padding) + padding/2;
-        int myY = generator.nextInt(theAquarium.height() - myHeight
-                   - padding) + padding/2;
-
-        // Since myX and myY indicate CENTER of fish, shift over half
-        // the length and half the width.
-        myX += halfLength;
-        myY += halfHeight;
-
-        // Initialize my position and direction.
-        myPos = new AquaPoint(myX, myY);
-        myDir = Direction.EAST;
     }
 }
 
