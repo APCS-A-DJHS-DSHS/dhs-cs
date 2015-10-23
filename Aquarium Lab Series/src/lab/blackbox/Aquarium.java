@@ -37,17 +37,8 @@ public class Aquarium {
         @param    height   height of the aquarium when displayed (in pixels)
     */
     public Aquarium(int width, int height) {
-        if (width > 0) {
-            myWidth = width;
-        } else {
-            myWidth = 640;
-        }
-
-        if(height > 0) {
-            myHeight = height;
-        } else {
-            myHeight = 480;
-        }
+        myWidth = (width > 0 ? width : 640);
+        myHeight = (height > 0 ? height : 480);
 
         myColor = new Color(0.0f, .6f, 1.0f);
     }
@@ -86,10 +77,7 @@ public class Aquarium {
                     of the aquarium
     */
     public boolean validLoc(int xCoord, int yCoord) {
-        if ((0 <= xCoord && xCoord < myWidth) &&
-                (0 <= yCoord && yCoord < myHeight)) {
-            return true;
-        }
-        return false;
+        return  ((0 <= xCoord && xCoord < myWidth) &&
+                 (0 <= yCoord && yCoord < myHeight));
     }
 }    //end Aquarium class
