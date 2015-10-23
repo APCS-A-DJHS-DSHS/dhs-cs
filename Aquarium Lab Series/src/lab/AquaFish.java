@@ -40,6 +40,7 @@ public class AquaFish {
     // Named constants that specify how far a fish may move in one timestep
     private static final int MIN_DISTANCE = 10;
     private static final int MAX_DISTANCE = 70;
+    private static final int PADDING = 20;
 
     // Class Variables: Shared among ALL fish
     private static int nextAvailableID = 1;   // next avail unique identifier
@@ -99,11 +100,10 @@ public class AquaFish {
         halfHeight = (int)Math.round(myHeight/2.0);
 
         // Find random position within the bounds of the aquarium.
-        int padding = 20;
         int myX = generator.nextInt(theAquarium.width() - myLength
-                   - padding) + padding/2;
+                   - PADDING) + PADDING/2;
         int myY = generator.nextInt(theAquarium.height() - myHeight
-                   - padding) + padding/2;
+                   - PADDING) + PADDING/2;
 
         // Since myX and myY indicate CENTER of fish, shift over half
         // the length and half the width.
