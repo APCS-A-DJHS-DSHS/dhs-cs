@@ -13,8 +13,6 @@ package lab.blackbox;
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
-import java.awt.Point;
-
 /**
  *  Aquarium Lab Series:
  *  An {@code AquaPoint} object represents the x and y coordinates
@@ -24,8 +22,9 @@ import java.awt.Point;
  *  @version 10 July 2002
  **/
 
-public class AquaPoint extends Point {
-
+public class AquaPoint {
+    private int x;
+    private int y;
   // constructor
 
     /** Constructs an {@code AquaPoint} object.
@@ -79,6 +78,11 @@ public class AquaPoint extends Point {
      **/
     public void sink(int distance) {
         translate(0, distance);   // y coordinates get bigger going down
+    }
+
+    private void translate(int dX, int dY) {
+        x += dX;
+        y += dY;
     }
 
     /** Represents this point as a string.
