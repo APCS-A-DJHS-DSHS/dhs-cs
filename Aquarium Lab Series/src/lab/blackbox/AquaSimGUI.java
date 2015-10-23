@@ -48,6 +48,7 @@ import lab.Simulation;
  *  @author Alyce Brady
  *  @version 10 July 2002
  **/
+@SuppressWarnings("serial")
 public class AquaSimGUI extends DisplayPanel {
 
     /////////////////////////////////////////////////////////
