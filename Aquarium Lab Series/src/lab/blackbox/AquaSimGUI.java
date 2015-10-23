@@ -324,8 +324,8 @@ public class AquaSimGUI extends DisplayPanel {
             return;
         }
 
-        Thread myThread = new Thread() {
-            public void run () {
+        Runnable runner = new Runnable() {
+            public void run() {
                 runButtonsPanel.setEnabled(false);
 
                 // Move the fish numSteps times.
@@ -338,7 +338,7 @@ public class AquaSimGUI extends DisplayPanel {
             }
         };
 
-        myThread.start();
+        new Thread(runner).start();
     }
 
 
@@ -423,14 +423,14 @@ public class AquaSimGUI extends DisplayPanel {
      **/
     private Display getStartPanel() {
         // Create the Start action panel in a separate thread.
-        Thread myThread = new Thread() {
+        Runnable getter = new Runnable() {
             public void run () {
                 startPanel = new ActionsPanel(startButtonList);
             }
         };
 
         // Start parallel thread for start button.
-        myThread.start();
+        new Thread(getter).start();
         waitForStartPanel();
         return new Display(startPanel, null, null);
     }
