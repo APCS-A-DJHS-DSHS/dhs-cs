@@ -219,9 +219,9 @@ public class Direction {
     /** Returns a random direction.
      *  @return a direction
      **/
+    private static final Random rng = new Random();
     public static Direction randomDirection() {
-        Random randNumGen = RandNumGenerator.getInstance();
-        return new Direction(randNumGen.nextInt(FULL_CIRCLE));
+        return new Direction(rng.nextInt(FULL_CIRCLE));
     }
 
 }
