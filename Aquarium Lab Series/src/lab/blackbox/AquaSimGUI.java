@@ -40,9 +40,9 @@ import lab.Simulation;
  *  to the Aquarium Lab Series.  This class uses the Java
  *  Power Tools (JPT) classes from Northeastern University to
  *  build the graphical interface.  In particular, it inherits
- *  the <code>repaint</code> method (which does not appear in
+ *  the {@code repaint} method (which does not appear in
  *  the specification for this class) from the JPT DisplayPanel
- *  class.  The <code>repaint</code> method draws the
+ *  class.  The {@code repaint} method draws the
  *  components in the graphical user interface.
  *
  *  @author Alyce Brady
@@ -132,7 +132,7 @@ public class AquaSimGUI extends DisplayPanel
      *  Simulation program, with or without prompts for the number of
      *  simulation steps.
      *      @param  aquarium    the aquarium in which the fish swim
-     *      @param  promptForSimSteps   <code>true</code> if GUI should
+     *      @param  promptForSimSteps   {@code true} if GUI should
      *                                  prompt for number of simulation steps
      **/
     public AquaSimGUI(Aquarium aquarium, boolean promptForSimSteps)
@@ -144,9 +144,9 @@ public class AquaSimGUI extends DisplayPanel
      *  Simulation program, with or without prompts for the number of
      *  simulation steps and the number of fish.
      *      @param  aquarium    the aquarium in which the fish swim
-     *      @param  promptForSimSteps   <code>true</code> if GUI should
+     *      @param  promptForSimSteps   {@code true} if GUI should
      *                                  prompt for number of simulation steps
-     *      @param  promptForNumFish    <code>true</code> if GUI should
+     *      @param  promptForNumFish    {@code true} if GUI should
      *                                  prompt for number of fish
      **/
     public AquaSimGUI(Aquarium aquarium,
@@ -160,11 +160,11 @@ public class AquaSimGUI extends DisplayPanel
      *  Simulation program, with or without prompts for the number of
      *  simulation steps and the number of fish.
      *      @param  aquarium    the aquarium in which the fish swim
-     *      @param  promptForSimSteps   <code>true</code> if GUI should
+     *      @param  promptForSimSteps   {@code true} if GUI should
      *                                  prompt for number of simulation steps
-     *      @param  promptForNumFish    <code>true</code> if GUI should
+     *      @param  promptForNumFish    {@code true} if GUI should
      *                                  prompt for number of fish
-     *      @param  useSimulationObj    <code>true</code> if GUI should
+     *      @param  useSimulationObj    {@code true} if GUI should
      *                                  construct and use a Simulation object
      **/
     public AquaSimGUI(Aquarium aquarium,
@@ -224,6 +224,7 @@ public class AquaSimGUI extends DisplayPanel
 
     /**
      *  Get the number of fish to put in the aquarium from user input.
+     * @return the number of fish requested when the simulation starts
      **/
     public int getNumberOfFish()
     {
@@ -233,6 +234,7 @@ public class AquaSimGUI extends DisplayPanel
 
     /**
      *  Get the number of steps to run from user input.
+     * @return the number of steps requested when the simulation starts
      **/
     public int getNumberOfSteps()
     {
@@ -246,7 +248,7 @@ public class AquaSimGUI extends DisplayPanel
     //////////////////////////////////////////////////
 
     /**
-     *  Display all the AquaFish in the <code>fishList</code> array.
+     *  Display all the AquaFish in the {@code fishList} array.
      *  Paints the aquarium blue to cover up old fish and displays
      *  the fish in the array.
      *  @param    fishList   the array of AquaFish to be displayed
@@ -257,7 +259,7 @@ public class AquaSimGUI extends DisplayPanel
     }
 
     /**
-     *  Display all the AquaFish in the <code>fishList</code> list.
+     *  Display all the AquaFish in the {@code fishList} list.
      *  Paints the aquarium blue to cover up old fish and displays
      *  the fish in the list.
      *  @param    fishList   the list of AquaFish to be displayed
@@ -363,6 +365,7 @@ public class AquaSimGUI extends DisplayPanel
 
     /**
      *  Construct and initialize display in which to view aquarium.
+     * @return the {@code Display} that will show the aquarium
      **/
     private Display getViewWindow()
     {
@@ -384,12 +387,13 @@ public class AquaSimGUI extends DisplayPanel
 
     /**
      *  Construct and initialize display that contains control panel.
-     *      @param  promptForSimSteps   <code>true</code> if GUI should
+     *      @param  promptForSimSteps   {@code true} if GUI should
      *                                  prompt for number of simulation steps
-     *      @param  promptForNumFish    <code>true</code> if GUI should
+     *      @param  promptForNumFish    {@code true} if GUI should
      *                                  prompt for number of fish
-     *      @param  useSimulationObj    <code>true</code> if GUI should
+     *      @param  useSimulationObj    {@code true} if GUI should
      *                                  construct and use a Simulation object
+     *      @return the {@code Display} that shows the simulation controls
      **/
     private Display getControlPanel(boolean promptForSimSteps,
                        boolean promptForNumFish, boolean useSimulationObj)
@@ -437,6 +441,7 @@ public class AquaSimGUI extends DisplayPanel
     }
 
     /** Construct action panel for start button (in a separate thread).
+     * @return a {@code Display} with the constructed panel
      **/
     private Display getStartPanel()
     {

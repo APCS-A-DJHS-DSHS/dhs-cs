@@ -17,11 +17,11 @@ import java.util.Random;
 
 /**
  *  AP&reg; Computer Science Marine Biology Simulation:<br>
- *  The <code>Direction</code> class encapsulates the notion of a compass
+ *  The {@code Direction} class encapsulates the notion of a compass
  *  direction such as North, East, South, West.
  *
  *  <p>
- *  The <code>Direction</code> class is
+ *  The {@code Direction} class is
  *  copyright&copy; 2002 College Entrance Examination Board
  *  (www.collegeboard.com).
  *
@@ -61,14 +61,14 @@ public class Direction
 
   // constructors
 
-    /** Constructs a default <code>Direction</code> object facing North.
+    /** Constructs a default {@code Direction} object facing North.
      **/
     public Direction()
     {
         dirInDegrees = 0;    // default to North
     }
 
-    /** Constructs a <code>Direction</code> object.
+    /** Constructs a {@code Direction} object.
      *  @param degrees    initial compass direction in degrees
      **/
     public Direction(int degrees)
@@ -78,7 +78,7 @@ public class Direction
             dirInDegrees += FULL_CIRCLE;
     }
 
-    /** Constructs a <code>Direction</code> object.
+    /** Constructs a {@code Direction} object.
      *  @param str    compass direction specified as a string, e.g. "North"
      *  @throws IllegalArgumentException if string doesn't match a known direction name 
      **/
@@ -102,19 +102,19 @@ public class Direction
   // accessor methods
 
     /** Returns this direction value in degrees.
-     *  @return  the value of this <code>Direction</code> object in degrees
+     *  @return  the value of this {@code Direction} object in degrees
      **/
     public int inDegrees()
     {
         return dirInDegrees;
     }
 
-    /** Indicates whether some other <code>Direction</code> object
+    /** Indicates whether some other {@code Direction} object
      *  is "equal to" this one.
      *  @param other   the other position to test
-     *  @return        <code>true</code> if <code>other</code>
+     *  @return        {@code true} if {@code other}
      *                 represents the same direction;
-     *                 <code>false</code> otherwise
+     *                 {@code false} otherwise
      **/
     public boolean equals(Object other)
     {
@@ -127,7 +127,7 @@ public class Direction
 
     /** Generates a hash code for this direction
      *  (will not be tested on the Advanced Placement exam).
-     *  @return     a hash code for a <code>Direction</code> object
+     *  @return     a hash code for a {@code Direction} object
      **/
     public int hashCode()
     {
@@ -135,7 +135,7 @@ public class Direction
     }
 
     /** Returns the direction that is a quarter turn
-     *  to the right of this <code>Direction</code> object.
+     *  to the right of this {@code Direction} object.
      *  @return     the new direction
      **/
     public Direction toRight()
@@ -143,8 +143,8 @@ public class Direction
         return new Direction(dirInDegrees + (FULL_CIRCLE / 4));
     }
 
-    /** Returns the direction that is <code>deg</code> degrees
-     *  to the right of this <code>Direction</code> object.
+    /** Returns the direction that is {@code deg} degrees
+     *  to the right of this {@code Direction} object.
      *  @param deg    the number of degrees to turn
      *  @return     the new direction
      **/
@@ -154,7 +154,7 @@ public class Direction
     }
 
     /** Returns the direction that is a quarter turn
-     *  to the left of this <code>Direction</code> object.
+     *  to the left of this {@code Direction} object.
      *  @return     the new direction
      **/
     public Direction toLeft()
@@ -162,8 +162,8 @@ public class Direction
         return new Direction(dirInDegrees - (FULL_CIRCLE / 4));
     }
 
-    /** Returns the direction that is <code>deg</code> degrees
-     *  to the left of this <code>Direction</code> object.
+    /** Returns the direction that is {@code deg} degrees
+     *  to the left of this {@code Direction} object.
      *  @param deg    the number of degrees to turn
      *  @return     the new direction
      **/
@@ -173,7 +173,7 @@ public class Direction
     }
 
     /** Returns the direction that is the reverse of this
-     *  <code>Direction</code> object.
+     *  {@code Direction} object.
      *  @return     the reverse direction
      **/
     public Direction reverse()
@@ -204,7 +204,7 @@ public class Direction
      *  The four cardinal directions starting at NORTH are NORTH, EAST,
      *  SOUTH, and WEST.  The four cardinal directions starting from
      *  NORTHEAST are NORTHEAST, SOUTHEAST, SOUTHWEST, and NORTHWEST.
-     *  (Precondition: 0 < numDirections <= 360)
+     *  (Precondition: {@literal 0 < numDirections <= 360)}
      *  @param numDirections  the number of "cardinal" directions
      *  @param startingDir    the starting cardinal direction
      *  @return the current direction rounded to a "cardinal" direction

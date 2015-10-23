@@ -101,7 +101,7 @@ public class AquaFish
 
     /**
      *  Get the unique identifier for this fish.
-     *  @returns    the ID of the fish
+     *  @return    the ID of the fish
      **/
     public int id()
     {
@@ -118,7 +118,7 @@ public class AquaFish
 
     /**
      *  Get the fish's position in the aquarium.
-     *  @returns    the position (point in the aquarium) of the fish
+     *  @return    the position (point in the aquarium) of the fish
      **/
     public AquaPoint position()
     {
@@ -126,7 +126,7 @@ public class AquaFish
     }
 
     /** Get the length of the fish.
-     *  @returns    fish length
+     *  @return    fish length
      **/
     public int length()
     {
@@ -134,7 +134,7 @@ public class AquaFish
     }
 
     /** Get the height of the fish.
-     *  @returns    fish height
+     *  @return    fish height
      **/
     public int height()
     {
@@ -143,8 +143,8 @@ public class AquaFish
 
     /**
      *  Determine whether the fish is facing right.
-     *  @returns    <code>true</code> if fish is facing right;
-     *              <code>false</code> otherwise
+     *  @return    {@code true} if fish is facing right;
+     *              {@code false} otherwise
      **/
     public boolean facingRight()
     {
@@ -153,8 +153,8 @@ public class AquaFish
 
     /**
      *  Determine whether the fish is facing left.
-     *  @returns    <code>true</code> if fish is facing left;
-     *              <code>false</code> otherwise
+     *  @return    {@code true} if fish is facing left;
+     *              {@code false} otherwise
      **/
     public boolean facingLeft()
     {
@@ -163,7 +163,7 @@ public class AquaFish
 
     /**
      *  Compute how far the fish is from the wall in front of it.
-     *  @returns    distance from front of fish to facing wall
+     *  @return    distance from front of fish to facing wall
      **/
     public int distanceToWall()
     {
@@ -180,8 +180,8 @@ public class AquaFish
      *  A fish is considered at a wall if it cannot move forward; in other
      *  words, if the distance from the fish to the wall it faces is less
      *  than the minimum distance that a fish can move forward.
-     *  @returns    <code>true</code> if fish is at a wall;
-     *              <code>false</code> otherwise
+     *  @return    {@code true} if fish is at a wall;
+     *              {@code false} otherwise
      **/
     public boolean atWall()
     {
@@ -193,8 +193,8 @@ public class AquaFish
      *  A fish is considered at the surface if it cannot ascend; in other
      *  words, if the distance from the fish to the surface is less
      *  than the fish's height.
-     *  @returns    <code>true</code> if fish is at the surface;
-     *              <code>false</code> otherwise
+     *  @return    {@code true} if fish is at the surface;
+     *              {@code false} otherwise
      **/
     public boolean atSurface()
     {
@@ -207,8 +207,8 @@ public class AquaFish
      *  A fish is considered at the bottom if it cannot descend; in other
      *  words, if the distance from the fish to the bottom is less
      *  than the fish's height.
-     *  @returns    <code>true</code> if fish is at the bottom;
-     *              <code>false</code> otherwise
+     *  @return    {@code true} if fish is at the bottom;
+     *              {@code false} otherwise
      **/
     public boolean atBottom()
     {
@@ -218,7 +218,7 @@ public class AquaFish
 
     /**
      *  This function is provided primarily for debugging purposes.
-     *  @returns    a string representation of a fish
+     *  @return    a string representation of a fish
      **/
     public String toString()
     {

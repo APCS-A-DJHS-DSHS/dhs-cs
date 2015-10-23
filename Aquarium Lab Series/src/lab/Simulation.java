@@ -73,7 +73,9 @@ public class Simulation
     {
     }
 
-    /** Get all the fish in the aquarium. **/
+    /** Get all the fish in the aquarium.
+     * @return an array of the fish in the aquarium being simulated
+     */
     public AquaFish[] getAllFish()
     {
 		return allFish;

@@ -18,21 +18,21 @@ import java.util.Random;
 
 /**
  *  Marine Biology Simulation:
- *  The <code>RandNumGenerator</code> class provides a singleton
- *  <code>java.util.Random</code> object for random number generation.  Using
+ *  The {@code RandNumGenerator} class provides a singleton
+ *  {@code java.util.Random} object for random number generation.  Using
  *  this class, many different objects can share a single source of random
  *  numbers.  This eliminates the potential problem of having multiple random
  *  number generators generating sequences of numbers that are too similar.
  *
  *  <p>
- *  Example of how to use <code>RandNumGenerator</code>:  
- *    <pre><code>
+ *  Example of how to use {@code RandNumGenerator}:
+ *    <pre>{@code
  *       import java.util.Random;
  *
  *       Random randNumGen = RandNumGenerator.getInstance();
  *       int randomNum = randNumGen.nextInt();
  *       double randomDouble = randNumGen.nextDouble();
- *    </code></pre>
+ *    }</pre>
  *
  *  @author Alyce Brady
  *  @version 1 June 2002
@@ -44,8 +44,9 @@ public class RandNumGenerator
     private static Random theRandNumGenerator = new Random();
 
     /** Returns a random number generator.
-     *  Always returns the same <code>Random</code> object to provide
+     *  Always returns the same {@code Random} object to provide
      *  a better sequence of random numbers.
+     * @return the Random object contained in this class
      **/
     public static Random getInstance()
     {

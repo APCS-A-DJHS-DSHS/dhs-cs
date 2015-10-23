@@ -52,7 +52,7 @@ public class Aquarium
 
     /**
         Determine the width of the aquarium.
-        @returns    the width of the aquarium
+        @return    the width of the aquarium
     */
     public int width()
     {
@@ -61,7 +61,7 @@ public class Aquarium
 
     /**
         Determine the height of the aquarium.
-        @returns    the height of the aquarium
+        @return    the height of the aquarium
     */
     public int height()
     {
@@ -70,7 +70,7 @@ public class Aquarium
 
     /**
         Determine the color of the aquarium (water color).
-        @returns    the Color of the aquarium
+        @return    the Color of the aquarium
     */
     public Color color()
     {
@@ -81,8 +81,9 @@ public class Aquarium
         This function determines whether the given coordinates specify
             a valid location (one that exists within the bounds of the
             aquarium).
-        @params     an x and y coordinate to be checked
-        @returns    true if the specified location is within the bounds
+        @param xCoord a x coordinate to be checked
+	@param yCoord a y coordinate to be checked
+        @return    true if the specified location is within the bounds
                     of the aquarium
     */
     public boolean validLoc(int xCoord, int yCoord)

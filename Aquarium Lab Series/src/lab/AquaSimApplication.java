@@ -42,7 +42,7 @@ public class AquaSimApplication
 {
     /**
      *  This is the main function.  It controls the execution of the program.
-     *  @param    String args[] is never used
+     *  @param args - never used
      **/
     public static void main(String args[])
     {

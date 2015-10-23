@@ -17,7 +17,7 @@ import java.awt.Point;
 
 /**
  *  Aquarium Lab Series:
- *  An <code>AquaPoint</code> object represents the x and y coordinates
+ *  An {@code AquaPoint} object represents the x and y coordinates
  *  of a location in an aquarium.
  *
  *  @author Alyce Brady
@@ -29,7 +29,7 @@ public class AquaPoint extends Point
 
   // constructor
 
-    /** Constructs an <code>AquaPoint</code> object.
+    /** Constructs an {@code AquaPoint} object.
      *  @param xCoord    point's x coordinate
      *  @param yCoord    point's y coordinate
      **/
@@ -57,7 +57,7 @@ public class AquaPoint extends Point
         return y;
     }
 
-    /** Moves this point <code>distance</code> units to the right.
+    /** Moves this point {@code distance} units to the right.
      *  @param  distance   distance to move right
      **/
     public void moveRight(int distance)
@@ -65,7 +65,7 @@ public class AquaPoint extends Point
         translate(distance, 0);
     }
 
-    /** Moves this point <code>distance</code> units to the left.
+    /** Moves this point {@code distance} units to the left.
      *  @param  distance   distance to move left
      **/
     public void moveLeft(int distance)
@@ -73,7 +73,7 @@ public class AquaPoint extends Point
         translate(-distance, 0);
     }
 
-    /** Moves this point <code>distance</code> units up.
+    /** Moves this point {@code distance} units up.
      *  @param  distance   distance to move up
      **/
     public void rise(int distance)
@@ -81,7 +81,7 @@ public class AquaPoint extends Point
         translate(0, -distance);   // y coordinates get smaller going up
     }
 
-    /** Moves this point <code>distance</code> units down.
+    /** Moves this point {@code distance} units down.
      *  @param  distance   distance to move down
      **/
     public void sink(int distance)
