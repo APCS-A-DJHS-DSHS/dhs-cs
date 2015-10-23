@@ -1,0 +1,441 @@
+<html>
+<head>
+   <title>Lab: Implementing Classes</title>
+   <LINK href="mailto:abrady@kzoo.edu">
+   <LINK REL=STYLESHEET TYPE="text/css" HREF="file:///Macintosh HD/Users/abrady/Documents/Teaching/AquaJava2002/AquariumLabSeries/aquaLabs.css">
+</head>
+
+<body>
+
+<!--#include file="siteTitle.html" -->
+
+<DIV ID=pageTitle>
+<h1>Lab:
+Fish With Class</h1>
+
+<p>
+<strong>Implementing Classes</strong></p>
+</DIV>
+
+<p></p>
+<!--#include file="author.html" -->
+
+<p></p>
+<HR>
+
+<p>
+This set of Lab Exercises is the fifth in a series in which students
+build a small program with several fish moving around in an aquarium.
+The set includes the following exercises:</p>
+
+	<ul>
+	<li><a href="#UpAndDown">Ascending and Descending Fish</a> &nbsp;&nbsp;&nbsp;
+		(<strong>Implementing Methods: Using Instance Variables</strong>)
+		<!--
+		(Patterns: <strong>???</strong>
+		and
+		<strong>???</strong>)
+		--></li>
+	<li><a href="#FishResponsibility">Responsible Fish</a> &nbsp;&nbsp;&nbsp;
+		(<strong>Implementing Methods: Using Other Methods in a Class</strong>)
+		<!--
+		(Patterns: <strong>???</strong>
+		and
+		<strong>???</strong>)
+		--></li>
+	<li><a href="#Simulate">Modeling a Simulation</a> &nbsp;&nbsp;&nbsp;
+		(<strong>Implementing Methods: Constructors, Parameters, and
+		Local Variables</strong>)
+		<!--
+		(Pattern: <strong>???</strong>)
+		--></li>
+	<li><a href="#StepButton">Adding Step and Run Buttons</a> &nbsp;&nbsp;&nbsp;
+		<!--
+		(Pattern: <strong>???</strong>)
+		--></li>
+  	</ul>
+
+<p>
+Each section contains an <strong>Introduction</strong> to a problem
+or task
+<!--
+, (usually) abridged versions of one or more
+<strong>Patterns</strong> that will be useful in solving the problem or
+completing the task,
+-->
+and an <strong>Exercise</strong>.</p>
+
+<p>
+In the exercises that precede this one, students will have created a
+vector of fish that move randomly back and forth in an aquarium,
+being careful not to hit the sides.
+Students should understand how to
+identify the responsibilities of different classes,
+construct class methods,
+and use instance variables within methods.</p>
+
+<p></p>
+<HR>
+<HR>
+
+<p></p>
+<p>Up until now, you have writing all of your code in the <code>main</code> method 
+  of the <code>AquaSimApplication</code> class. Now it's time to make the program 
+  more object-oriented by implementing <i>classes</i> that define the encapsulated 
+  <i>state</i> and <i>behavior</i> for objects in an application.&nbsp; You have 
+  been using classes and their objects all along, but now it is time to look at 
+  them from the inside.</p>
+<p>We will focus first on the <i>behavior</i> of objects, implemented through 
+  methods. You are already familiar with many of the things that one can do in 
+  a method, having worked in the <code>main</code> method.&nbsp; These include:</p>
+<ul>
+  <li>declaring local variables that can hold primitive values or refer to objects</li>
+  <li>constructing objects, including arrays (and ArrayLists) of objects</li>
+  <li>invoking methods on objects</li>
+  <li>implementing conditional (<code>if</code>) statements and loops</li>
+  <li>using boolean and arithmetic expressions</li>
+</ul>
+<p>The <code>main</code> method is a special type of method, because it is not 
+  associated with any particular object.&nbsp; (The <code>static</code> keyword 
+  in <code>public static void main</code> indicates this.) In fact, the Java interpreter 
+  invokes the <code>main</code> method before any objects exist in the application; 
+  the whole purpose of the <code>main</code> method is to construct the initial 
+  objects and invoke methods on them.&nbsp; They, in turn, construct other objects 
+  and invoke their methods.&nbsp; It is through this process that the application 
+  is created and runs.</p>
+<p>Most methods, on the other hand, are tied to specific objects.&nbsp; Object 
+  methods can do all of the tasks listed above, but they have other capabilities 
+  as well.&nbsp; A method associated with an object can:</p>
+<ul>
+  <li>access its own state (the instance variables of the object with which it 
+    is associated), even if that state is private</li>
+  <li>use the values passed to it as parameters</li>
+  <li>invoke methods on itself (private as well as public methods)</li>
+  <li>return a value to the method that called it</li>
+</ul>
+<p>Static methods may also have parameters passed to them and may return a value 
+  to their calling methods. Only an object method, though, can access the private 
+  state or operations of objects of that class.</p>
+<HR>
+<HR>
+
+<p></p>
+<a NAME="UpAndDown"></a>
+<H2>Ascending and Descending Fish</H2>
+
+<p></p>
+<h3>Introduction</h3>
+
+<p>
+Our program would be much more interesting if the fish moved up and down
+as well as side to side.
+In this exercise, you will implement two new methods in the
+<code>AquaFish</code> class, <code>ascend</code> and <code>descend</code>,
+to support this behavior.</p>
+
+<p></p>
+<table width="90%" border=1 align="center">
+<tr><td>
+
+<H4>Exercise: Simulate Up and Down Movement</H4>
+
+      <ul>
+        <LI>To make the simulation more believable, the distance that a fish moves 
+          up or down should be related to its height. Fish come in different sizes, 
+          so the size of any particular fish is one of the properties of that 
+          fish. Its position in the aquarium is another relevant property for 
+          this exercise. Read the <a href="file:///Macintosh HD/Users/abrady/Documents/Teaching/AquaJava2002/AquariumLabSeries/StartingCode/AquaFish.java">implementation 
+          (code) for the AquaFish class</a> to determine which methods or instance 
+          variables will be useful in implementing <code>ascend</code> and <code>descend</code>. 
+          <p></p>
+        </li>
+        <LI>Determine what parameters (if any) you will need for the new <code>ascend</code> 
+          method. Then determine what its return type should be. Add an empty 
+          <code>ascend</code> method (one that consists of a declaration and empty 
+          braces) to the <code>AquaFish</code> class after the <code>moveForward</code> 
+          and <code>changeDir</code> methods. 
+          <p></p>
+        </li>
+        <LI>Implement the <code>ascend</code> method. You may use the <code>moveForward</code> 
+          method as a guide if you like, but the <code>ascend</code> method is 
+          simpler. The movement amount should simply be the height of the fish. 
+          Research the specification for the <a href="file:///Macintosh HD/Users/abrady/Documents/Teaching/AquaJava2002/AquariumLabSeries/JavaDocs/AquaPoint.html">AquaPoint</a> 
+          class to discover what methods might be useful in implementing the <code>ascend</code> 
+          and <code>descend</code> methods. 
+          <p></p>
+        </li>
+        <LI>Implement the <code>descend</code> method. 
+          <p></p>
+        </li>
+        <LI>Modify your <code>main</code> method in the <code>AquaSimApplication</code> 
+          class to allow fish to ascend or descend before moving forward, according 
+          to the following formula: 
+          <ul>
+            <li>A fish at the surface has a 2/3 chance of descending and a 1/3 
+              chance of staying at the surface.</li>
+            <li>A fish at the bottom has a 1/3 chance of ascending and a 2/3 chance 
+              of staying at the bottom.</li>
+            <li>A fish that is neither at the surface nor at the bottom has a 
+              1/3 chance of ascending, a 1/3 chance of descending, and a 1/3 chance 
+              of staying at the same depth.</li>
+          </ul>
+          Read the <a href="file:///Macintosh HD/Users/abrady/Documents/Teaching/AquaJava2002/AquariumLabSeries/StartingCode/AquaFish.java">implementation (code) 
+          for the AquaFish class</a> to determine what methods are available to 
+          tell whether a fish is at the surface, at the bottom, or somewhere in 
+          between.&nbsp; (These methods do not appear in the partial specification 
+          for the <code>AquaFish</code> class that you have used previously.) 
+          <p></p>
+        </li>
+        <li>Test your program.</li>
+      </ul>
+
+</td>
+</tr>
+</table>
+
+<p></p>
+<HR>
+<HR>
+
+<p></p>
+<a NAME="FishResponsibility"></a>
+<H2>Responsible Fish</H2>
+
+<p></p>
+<h3>Introduction</h3>
+
+<p> One of the most important tasks in designing and implementing object-oriented 
+  programs is deciding which classes or objects are responsible for executing 
+  which behavior. For example, deciding whether a fish should change direction 
+  or ascend or descend when it moves should be the responsibility of the fish, 
+  not of the simulation program.</p>
+
+<p>
+In this exercise, you will implement a <code>move</code> method in the
+<code>AquaFish</code> class that will encapsulate all of the 
+behavior related to movement (ascending, descending, changing
+direction, and moving forward).</p>
+
+
+<table width="90%" border=1 align="center">
+<tr><td>
+
+<H4>Exercise: Make Fish Responsible for Knowing How to Move</H4>
+
+        <ul>
+          <li>Analyze the <code>main</code> method of the <code>AquaSimApplication</code> 
+            class to determine which lines of code should be moved to the <code>move</code> 
+            method you will be implementing in the <code>AquaFish</code> class. 
+            <p> </p></li>
+          <LI>Determine what parameters (if any) you will need for the new <code>move</code> 
+            method. Then determine what its return type should be. Add an empty 
+            <code>move</code> method (one that consists of a declaration and empty 
+            braces) to the <code>AquaFish</code> class before the <code>moveForward</code> 
+            method. 
+            <p> </p></li>
+          <li>Move the appropriate lines of code from the <code>main</code> method 
+            in <code>AquaSimApplication</code> to the <code>move</code> in <code>AquaFish</code>. 
+            Notice that the <code>main</code> method was invoking <code>AquaFish</code> 
+            methods such as <code>changeDir</code> on a named fish. The <code>move</code> 
+            method, though, is tied to the <code>AquaFish</code> class. More specifically, 
+            it is always tied to (or executed by) a particular fish. Thus, instead 
+            of <code>main</code> invoking methods such as <code>changeDir</code> 
+            on a named fish, the fish should now be invoking methods on itself. 
+            <p> </p></li>
+          <li>Modify the <code>main</code> method in <code>AquaSimApplication</code> 
+            to simply tell each fish to move, letting the fish worry about how 
+            it should move. 
+            <p> </p></li>
+          <li>Test your program to verify that the behavior is unchanged. </li>
+        </ul>
+
+</td>
+</tr>
+</table>
+
+<p></p>
+<HR>
+<HR>
+
+<p></p>
+<a NAME="Simulate"></a>
+<H2>Modeling a Simulation</H2>
+
+<p></p>
+<h3>Introduction</h3>
+
+<p>
+In a well-designed object-oriented program, we usually want the
+<code>main</code> function to just create some objects and get the ball
+rolling.
+Most of the program behavior should be the result of the objects
+interacting with each other.
+In the Aquarium Simulation program, though, the <code>main</code>
+function is actually running the simulation.
+We have objects that model the fish and the aquarium,
+but not one that models the simulation itself.</p>
+
+<p>
+In this exercise, you will write the code for methods in a
+<code>Simulation</code> class.  The constructor will initialize the
+<code>Simulation</code> object's instance variables and construct the
+fish in the aquarium.
+The <code>step</code> method will
+execute the commands that should happen each timestep in the simulation
+(moving the fish, in our case).
+<!--
+It will also display the contents
+of the aquarium after each step.
+--></p>
+
+<p> Once you have implemented the <code>Simulation</code> class, the <code>main</code> 
+  method in <code>AquaSimApplication</code> will merely create a number of objects, 
+  such as the aquarium, the graphical user interface, and the simulation object, 
+  and then ask the simulation object to run the simulation. The <code>main</code> 
+  method will also still display the initial configuration of the fish and the 
+  modified aquarium after each timestep. </p>
+<table width="90%" border=1 align="center">
+<tr><td>
+
+<H4>Exercise: Introduce the Simulation Class</H4>
+
+        <ul>
+          
+        <li>Read <a href="file:///Macintosh HD/Users/abrady/Documents/Teaching/AquaJava2002/AquariumLabSeries/JavaDocs/Simulation.html">the specification for the 
+          Simulation</a> class to familiarize yourself with what the class should 
+          do. 
+          <p> </p></li>
+          <li>Download <a href="file:///Macintosh HD/Users/abrady/Documents/Teaching/AquaJava2002/AquariumLabSeries/StartingCode/Simulation.java">the incomplete Simulation 
+            class implementation</a> if you don't have it already. 
+            <p> </p></li>
+          <li>Read the incomplete <code>Simulation</code> class implementation 
+            and then modify the constructor to initialize the instance variables. 
+            <p> Notice that <code>Simulation</code> objects have three instance 
+              variables and that the constructor takes three parameters. Two of 
+              the three instance variables represent the same objects as two of 
+              the parameters, so you can initialize them directly. For example, 
+              the <code>main</code> method in <code>AquaSimApplication</code> 
+              will construct an <code>Aquarium</code> and pass it to the <code>Simulation</code> 
+              constructor. The <code>Simulation</code> object should refer to 
+              the same <code>Aquarium</code> object, not a new one. On the other 
+              hand, looking at the parameters to the <code>Simulation</code> constructor, 
+              we can see that the <code>main</code> method will not construct 
+              an array of fish and pass it to the constructor. Instead, it will 
+              pass the number of fish that should be in the array. Therefore, 
+              to initialize the <code>allFish</code> instance variable, you will 
+              need to construct a new array of fish. </p>
+            <p> </p></li>
+          <li>Move the appropriate lines of code that construct various colored 
+            fish from the <code>main</code> method in <code>AquaSimApplication</code> 
+            to the <code>Simulation</code> constructor. Double-check whether the 
+            instance variables in the <code>Simulation</code> constructor have 
+            the same names that the local variables in the <code>main</code> method 
+            had. Do not move the code that displays the initial configuration; 
+            for now, that code should stay in <code>main</code>. 
+            <p> </p></li>
+          <li> Replace the code in the <code>main</code> method that constructed 
+            all the fish with a statement that constructs a <code>Simulation</code> 
+            object. 
+            <p> </p></li>
+          <li>Determine what code in <code>main</code> represents a single timestep 
+            in the simulation. Move that code to the <code>step</code> method 
+            in <code>Simulation</code>. Adjust any variable names if necessary. 
+            Do not move the code that displays the modified aquarium and fish 
+            after each timestep; for now, that code should stay in the <code>main</code> 
+            method. 
+            <p> </p></li>
+          <li> Replace the code in the <code>main</code> method that represented 
+            a single timestep in the simulation with a call to the <code>step</code> 
+            method in <code>Simulation</code>. 
+            <p> </p></li>
+          <li>Test your program to verify that the behavior is unchanged. </li>
+        </ul>
+
+<HR width="80%" align="center">
+
+        <H4>Analysis Questions</H4>
+
+<ul>
+
+<li>Notice that the constructor uses instance variables, parameters, and
+local variables.  For example, the following statement
+  <pre><code>
+  allFish[i] = new AquaFish(aqua, color);
+</code></pre>
+uses two instance variables and two local variables.  How can you
+determine whether a given identifier is a local variable, a parameter,
+or an instance variable?
+
+<p></p></li>
+<li>If you had the following code
+  <pre><code>
+  AquaFish[] allFish = new AquaFish[numFish];   <font color="red">// WARNING!</font>
+  ...
+  allFish[i] = new AquaFish(aqua, color);
+</code></pre>
+            in the constructor, would you be putting new fish in the instance 
+            variable called <code>allFish</code> or in a local variable? How would 
+            this affect the behavior of the <code>step</code> method? </li>
+        </ul>
+
+</td>
+</tr>
+</table>
+
+<p></p>
+<HR>
+<HR>
+
+<p></p>
+<a NAME="StepButton"></a>
+<H2>Adding Step and Run Buttons</H2>
+
+<p></p>
+<h3>Introduction</h3>
+
+<p>
+The user of the Aquarium Simulation program can control how many fish to
+put in the aquarium and how many simulation steps to run, but cannot
+control the pace of the simulation.  We can give the user more control
+over how the simulation runs by providing Step and Run buttons.</p>
+
+<table width="90%" border=1 align="center">
+<tr><td>
+
+<H4>Exercise: Allow User to Control Simulation</H4>
+
+      <ul>
+        <li>The <code>AquaSimGUI</code> class has a fourth constructor that allows 
+          you to specify whether or not to have the graphical user interface interact 
+          directly with a <code>Simulation</code> class. Research the abbreviated 
+          specification for the <a href="file:///Macintosh HD/Users/abrady/Documents/Teaching/AquaJava2002/AquariumLabSeries/JavaDocs/AquaSimGUI.html">AquaSimGUI</a> 
+          class to discover how to use this constructor. Modify the <code>main</code> 
+          method in <code>AquaSimApplication</code> to indicate that the graphical 
+          user interface should use the <code>Simulation</code> class. Once you 
+          have done this you no longer need to wait for the user to push the Start 
+          button, ask for the number of fish or number of simulation steps, construct 
+          the Simulation object, diplay the aquarium, or run the simulation. The 
+          graphical user interface will do all of that. Therefore, the construction 
+          of the graphical user interface should be the last line of code before 
+          the WRAP UP phase. 
+          <p></p>
+        </li>
+        <li>Test your program to verify that the behavior is unchanged. 
+          <p></p>
+        </li>
+        <li>Make sure that you have updated the program documentation in all modified 
+          classes to reflect your changes. </li>
+      </ul>
+
+</td>
+</tr>
+</table>
+
+<p></p>
+<HR>
+<HR>
+
+<br>
+<i><font size="-2">Copyright Alyce Faulstich Brady, 2001-2002.</font></i> 
+</body>
+</html>

@@ -1,0 +1,483 @@
+<html>
+<head>
+   <title>Mini-Lab: Constructing Objects</title>
+   <LINK href="mailto:abrady@kzoo.edu">
+   <LINK REL=STYLESHEET TYPE="text/css" HREF="aquaLabs.css">
+</head>
+
+<body>
+
+<!--#include file="siteTitle.html" -->
+
+<DIV ID=pageTitle>
+<h1>Mini-Lab:
+Creating Fish in an Aquarium</h1>
+
+<p>
+<strong>Reading Specifications and Writing Client Code</strong>
+</DIV>
+
+<p>
+<!--#include file="author.html" -->
+
+<p>
+<HR>
+
+<p>
+This set of Mini-Lab Exercises is the first in a series in which students
+build a small program with several fish moving around in an aquarium.
+The set includes the following exercises:
+  	<ul>
+	<li><a href="#start">Getting Started</a>
+	<li><a href="#construct">Populating the Aquarium</a> &nbsp;&nbsp;&nbsp;
+		(Patterns: <strong>Declare-Construct-Initialize</strong>,
+		<strong>Intention Revealing Name</strong>, and
+		<strong>Read the Interface for Constructors</strong>)
+	<li><a href="#invoke">Let's Move!</a> &nbsp;&nbsp;&nbsp;
+		(Pattern: <strong>Read the Interface for Methods</strong>)
+  	</ul>
+
+<p>
+Each section contains an <strong>Introduction</strong> to a problem
+or task, (usually) abridged versions of one or more
+<strong>Patterns</strong> that will be useful in solving the problem or
+completing the task, and an <strong>Exercise</strong>.
+
+<p> Before working through this Mini-Lab, students should understand the role 
+  of the <code>main</code> method in an application, the role of classes and objects, 
+  and the syntax for documenting code with comments. Students should also have 
+  read over the patterns that appear in this document before the lab. 
+<p>
+<HR>
+<HR>
+
+<p>
+<a name="start"></a>
+<H2>Getting Started</H2>
+
+<p>
+<h3>Introduction</h3>
+The Aquarium Simulation program is meant to simulate several fish moving in an 
+aquarium. A skeleton of the program already exists. The main class, the one that 
+runs the simulation, is the <code>AquaSimApplication</code> class. There is also 
+an <code>Aquarium</code> class and an <code>AquaFish</code> class. The skeleton 
+program constructs an <code>Aquarium</code> object in the <code>main</code> method; 
+in the exercises that follow, you will be creating several <code>AquaFish</code> 
+objects in the aquarium and directing them to move. 
+<p> The program also contains an <code>AquaSimGUI</code> class that provides a 
+  graphical user interface for the Aquarium Lab Series. The interface includes 
+  a &quot;Start&quot; button and an area where the program can display a graphical 
+  picture of an aquarium and its fish. The program also includes several &quot;black 
+  box&quot; utility classes that provide necessary functionality for the <code>AquaFish</code> 
+  and <code>AquaSimGUI</code> classes, but which you will not need to read or 
+  modify as part of this lab series. 
+<p>
+<center><table width="90%" border=1>
+<tr><td>
+<H4>Exercise</H4>
+        <UL>
+          <li>Download the zip file containing the starting code files for the 
+            Aquarium Lab Series by right-clicking or shift-clicking on the following 
+            link: <a href="http://max.cs.kzoo.edu/patterns/JavaPatternLabs/AquariumLabSeries.zip">AquariumLabSeries.zip</a>. 
+            <p>When you unzip this file, it will create a folder called <code>AquariumLabSeries</code>&nbsp; 
+              that contains the instructions for the labs, a folder called <code>StartingCode</code>, 
+              and a folder containing class documentation.&nbsp; The <code>StartingCode</code> 
+              folder contains three classes you will viewing and modifying, a 
+              sub-folder with other &quot;black-box classes&quot; needed by the 
+              program (that you do not need to study), and a graphics library. 
+            </p>
+            <UL>
+              <LI><a href="StartingCode/AquaSimApplication.java">AquaSimApplication</a> 
+                (class with <code>main</code> method) 
+              <LI><a href="StartingCode/AquaFish.java">AquaFish class</a> 
+              <LI><a href="StartingCode/Simulation.java">Simulation class</a> 
+                (used in the fourth mini-lab) 
+              <li><strong>BlackBoxClasses</strong> (folder of extra classes the 
+                program uses) 
+                <ul>
+                  <LI><a href="StartingCode/BlackBoxClasses/Aquarium.java">Aquarium 
+                    class</a> 
+                  <li><a href="StartingCode/BlackBoxClasses/AquaPoint.java">AquaPoint 
+                    class</a> 
+                  <LI><a href="StartingCode/BlackBoxClasses/AquaSimGUI.java">AquaSimGUI 
+                    class</a> 
+                  <LI><a href="StartingCode/BlackBoxClasses/AquaView.java">AquaView 
+                    class</a> 
+                  <LI><a href="StartingCode/BlackBoxClasses/Direction.java">Direction 
+                    class</a> 
+                  <LI><a href="StartingCode/BlackBoxClasses/RandNumGenerator.java">RandNumGenerator 
+                    class</a> 
+                </ul>
+              <LI><a href="http://www.ccs.neu.edu/teaching/EdGroup/JPT/tools.html">jpt.jar</a> 
+                (a graphics library from Northeastern University) 
+            </UL>
+            All classes are covered by the <a href="License.txt">GNU General Public 
+            License</a>. 
+            <p> 
+          <LI>Edit <code>AquaSimApplication.java</code> to modify the first output 
+            statement to welcome users to the fish aquarium program. Test the 
+            modified program. </ul>
+
+</td></tr>
+</table></center>
+
+<p>
+<HR>
+<HR>
+
+<p>
+<a name="construct"></a>
+<H2>Populating the Aquarium</H2>
+
+<p>
+<h3>Introduction</h3>
+The <code>main</code> method in <code>AquaSimApplication.java</code>
+creates an aquarium, but it doesn't have any fish in it.  We can use
+the <strong>Declare-Construct-Initialize</strong> pattern to create
+fish to go
+in the aquarium.  The <code>AquaFish</code> interface gives the
+specifics on how to construct objects of the class.
+
+<ul>
+  <h3> <a NAME="DCI"></a><b>Pattern: Declare-Construct-Initialize</b> 
+    <!--(? Variables ?)-->
+    -- Abridged</h3>
+  You are in a situation in which you want to create a new variable. If you are 
+  using a typed language, the type of the variable must be explicitly specified.
+  There must be space set aside in memory for the variable, the size of which 
+  is determined by the type. Before you use the value of the variable, it must 
+  be set to a meaningful value. 
+  <p> <strong>Therefore</strong>, you should specify the type of the new variable 
+    (<em>declare</em>), set aside space for it in memory (<em>construct</em>), 
+    and (usually) <em>initialize</em> it to a meaningful value before you use 
+    it in your program. Give the variable an <a href="#IRN">Intention Revealing 
+    Name</a> to make your code easier to read, understand, and maintain. If the 
+    variable is an object of a class, <a href="#RTIC">Read the Interface for Constructors</a> 
+    to determine how to construct and initialize the variable. You may not need 
+    to explicitly initialize the variable if it will automatically be given an 
+    appropriate default value or if you always set it in your algorithm before 
+    trying to use it. 
+
+  <p> A variable associated with a class object in Java is actually a <em>reference</em> 
+    to the actual object. Creating the variable and associating it with an object 
+    are two separate steps.
+The variable declaration declares the type of object the variable will
+refer to, and initializes it by default to be a null reference,
+as in the example below.
+  <ul>
+    <pre><code>MyClass newObject; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // constructs reference
+</code></pre>
+  </ul>
+  The variable can be assigned to refer to an existing object, or to an explicitly 
+  constructed object. A newly constructed object is initialized by a <em>constructor method</em>,
+  and it is often possible to pass parameters to a constructor 
+  to affect the initialization. In Java, empty parentheses are used when invoking 
+  the default constructor. For any given class, <a href="#RTIC">Read the Interface 
+  for Constructors</a> to determine how to construct and initialize objects of 
+  the class. 
+  <ul>
+    <pre><code>MyClass newObject = oldObject; &nbsp;&nbsp;             // constructs new reference to existing object
+MyClass newObject = new MyClass(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // constructs using default constructor; assigns to reference
+MyClass newObject = new MyClass(initValue); &nbsp; // constructs using one-parameter constructor; assigns to reference
+</code></pre>
+  </ul>
+  It is also possible to construct both a reference and the new object to which 
+  it refers in a single line of code. 
+  <ul>
+    <pre><code>MyClass myObj = new MyClass(initValue); &nbsp;&nbsp; // constructs and initializes both reference and new MyClass object
+</code></pre>
+  </ul>
+
+  <p> In Java, a variable definition of a primitive type declares the 
+    type of an object and sets aside the memory for it (constructs it) simultaneously. 
+    It is also possible to initialize a variable of a primitive type at the same 
+    time. 
+  <ul>
+    <pre><code>int i; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // constructs an integer (and initializes to 0)
+int j = 0; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // constructs an integer, initializing to 0
+</code></pre>
+  </ul>
+
+  <!--
+<p>
+This variation on the Declare-Define-Use pattern is described more fully in the
+complete <a href="/patterns/?.html">? Pattern</a>.
+-->
+  <p> 
+  <HR WIDTH="80%">
+  <h3> <a NAME="IRN"></a><b>Pattern: Intention Revealing Name</b> -- Abridged</h3>
+  It is helpful if our programs read naturally and don't need excessive documentation 
+  to understand them. One of the things that the programmer has most under his 
+  or her control is the names used to denote things. If names are correctly and 
+  carefully chosen our programs will read quite naturally. 
+  <p> <strong>Therefore</strong>, all of the names in your programs (variables 
+    and parameters, classes, methods) should denote the purpose of the item they 
+    refer to. Variables, for example, should be named for the objects they represent. 
+    <!--
+Flag (boolean) variables should be named for the condition they
+represent.  A method returning information should be named with a noun
+describing the information returned.  A void method should be named with
+a verb phrase describing the action it performs.
+-->
+  <p> The <strong>Intention Revealing Name</strong> pattern is described more 
+    fully in Bergin's <a href="http://csis.pace.edu/~bergin/patterns/codingpatterns.html#irn">Coding 
+    at the Lowest Level: Coding Patterns for Java Beginners</a>. The pattern comes 
+    from <a name="BeckSBPP"></a>Kent Beck's <em>Smalltalk Best Practice Patterns</em> 
+    (Prentice Hall, 1997). 
+  <p> 
+  <HR WIDTH="80%">
+  <h3> <a NAME="RTIC"></a><b>Pattern: Read the Interface for Constructors</b> 
+    <!--(Interfaces)-->
+    -- Abridged</h3>
+  You are in a situation in which you want to construct a new object. You need 
+  to know whether any initial values are needed as the object is constructed. 
+  <p> <strong>Therefore</strong>, read the constructor specification(s) in the 
+    class interface to determine how to construct, and initialize if necessary, 
+    the object that you need. Concentrate on the constructors that are accessible 
+    to you; for example, if you are writing client code, read the public constructor 
+    specifications. 
+  <p> A constructor specification will tell you 
+  <ul>
+    <li>whether the method is accessible to you 
+    <li>whether you need to provide any initialization information to the constructor 
+      in the form of parameters 
+      <ul>
+        <li>if so, how many parameters to provide 
+        <li>the order of the parameters and the type of each parameter 
+      </ul>
+  </ul>
+  <p> Reading a constructor or method specification and then writing code that 
+    meets the specification is tricky, especially for novices. This is because 
+    the client code you write will not look exactly like the specification. Think 
+    of the specification as being like a dictionary entry. Imagine that you want 
+    to use the word "cat" in a sentence, but you're not sure of its meaning. You 
+    look it up in a dictionary and find the following. 
+  <ul>
+    <strong>cat</strong>: <em>noun</em>, a small furry animal &nbsp; (not the 
+    actual definition in any known dictionary!) 
+  </ul>
+  You would not then say "My noun: a small furry animal drank some milk." In other 
+  words, you do not use a dictionary definition by repeating it in your own writing. 
+  Rather, you use the definition to learn how to use the word being defined in 
+  an appropriate context. Similarly, you do not use a constructor or method specification 
+  by repeating it in your code. Instead, you use it to learn how to construct 
+  an object or invoke a method correctly in your code. 
+  <p> Let's look at an example from the Aquarium class. In this class, there is 
+    a single constructor. How do we know? A constructor specification looks like 
+    a method whose name is the same as the class. There is only one "method" called 
+    Aquarium in the class interface. 
+  <ul>
+    <pre><code>public Aquarium(int width, int height)</code>
+   <SPAN class=spec>Construct an Aquarium with user-specified size.
+     Parameters:  <code>width</code>  - width of the aquarium when displayed (in pixels)
+	          <code>height</code> - height of the aquarium when displayed (in pixels)</SPAN>
+</pre>
+  </ul>
+  This specification tells us that the constructor is public, so we may use it 
+  in our client code, and that it requires two integer parameters. When we construct 
+  an Aquarium object we do not need to specify that it is public nor what the 
+  types of its parameters are, anymore than we have to specify that a cat is a 
+  noun when we use it in a sentence. We do, however, need to provide values for 
+  the two parameters. Thus, we could construct a 600 x 400 Aquarium as follows: 
+  <ul>
+    <pre><code>Aquarium myAquarium = new Aquarium(600, 400);
+</code></pre>
+  </ul>
+  <p> What if the Aquarium class also included a second constructor that took 
+    no parameters? 
+  <ul>
+    <pre><code>public Aquarium()</code>
+   <SPAN class=spec>Construct an Aquarium with default size.</SPAN>
+</pre>
+  </ul>
+  In this case, we could use either constructor. We could construct an Aquarium 
+  with the default size (whatever that may be), with the following: 
+  <ul>
+    <pre><code>Aquarium myAquarium = new Aquarium();
+</code></pre>
+  </ul>
+</ul>
+
+<p>
+<center><table width="90%" border=1>
+<tr><td>
+<H4>Exercise</H4>
+
+        <ul>
+          <li>Read the initial version of the <code>main</code> method in <code>AquaSimApplication.java</code>. 
+            This method has three sections. The first constructs the objects needed 
+            to run the simulation. The second actually runs it (or will, when 
+            we have added some more functionality to it). The third section wraps 
+            up the program, reminding the user how to quit. 
+            <p> 
+          <li>Research the abbreviated description of (or specification
+            for) the <a
+            href="JavaDocs/AquaFish.html">AquaFish</a>
+			class to discover how to construct a fish. Edit the
+            <code>main</code> method in
+            <code>AquaSimApplication.java</code> to declare and
+            construct three fish variables at the end of the first
+            section. Give them <a href="#IRN">Intention Revealing
+            Names</a>. Using blank lines, separate this sequence of new
+            statements, which together perform a single function, from
+            the existing code around them. Add a single comment
+            preceding them that describes the purpose of the sequence.
+             <p> 
+          <li>Test your modified program. Does it look any different? You constructed 
+            three fish, but the <code>userInterface</code> is only drawing the 
+            aquarium, not the fish. 
+        </ul>
+
+</td></tr>
+</table></center>
+
+<p>
+<HR>
+<HR>
+
+<p>
+<a name="invoke"></a>
+<H2>Let's Move!</H2>
+
+<p>
+<h3>Introduction</h3>
+Now the aquarium has three fish, but we can't see them. And even if we could see 
+them, it wouldn't be very interesting because they aren't doing anything. We need 
+to <a href="#RTIM">Read the [AquaSimGUI] Interface for Methods</a> to learn how 
+to view fish objects and <a href="#RTIM">Read the [AquaFish] Interface for Methods</a> 
+to learn how to get our fish to do something interesting (like move). 
+<ul>
+  <h3> <a NAME="RTIM"></a><b>Pattern: Read the Interface for Methods</b> 
+    <!--(Interfaces)-->
+    -- Abridged</h3>
+  You are in a situation in which you want an object to do something, or you 
+  want to do something to an object. 
+  <p> <strong>Therefore</strong>, read the method specifications in the class 
+    interface to determine how to invoke methods on the object (also known as 
+    "sending a message" to the object). 
+  <p> A method specification will tell you 
+  <ul>
+    <li>whether the method is accessible to you 
+    <li>whether you need to provide any information to the method in the form 
+      of parameters 
+      <ul>
+        <li>if so, how many parameters to provide 
+        <li>the order of the parameters and the type of each parameter 
+      </ul>
+    <li>whether the method will return a value to the calling method (and so can 
+      be used in larger expressions) 
+      <ul>
+        <li>if so, the type of the return value 
+      </ul>
+  </ul>
+  <p> Let's look at two examples from the Aquarium class: <code>width</code> and 
+    <code>validLoc</code>. 
+  <ul>
+    <pre><code>public int width()</code>
+   <SPAN class=spec>Determine the width of the aquarium.
+     Returns:  the width of the aquarium</SPAN>
+</pre>
+  </ul>
+  <ul>
+    <pre><code>public boolean validLoc(int xCoord, int yCoord)</code>
+   <SPAN class=spec>Determine whether the given coordinates specify a valid location.
+     Parameters:  <code>xCoord</code> - x coordinate of location to be checked
+  	          <code>yCoord</code> - y coordinate of location to be checked
+     Returns:  <code>true</code> if specified location is within aquarium</SPAN>
+</pre>
+  </ul>
+  What can we learn from these declarations? Both methods are public, so we may 
+  use them in client code. Both have return values (<code>width</code> returns 
+  an integer value; <code>validLoc</code> returns a boolean value), so we should 
+  capture the value returned in a variable or embed the method call in a larger 
+  expression. The <code>width</code> method does not take any parameters and returns 
+  an <code>int</code>. The <code>validLoc</code> method requires two parameters 
+  and returns a boolean value. Thus, this method may be used in a logical expression. 
+  <p> How can we use this knowledge? If <code>y</code> is a well-defined integer 
+    value (see the <a href="#DCI">Declare-Construct-Initialize</a> pattern), then 
+    the following are valid examples of these two methods. 
+  <ul>
+    <pre><code>int aquariumWidth = myAquarium.width();
+if ( myAquarium.validLoc(aquariumWidth / 2, y) )
+ &nbsp; &nbsp; // do something with this valid location ...
+</code></pre>
+  </ul>
+  As with constructors, you do not need to specify the type of the parameters 
+  as you pass them (see the <a href="#RTIC">Read the Interface for Constructors</a> 
+  pattern). Nor do you specify the return type of the method as you call it. 
+  <p> A method with a <code>void</code> return type does not return any value 
+    to the method that called it. Instead, it usually modifies its object, produces 
+    output, or changes the state of the program in some other way. It may or may 
+    not require parameters. Here is a specification of a <code>void</code> method 
+    from the Display class. 
+  <ul>
+    <pre><code>public void showAquarium()</code>
+   <SPAN class=spec>Display only the Aquarium: paint the aquarium blue to cover up old fish.</SPAN>
+</pre>
+  </ul>
+  Since <code>showAquarium</code> does not return anything, it cannot be embedded 
+  in an expression or an assignment statement. A <code>void</code> method is a 
+  statement on its own. For example, 
+  <ul>
+    <pre><code>userInterface.showAquarium();
+</code></pre>
+  </ul>
+</ul>
+
+<p>
+<center><table width="90%" border=1>
+<tr><td>
+<H4>Exercise</H4>
+
+        <ul>
+          <li>Research the abbreviated specification for the <a href="JavaDocs/AquaSimGUI.html">AquaSimGUI</a> 
+            class to discover how to view a fish. Modify the <code>main</code> 
+            method to display the three fish you constructed. You want to draw 
+            the fish <i>after</i> drawing the aquarium (or else the blue water 
+            in the aquarium will hide the fish), but <i>before</i> repainting 
+            the user interface. Test your modified program.</li>
+          <p> 
+          <LI>Now it is time to start running the aquarium simulation. Research 
+            the abbreviated specification for the <a href="JavaDocs/AquaFish.html">AquaFish</a> 
+            class to discover how to make a fish move forward. Add statements 
+            to the <code>main</code> method to move your three fish forward once. 
+            (Where should these statements be added?) Using blank lines, separate 
+            this sequence of new statements, which together perform a single function, 
+            from the existing code around them. Add a single comment preceding 
+            them that describes the purpose of the sequence. Then add code (and 
+            comments) to redraw the fish. </li>
+          <p> 
+          <LI>Test your modified program. If you don't see the fish move, you 
+            probably forgot to repaint the user interface to make the changes 
+            visible. You may also see two copies (or one &quot;blurred&quot; copy) 
+            of each fish -- the fish in its old location and in its new location. 
+            If you see this, you forgot to redraw the aquarium to &quot;erase&quot; 
+            (or cover up) all the fish in their old locations before displaying 
+            the fish in their new locations. Add a line to the beginning of the 
+            second block of display statements to redraw the aquarium. You may 
+            even occasionally only see two fish (or even one!). This can happen 
+            when a larger fish overlaps and hides a smaller fish. Run your program 
+            a number of times to verify that you usually see three fish.</li>
+          <p> 
+          <LI>Now when you run your program you should no longer have two copies 
+            of each fish, but you probably can't really see the fish move because 
+            it happens too quickly to see. Research the abbreviated specification 
+            for the <a href="JavaDocs/AquaSimGUI.html">AquaSimGUI</a> class 
+            to discover how to ask the user interface to pause after each set 
+            of display statements so that you can see the fish before and after 
+            they move. </li>
+          <p> 
+          <LI>Update the program documentation at the top of the file to reflect 
+            your modifications. </li>
+        </ul>
+
+</td></tr>
+</table></center>
+
+<p>
+<HR>
+<HR>
+<font size="-2"><em>Copyright Alyce Faulstich Brady, 2001-2002.</em></font><br>
+
+</BODY>
+</HTML>

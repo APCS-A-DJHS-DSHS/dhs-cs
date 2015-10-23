@@ -1,0 +1,434 @@
+<html>
+<head>
+   <title>Mini-Lab: Conditional Statements</title>
+   <LINK href="mailto:abrady@kzoo.edu">
+   <LINK REL=STYLESHEET TYPE="text/css" HREF="aquaLabs.css">
+</head>
+
+<body>
+
+<!--#include file="siteTitle.html" -->
+
+<DIV ID=pageTitle>
+  <h1>Mini-Lab: Staying in Bounds and Adding Color</h1>
+
+<p>
+<strong>Using Conditional Statements</strong>
+</DIV>
+
+<p>
+<!--#include file="author.html" -->
+
+<p>
+<HR>
+
+<p>
+This set of Mini-Lab Exercises is the second in a series in which students
+build a small program with several fish moving around in an aquarium.
+The set includes the following exercises:
+
+  	<ul>
+	
+  <li><a href="#if">About Face!</a> &nbsp;&nbsp;&nbsp; (Patterns: <strong>Whether 
+    or Not</strong> and <strong>Positive Condition</strong>) 
+  <li><a href="#else">One Fish, Two Fish, Red Fish,
+Blue Fish</a> &nbsp;&nbsp;&nbsp;
+		(Pattern: <strong>Alternative Action</strong>)
+	<li><a href="#elseif">Rainbow Fish</a> &nbsp;&nbsp;&nbsp;
+		(Pattern: <strong>Sequential Choice</strong>)
+  	</ul>
+
+<p>
+Each section contains an <strong>Introduction</strong> to a problem
+or task, (usually) abridged versions of one or more
+<strong>Patterns</strong> that will be useful in solving the problem or
+completing the task, and an <strong>Exercise</strong>.
+
+<p> In the exercises that precede this one, students created three fish, moved 
+  them forward one step, and displayed them graphically. Therefore, students 
+  should be familiar with constructing objects, using variables, and invoking 
+  methods. Some familiarity with logical expressions is also required, since the 
+  Selection Patterns use conditions. 
+<p>
+Students should read over the patterns that appear in this
+document before the lab.
+
+<p>
+<HR>
+<HR>
+
+<p>
+<a name="if"></a>
+<H2>About Face!</H2>
+
+<p>
+<h3>Introduction</h3>
+In our current program, fish move to the right and then get stuck at the right 
+wall. This does not make sense. We can use the <strong>Whether or Not</strong> 
+selection pattern to change direction when a fish gets to the wall. 
+<ul>
+  <h3> <a NAME="won"></a><b>Pattern: Whether or Not</b> (Selection) -- Abridged 
+  </h3>
+  <!-- (Also known as: Guarded Action, Guarded Command). -->
+  <p> You are in a situation in which some action may be appropriate or inappropriate 
+    depending on some testable condition. There are no other actions to do instead 
+    of this one. You don't need to repeat the action, only to decide whether or 
+    not it should be done. 
+    <!-- You want to write simply understood code. -->
+  <p> <b>Therefore</b>, use an IF statement without an ELSE part. 
+  <ul>
+    <pre>&nbsp;<code>if (&lt;condition>)
+</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code>&lt;action></code></pre>
+  </ul>
+  Note: Conditions are sometimes called guards. The condition guards the command 
+  and only permits it to be executed when the guard is true. 
+  <p> For example: in a power plant simulation, it may be necessary to shut down 
+    a generator when it overheats. 
+  <ul>
+    <pre><code>if (measuredHeat() > subBoilThreshold)
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; shutDownGenerator();
+}</code></pre>
+  </ul>
+  <p> This selection pattern and others are described more fully in the complete 
+    <a href="http://csis.pace.edu/~bergin/patterns/Patternsv4.html">Selection 
+    Pattern</a> document. 
+</ul>
+
+<p>
+<center><table width="90%" border=1>
+<tr><td>
+<H4>Exercise</H4>
+
+<p>
+        <ul>
+          <li>In your previous testing of the program you may or may not have 
+            noticed that fish swim only to the right and get stuck at the right 
+            wall. To verify the problem, make a copy of the statement that sets 
+            the dimensions of the aquarium. "Comment out" the original, and change 
+            the dimensions in the copy to be 100 x 480. Copy the code that moves 
+            and redisplays the fish to let them move a second time. Now run the 
+            program several times and make sure you see the problem.</li>
+          <p> 
+          <li>Research the abbreviated <a href="JavaDocs/AquaFish.html">AquaFish</a> 
+            specification to find out how to determine whether a fish is at a 
+            wall and how to make it turn around. Using the <a href="#aa">Whether 
+            or Not</a> Selection pattern, modify your <code>main</code> method 
+            to have each fish reverse direction if it is at a wall. Then move 
+            the fish forward, whether it reversed itself or not. Test your program 
+            in the narrower aquarium you created above. When you are satisfied 
+            that your program is behaving correctly, restore the aquarium to its 
+            original size. </li>
+        </ul>
+      </td></tr>
+</table></center>
+
+<p>
+<HR>
+<HR>
+
+<p>
+<a name="color"></a>
+<H2>One Fish, Two Fish, Red Fish,
+Blue Fish</H2>
+
+<p>
+<h3>Introduction</h3>
+Our aquarium is a little boring, since the fish are all the same color. We could 
+specify the color of each fish as we construct it, giving each fish a different 
+color. Or, to make things more interesting, we could decide on the color of each 
+fish based on a random number. We can use the <strong>Alternative Action</strong> 
+selection pattern and a standard Java class, the <code>Random</code> class, to 
+do this. 
+<ul>
+
+<h3>
+<a NAME="aa"></a><b>Pattern: Alternative Action </b>(Selection) -- Abridged </h3>
+You are in a situation in which one of exactly two actions is appropriate
+depending on some testable condition, which may be true or false.
+When the condition holds you want to do one action, and when it
+does not hold you want to do some different action.
+
+<p>
+<b>Therefore</b>, use a single IF statement with an ELSE part, expressing
+the test as a <a href="#pc">Positive Condition</a> if possible.
+<ul>
+<pre>&nbsp;<code>if (&lt;condition>)
+</code>&nbsp;<code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;one action>
+</code>&nbsp;<code>else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;another action></code></pre>
+</ul>
+For example a student may pass or fail an exam depending on the value
+of the numeric grade.
+<ul>
+<pre><code>if ( numericGrade &gt; 60 )
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output ("passing");
+}
+else
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output("failing");
+}</code></pre>
+</ul>
+If you try to apply <a href="#won">Whether or Not</a> (twice)
+to this case you will find yourself needing to write the negation of the
+condition.
+<ul>
+<pre><code>if ( numericGrade &gt; 60 )
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output ("passing");
+}
+if ( numericGrade &lt;= 60)
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; output("failing");
+}</code></pre>
+</ul>
+This is both wasteful of computer time and very error prone. If the problem
+changes a bit in the future and you change one of the conditions, it is
+easy to forget to change the other. Alternative Action makes it unnecessary
+to repeat the condition for the else part.
+
+<p>
+This selection pattern and others are described more fully in the
+complete
+<a href="http://csis.pace.edu/~bergin/patterns/Patternsv4.html">Selection
+Pattern</a>
+document.
+
+<p>
+<HR WIDTH="80%">
+
+<h3>
+<a NAME="pc"></a><b>Pattern: Positive Condition</b> (Auxiliary)</h3>
+You are applying
+<a href="http://csis.pace.edu/~bergin/patterns/Patternsv4.html">Selection</a>
+or
+<a href="http://max.cs.kzoo.edu/patterns/Repetition.shtml">Repetition</a> and are
+wondering how to express the condition.  If you are applying the
+<a href="#aa">Alternative Action</a> Selection pattern,
+you are also determining how to lay out the actions in the IF-ELSE
+statement.
+
+<p>
+Most people can read a positive statement more effectively than
+a negative one. You want your code to be as readable as possible.
+
+<p>
+<b>Therefore</b>, when writing conditions, express them positively
+whenever possible.
+
+<p>
+For example, suppose you have a robot simulation in which the robot
+must move but must also contend with obstructions in the path. Suppose
+you have a boolean test as a primitive in a robot language:
+<ul>
+<pre><code>boolean frontIsBlocked();</code></pre>
+</ul>
+Suppose that you want to move if possible, but turn Left instead if
+it is impossible to move forward. The following are equivalent:
+<ul>
+<pre><code>if (frontIsBlocked())&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; turnLeft();
+else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; move();
+
+
+if ( ! frontIsBlocked())
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; move();
+else
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; turnLeft();</code></pre>
+</ul>
+The first version is more readable and is preferred. It expresses a
+positive condition.
+
+</ul>
+
+<p>
+<center><table width="90%" border=1>
+<tr>
+      <td> 
+        <H4>Exercise</H4>
+        <ul>
+          <li>Research the specification for the <a href="http://java.sun.com/j2se/1.3/docs/api/java/util/Random.html">Random</a> 
+            class to discover how to construct a random number generator. A <code>Random</code> 
+            object can be used to simulate a coin toss or other random selection. 
+            Edit your <code>main</code> function to construct a random number 
+            generator right before you construct your three fish. Give it an <strong>Intention 
+            Revealing Name</strong>. </li>
+          <p> 
+          <li>Create a new variable that will be a reference to an object of the 
+            <code>Color</code> class, but don't actually construct or initialize 
+            a <code>Color</code> object. Give your variable an <strong>Intention 
+            Revealing Name</strong>. For example, your variable declaration might 
+            look like the following line. 
+            <ul>
+              <code> Color fishColor;</code> 
+            </ul>
+          </li>
+          <p> 
+          <li>Research the <a href="http://java.sun.com/j2se/1.3/docs/api/java/util/Random.html">Random</a> specification to discover 
+            how to randomly generate one of two values (0 or 1). Before you construct 
+            each fish, generate a random 0 or 1 first. Using the <a href="#aa">Alternative 
+            Action</a> Selection pattern, set your <code>Color</code> variable 
+            to <code>Color.red</code> if the random number is 0; set it to <code>Color.blue</code> 
+            otherwise. (<code>Color.red</code> and <code>Color.blue</code> are 
+            constant <code>Color</code> values defined in the Java <code>Color</code> 
+            class.)</li>
+          <p> 
+          <li>Research the abbreviated <a href="JavaDocs/AquaFish.html">AquaFish</a> 
+            specification to discover how to specify the color of a fish as you 
+            create it. Modify your code to specify the color of each fish using 
+            your <code>Color</code> variable.</li>
+          <p> 
+          <li>Test your program to make sure that your results are what you expect.</li>
+          <p> 
+          <HR WIDTH="90%">
+          <blockquote> 
+            <H4><font color=red>Stop and Think</font></H4>
+            What if all three fish are the same color? Does that indicate a programming 
+            error? Why or why not? What if all three fish are the same color (sometimes 
+            all red, sometimes all blue) <u>every</u> time you run the program? 
+            What programming error would cause that error?</blockquote>
+        </ul>
+      </td>
+    </tr>
+</table></center>
+
+<p>
+<HR>
+<HR>
+
+<p>
+<a name="rainbow"></a>
+<H2>Rainbow Fish</H2>
+
+<h3>Introduction</h3>
+Why should there only be two colors of fish in our aquarium?
+We can use the <strong>Sequential Choice</strong> selection pattern to
+add diversity of color when constructing and displaying fish.
+
+<ul>
+
+<h3>
+<a NAME="sc"></a><b>Pattern: Sequential Choice </b>(Selection) -- Abridged </h3>
+<!-- (Also known as: elsif, one of many.) -->
+
+<p>
+You are in a situation in which you need to choose exactly one of
+several possible actions.
+<!-- but which action does not depend on the value
+of a single expression.  Instead, suppose
+each action depends on a separate testable condition.
+-->
+Each action is guarded by
+<!-- its own -->
+a separate
+condition, and after you find one condition true you want to execute
+its associated action and at that point you want to finish.
+
+<p>
+You want the code layout to be pleasing to both the eye and the
+mind.  You want a structure that is easy to read and understand.
+
+<p>
+<b>Therefore</b>, write a sequence of IF's, where each IF but the
+last has an ELSE part that consists entirely of another IF.
+For example,
+<ul>
+<pre><code>int participants = myParty.size();
+if (participants > 15000)
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rentTheSuperdome();
+}
+else if (participants > 1500)
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rentTheCivicCenter();
+}
+else if (participants > 150)
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rentATent();
+}
+else
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rentAMovie(); // default case, no party at all.&nbsp;
+}</code></pre>
+</ul>
+The formatting, with <code>else</code> and <code>if</code> on the same line, makes
+it clear that this is a Sequential Choice and not a sequence of independent
+<a href="#won">Whether or Not</a> applications. Do not
+indent the subsequent
+<code>else</code> parts or it will look like <strong>Independent Choice</strong>
+(see the complete
+<a href="http://csis.pace.edu/~bergin/patterns/Patternsv4.html">Selection
+Pattern</a>) and you will
+also give up valuable horizontal real estate.  Some languages have a special
+keyword (<code>elsif</code>) to handle this case.
+
+<!--
+<p>Note that polymorphic method dispatch may be a better solution than
+this for many problems.
+-->
+
+</ul>
+
+<p>
+<center><table width="90%" border=1>
+<tr>
+      <td> 
+        <H4>Exercise</H4>
+        <ul>
+          <li>Modify your program to create fish with the colors of the rainbow. 
+            This time, before you construct each fish, generate a random integer 
+            less than 6 (in the range of 0 to 5) first. Using the <a href="#sc">Sequential 
+            Choice</a> selection pattern, set your <code>Color</code> variable 
+            according to the following table: 
+            <table border="1" align="center">
+              <tr> 
+                <th width="50%">Random Integer</th>
+                <th width="50%">Color</th>
+              </tr>
+              <tr> 
+                <td align="center">0</td>
+                <td align="center"><code>Color.red</code></td>
+              </tr>
+              <tr> 
+                <td align="center">1</td>
+                <td align="center"><code>Color.orange</code></td>
+              </tr>
+              <tr> 
+                <td align="center">2</td>
+                <td align="center"><code>Color.yellow</code></td>
+              </tr>
+              <tr> 
+                <td align="center">3</td>
+                <td align="center"><code>Color.green</code></td>
+              </tr>
+              <tr> 
+                <td align="center">4</td>
+                <td align="center"><code>Color.blue</code></td>
+              </tr>
+              <tr> 
+                <td align="center">5</td>
+                <td align="center"><code>Color.magenta</code></td>
+              </tr>
+            </table>
+            Do not generate a new random number for every test; just generate 
+            one random number for each fish and test it against the various integer 
+            values. You may want to use cut and paste to reinitialize the <code>Color</code> 
+            variable for the second and third fish! (This table uses <code>Color.magenta</code> 
+            because <code>Color.indigo</code> and <code>Color.violet</code> are 
+            not defined colors.)</li>
+          <p> 
+          <li>Test your program to make sure that your results are what you expect. 
+            (What results were you expecting? What tests are necessary to make 
+            sure the results are what you expect?)</li>
+          <p> 
+          <li>Make sure that you have updated the program documentation at the 
+            top of the file to reflect your modifications. </li>
+        </ul>
+      </td>
+    </tr>
+</table></center>
+
+<p>
+<HR>
+<HR>
+<font size="-2"><em>Copyright Alyce Faulstich Brady, 2001-2002.</em></font><br>
+<font size="-2"><em>The
+<a href="http://csis.pace.edu/~bergin/patterns/Patternsv4.html">Selection
+Pattern</a>
+was written by Joe Bergin, of Pace University.</em></font><br>
+
+</body>
+</html>
