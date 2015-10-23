@@ -1,0 +1,23 @@
+.classpath probably won't work on Windows, due to the way Eclipse handles
+project JDK versions. 
+
+Luckily, fixing this issue isn't a huge pain.
+
+ - Right-click on the project and click "Properties" in the menu
+ - On the left side of the window that pops up, there should be a line reading
+   "Java Build Path". Click that.
+ - On the right side of the window, you should see four buttons near the top:
+   Source, Projects, Libraries, and Order and Export. Click on Libraries.
+ - Click on the missing library and hit "Remove"
+ - Click "Add Library..."
+ - Pick "JRE System Library"
+ - Two options:
+   - Use whatever Eclipse says your JRE is by default (the bottom button)
+   - Use a different version of Java if you have it. Versions can be found:
+     - OS X: /Library/Java/JavaVirtualMachines/jdk1.<version>.0<something>.jdk/Contents/Home
+     - Windows: <drive letter>:\Program Files\Java\jdk1.<version>.<something> 
+  - Hit "Finish"
+
+Things *should* be ok at this point. 
+
+To do: Create a Windows .classpath, set up hook to take care of packaging
