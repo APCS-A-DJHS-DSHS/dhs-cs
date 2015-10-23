@@ -71,19 +71,19 @@ public class Direction {
      **/
     public Direction(int degrees) {
         dirInDegrees = degrees % FULL_CIRCLE;
-        if ( dirInDegrees < 0 ) {
+        if (dirInDegrees < 0) {
             dirInDegrees += FULL_CIRCLE;
         }
     }
 
     /** Constructs a {@code Direction} object.
      *  @param str    compass direction specified as a string, e.g. "North"
-     *  @throws IllegalArgumentException if string doesn't match a known direction name 
+     *  @throws IllegalArgumentException if string doesn't match a known direction name
      **/
     public Direction(String str) {
         int regionWidth = FULL_CIRCLE / dirNames.length;
-            for ( int k = 0; k < dirNames.length; k++ ) {
-                if ( str.equalsIgnoreCase(dirNames[k]) ) {
+            for (int k = 0; k < dirNames.length; k++) {
+                if (str.equalsIgnoreCase(dirNames[k])) {
                     dirInDegrees = k * regionWidth;
                     return;
                 }
@@ -110,7 +110,7 @@ public class Direction {
      *                 {@code false} otherwise
      **/
     public boolean equals(Object other) {
-        if ( ! (other instanceof Direction) ) {
+        if (!(other instanceof Direction)) {
             return false;
         }
 
@@ -173,7 +173,7 @@ public class Direction {
      **/
     public String toString() {
         // If the direction is one of the compass points for which we have
-        // a name, provide it; otherwise report in degrees. 
+        // a name, provide it; otherwise report in degrees.
         int regionWidth = FULL_CIRCLE / dirNames.length;
         if (dirInDegrees % regionWidth == 0) {
             return dirNames[dirInDegrees / regionWidth];

@@ -28,8 +28,8 @@ import lab.blackbox.AquaPoint;
 import lab.blackbox.Aquarium;
 import lab.blackbox.Direction;
 
-/** Aquarium Lab Series:     
- *      The AquaFish class defines a fish in an aquarium. 
+/** Aquarium Lab Series:
+ *      The AquaFish class defines a fish in an aquarium.
  *
  *  @author  Alyce Brady
  *  @version 10 July 2002
@@ -40,7 +40,7 @@ public class AquaFish {
     // Named constants that specify how far a fish may move in one timestep
     private static final int MIN_DISTANCE = 10;
     private static final int MAX_DISTANCE = 70;
-    
+
     // Class Variables: Shared among ALL fish
     private static int nextAvailableID = 1;   // next avail unique identifier
     private static Random generator = new Random(); // random number generator
@@ -66,7 +66,7 @@ public class AquaFish {
     public AquaFish(Aquarium aqua) {
         // Place fish in aquarium and initialize ID and color.
         this (aqua, Color.white);
-        
+
         /* NOTE: for randomly colored fish, use the statement below
            instead of the statement above.
         this (aqua, new Color (generator.nextInt(256),        // amount of red
@@ -148,7 +148,7 @@ public class AquaFish {
      *              {@code false} otherwise
      **/
     public boolean facingLeft() {
-        return ! facingRight();
+        return !facingRight();
     }
 
     /**
@@ -158,7 +158,7 @@ public class AquaFish {
     public int distanceToWall() {
         int leftEdgeOfFish = myPos.xCoord() - (halfLength + 1);
         int rightEdgeOfFish = myPos.xCoord() + (halfLength + 1);
-        if ( facingRight() ) {
+        if (facingRight()) {
             return (theAquarium.width() - rightEdgeOfFish);
         } else {
             return leftEdgeOfFish;    // since left edge of aquarium is 0
@@ -210,7 +210,7 @@ public class AquaFish {
     public String toString() {
         String s = new String();
         String dir = "R";
-        if ( facingLeft() ) {
+        if (facingLeft()) {
             dir = "L";
         }
         s = s + myID + myPos + dir + " ";
@@ -225,15 +225,15 @@ public class AquaFish {
         // First get random number in range [0, MAX_DISTANCE-MIN_DISTANCE],
         // then shift to [MIN_DISTANCE, MAX_DISTANCE].  If moving that
         // far would mean swimming out of the aquarium, only move to edge
-        // of aquarium.  Ajust fish's x coordinate by a positive or 
+        // of aquarium.  Ajust fish's x coordinate by a positive or
         // negative amount, depending on whether fish is facing right or left.
         int moveAmt = generator.nextInt(MAX_DISTANCE - MIN_DISTANCE + 1);
         moveAmt += MIN_DISTANCE;
-        if ( moveAmt >= distanceToWall() ) {
+        if (moveAmt >= distanceToWall()) {
             moveAmt = distanceToWall();
         }
 
-        if ( facingRight() ) {
+        if (facingRight()) {
             myPos.moveRight(moveAmt);
         } else {
             myPos.moveLeft(moveAmt);
@@ -250,7 +250,7 @@ public class AquaFish {
     /**
      *  Initialize fish size:
      *  This helper function determines the height and length of the fish.
-     *  Fish are evenly distributed among 4 different sizes based on their 
+     *  Fish are evenly distributed among 4 different sizes based on their
      *  ID numbers.
      **/
     private void initSize() {
@@ -276,7 +276,7 @@ public class AquaFish {
         int myY = generator.nextInt(theAquarium.height() - myHeight
                    - padding) + padding/2;
 
-        // Since myX and myY indicate CENTER of fish, shift over half 
+        // Since myX and myY indicate CENTER of fish, shift over half
         // the length and half the width.
         myX += halfLength;
         myY += halfHeight;

@@ -178,18 +178,18 @@ public class AquaSimGUI extends DisplayPanel {
         // main panel of the GUI.
         add(getViewWindow(), BorderLayout.EAST);
         add(getControlPanel(promptForSimSteps, promptForNumFish,
-                            useSimulationObj), 
+                            useSimulationObj),
             BorderLayout.WEST);
 
         // Clear window.
         reset();
-        
+
         // Put the GUI in a window, giving the window a title.
         JPTFrame.createQuickJPTFrame("Aquarium Lab Series", this);
 
         // Create the Simulation object (if appropriate) and tell the
         // control panel about it.
-        if ( useSimulationObj ) {
+        if (useSimulationObj) {
             int numFish = getNumberOfFish();
             simulation = new Simulation (aqua, numFish, this);
 
@@ -211,7 +211,7 @@ public class AquaSimGUI extends DisplayPanel {
      *  Wait for start button to be pushed.
      **/
     public void waitForStart() {
-        while ( ! started ) {
+        while (!started) {
             JPTUtilities.pauseThread(WAIT_TIME);
         }
     }
@@ -262,7 +262,7 @@ public class AquaSimGUI extends DisplayPanel {
     /**
      *  Display only the Aquarium: paint the aquarium blue to cover
      *  up old fish.  Not necessary when displaying an entire vector
-     *  of fish.  
+     *  of fish.
      **/
     public void showAquarium() {
         drawingObject.showAquarium();
@@ -274,14 +274,14 @@ public class AquaSimGUI extends DisplayPanel {
      **/
     public void showFish(AquaFish fish) {
         drawingObject.showFish(fish);
-    } 
+    }
 
     /**
      *  Pause so user can view the display.
      **/
     public void pauseToView() {
         JPTUtilities.pauseThread(VIEW_TIME);
-    } 
+    }
 
 
     ////////////////////////
@@ -305,13 +305,13 @@ public class AquaSimGUI extends DisplayPanel {
     /** Execute one step of the simulation.  (Activated by the step button.)
      */
     public void step() {
-        if ( simulation == null ) {
+        if (simulation == null) {
             return;
         }
 
         // Execute a step of the simulation.
         simulation.step();
-        
+
         // View the new configuration.
         show(simulation.getAllFish());
         repaint();
@@ -320,7 +320,7 @@ public class AquaSimGUI extends DisplayPanel {
     /** Start running the simulation.  (Activated by the run button.)
      **/
     public void run() {
-        if ( simulation == null ) {
+        if (simulation == null) {
             return;
         }
 
@@ -329,7 +329,7 @@ public class AquaSimGUI extends DisplayPanel {
                 runButtonsPanel.setEnabled(false);
 
                 // Move the fish numSteps times.
-                for ( int step = 0; step < numSteps; step++ ) {
+                for (int step = 0; step < numSteps; step++) {
                     step();
                     pauseToView();
                 }
@@ -392,15 +392,15 @@ public class AquaSimGUI extends DisplayPanel {
         numStepsTF.getInputProperties().setSuggestion("" + DEFAULT_STEPS);
 
         // Add text field views if appropriate.
-        if ( promptForNumFish ) {
+        if (promptForNumFish) {
             numFishTF.setEnabled(true);
             controlPanel.add(new DisplayWrapper(
                     new Display(numFishTF, "Number of Fish:", null) ) );
         }
-        if ( promptForSimSteps ) {
+        if (promptForSimSteps) {
             numStepsTF.setEnabled(true);
             controlPanel.add(new DisplayWrapper(
-                    new Display(numStepsTF, "Number of Simulation Steps:", 
+                    new Display(numStepsTF, "Number of Simulation Steps:",
                                 null) ) );
         }
 
@@ -409,7 +409,7 @@ public class AquaSimGUI extends DisplayPanel {
         controlPanel.add(getStartPanel());
 
         // Add step and run buttons if appropriate.
-        if ( useSimulationObj ) {
+        if (useSimulationObj) {
             runButtonsPanel.setEnabled(false);
             controlPanel.add(new Display(runButtonsPanel, null, "Run Simulation"));
         }
@@ -439,7 +439,7 @@ public class AquaSimGUI extends DisplayPanel {
      *  Wait for Start button action panel to be created.
      **/
     private void waitForStartPanel() {
-        while ( startPanel == null ) {
+        while (startPanel == null) {
             JPTUtilities.pauseThread(WAIT_TIME);
         }
     }

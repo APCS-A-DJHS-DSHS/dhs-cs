@@ -44,7 +44,7 @@ public class AquaView {
     private Aquarium theAquarium;         // the aquarium to display
 
     /** Construct an AquaView object to display a particular
-     *  aquarium.  
+     *  aquarium.
      *      @param panel  the graphical panel in which to display environment
      *      @param a      the aquarium to display
      **/
@@ -74,7 +74,7 @@ public class AquaView {
 
         // Draw all of the fish.
         for (int i = 0; i < fishList.length; i++) {
-            if ( fishList[i] != null ) {
+            if (fishList[i] != null) {
                 drawFish (drawingSurface, fishList[i]);
             }
         }
@@ -99,7 +99,7 @@ public class AquaView {
         // Draw all of the fish.
         for (int i = 0; i < fishList.size(); i++) {
             AquaFish fish = (AquaFish)fishList.get(i);
-            if ( fish != null ) {
+            if (fish != null) {
                 drawFish (drawingSurface, fish);
             }
         }
@@ -109,7 +109,7 @@ public class AquaView {
     /**
      *  Display only the Aquarium: paint the aquarium blue to cover
      *  up old fish.  Not necessary when displaying an entire vector
-     *  of fish.  
+     *  of fish.
      **/
     public void showAquarium() {
         // Redraw the environment to paint over previous positions of fish.
@@ -129,7 +129,7 @@ public class AquaView {
 
         // Draw the fish.
         drawFish (drawingSurface, fish);
-    }        
+    }
 
 
     /**

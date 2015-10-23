@@ -20,7 +20,7 @@ package lab.blackbox;
 
 import java.awt.Color;
 
-/** Aquarium Lab Series:     
+/** Aquarium Lab Series:
  *  The Aquarium class defines an Aquarium and its properties.
  *
  *  @author  Alyce Brady
@@ -81,7 +81,7 @@ public class Aquarium {
             a valid location (one that exists within the bounds of the
             aquarium).
         @param xCoord a x coordinate to be checked
-	@param yCoord a y coordinate to be checked
+        @param yCoord a y coordinate to be checked
         @return    true if the specified location is within the bounds
                     of the aquarium
     */

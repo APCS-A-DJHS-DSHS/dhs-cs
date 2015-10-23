@@ -8,7 +8,7 @@ package lab;
  *  Author: Your Name Here,
  *      based on a template provided by my instructor
  *
- *  Created: 
+ *  Created:
  *
  *  Modified:
  *      Your Name      Date    Reason
@@ -27,7 +27,7 @@ package lab;
 import lab.blackbox.Aquarium;
 import lab.blackbox.AquaSimGUI;
 
-/** Aquarium Lab Series:     
+/** Aquarium Lab Series:
  *      The AquaSimApplication class contains the main function that will
  *      run the Aquarium Simulation.  The main function creates an aquarium
  *      and a number of fish and lets the fish move in the aquarium.

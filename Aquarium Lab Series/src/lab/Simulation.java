@@ -8,7 +8,7 @@ package lab;
  *  Author: Your Name Here,
  *      based on a template provided by my instructor
  *
- *  Created: 
+ *  Created:
  *
  *  Modified:
  *      Your Name      Date    Reason
@@ -27,7 +27,7 @@ package lab;
 import lab.blackbox.Aquarium;
 import lab.blackbox.AquaSimGUI;
 
-/** Aquarium Lab Series:     
+/** Aquarium Lab Series:
  *  A Simulation object controls a simulation of fish movement in
  *  an aquarium in the Aquarium Lab Series.
  *
