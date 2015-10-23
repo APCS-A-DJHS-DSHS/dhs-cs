@@ -171,6 +171,7 @@ public class Direction {
     /** Represents this direction as a string.
      *  @return        a string indicating the direction
      **/
+    @Override
     public String toString() {
         // If the direction is one of the compass points for which we have
         // a name, provide it; otherwise report in degrees.

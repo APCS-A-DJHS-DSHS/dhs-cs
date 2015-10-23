@@ -325,6 +325,7 @@ public class AquaSimGUI extends DisplayPanel {
         }
 
         Runnable runner = new Runnable() {
+            @Override
             public void run() {
                 runButtonsPanel.setEnabled(false);
 
@@ -424,6 +425,7 @@ public class AquaSimGUI extends DisplayPanel {
     private Display getStartPanel() {
         // Create the Start action panel in a separate thread.
         Runnable getter = new Runnable() {
+            @Override
             public void run () {
                 startPanel = new ActionsPanel(startButtonList);
             }

@@ -85,6 +85,7 @@ public class AquaPoint extends Point {
      *  @return        a string indicating the x and y coordinates of the
      *                 point in (x, y) format
      **/
+    @Override
     public String toString() {
         return "(" + xCoord() + ", " + yCoord() + ")";
     }

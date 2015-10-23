@@ -207,6 +207,7 @@ public class AquaFish {
      *  This function is provided primarily for debugging purposes.
      *  @return    a string representation of a fish
      **/
+    @Override
     public String toString() {
         return "" + myID + myPos + (facingLeft() ? "L" : "R");
     }
