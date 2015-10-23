@@ -1,3 +1,5 @@
+package lab.blackbox;
+
 // ------ DRAFT !!!   6/1/2002  ------ //
 // AP Computer Science Marine Biology Simulation:  RandNumGenerator Class
 //

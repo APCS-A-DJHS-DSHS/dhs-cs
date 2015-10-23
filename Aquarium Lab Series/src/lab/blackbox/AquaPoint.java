@@ -1,3 +1,5 @@
+package lab.blackbox;
+
 // Aquarium Lab Series:  AquaPoint Class
 //
 // Copyright (C) 2002  Alyce Brady

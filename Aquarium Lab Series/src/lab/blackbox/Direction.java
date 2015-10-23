@@ -1,3 +1,5 @@
+package lab.blackbox;
+
 // AP(r) Computer Science Marine Biology Simulation:
 // The Direction class is copyright(c) 2002 College Entrance
 // Examination Board (www.collegeboard.com).

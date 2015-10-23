@@ -1,3 +1,5 @@
+package lab.blackbox;
+
 /*
  *  Aquarium Lab Series
  *

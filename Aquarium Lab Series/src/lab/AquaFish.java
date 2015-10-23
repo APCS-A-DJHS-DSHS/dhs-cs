@@ -1,3 +1,5 @@
+package lab;
+
 /*
  *  Aquarium Lab Series
  *
