@@ -24,8 +24,8 @@ package lab;
  *      GNU General Public License for more details.
  */
 
-import java.awt.Color;
-import java.util.Random;
+import lab.blackbox.Aquarium;
+import lab.blackbox.AquaSimGUI;
 
 /** Aquarium Lab Series:     
  *  A Simulation object controls a simulation of fish movement in

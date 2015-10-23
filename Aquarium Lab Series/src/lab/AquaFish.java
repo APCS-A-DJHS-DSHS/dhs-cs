@@ -24,6 +24,9 @@ package lab;
 import java.awt.Color;
 import java.util.Random;
 
+import lab.blackbox.AquaPoint;
+import lab.blackbox.Aquarium;
+import lab.blackbox.Direction;
 
 /** Aquarium Lab Series:     
  *      The AquaFish class defines a fish in an aquarium. 

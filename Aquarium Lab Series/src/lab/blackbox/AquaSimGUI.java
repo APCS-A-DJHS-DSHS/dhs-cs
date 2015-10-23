@@ -31,6 +31,9 @@ import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.Action;
 
+import lab.AquaFish;
+import lab.Simulation;
+
 /**
  *  Aquarium Lab Series:
  *  The AquaSimGUI class provides a graphical user interface
