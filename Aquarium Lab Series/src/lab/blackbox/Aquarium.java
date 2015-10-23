@@ -26,8 +26,7 @@ import java.awt.Color;
  *  @author  Alyce Brady
  *  @version 10 July 2002
  **/
-public class Aquarium
-{
+public class Aquarium {
     private int myWidth;
     private int myHeight;
     private Color myColor;
@@ -37,16 +36,19 @@ public class Aquarium
         @param    width    width of the aquarium when displayed (in pixels)
         @param    height   height of the aquarium when displayed (in pixels)
     */
-    public Aquarium(int width, int height)
-    {
-        if (width > 0)
+    public Aquarium(int width, int height) {
+        if (width > 0) {
             myWidth = width;
-        else
+        } else {
             myWidth = 640;
-        if(height > 0)
+        }
+
+        if(height > 0) {
             myHeight = height;
-        else
+        } else {
             myHeight = 480;
+        }
+
         myColor = new Color(0.0f, .6f, 1.0f);
     }
 
@@ -54,8 +56,7 @@ public class Aquarium
         Determine the width of the aquarium.
         @return    the width of the aquarium
     */
-    public int width()
-    {
+    public int width() {
         return myWidth;
     }
 
@@ -63,8 +64,7 @@ public class Aquarium
         Determine the height of the aquarium.
         @return    the height of the aquarium
     */
-    public int height()
-    {
+    public int height() {
         return myHeight;
     }
 
@@ -72,8 +72,7 @@ public class Aquarium
         Determine the color of the aquarium (water color).
         @return    the Color of the aquarium
     */
-    public Color color()
-    {
+    public Color color() {
         return myColor;
     }
 
@@ -86,11 +85,11 @@ public class Aquarium
         @return    true if the specified location is within the bounds
                     of the aquarium
     */
-    public boolean validLoc(int xCoord, int yCoord)
-    {
-        if ((0 <= xCoord && xCoord < myWidth) && 
-                (0 <= yCoord && yCoord < myHeight))
+    public boolean validLoc(int xCoord, int yCoord) {
+        if ((0 <= xCoord && xCoord < myWidth) &&
+                (0 <= yCoord && yCoord < myHeight)) {
             return true;
+        }
         return false;
     }
 }    //end Aquarium class

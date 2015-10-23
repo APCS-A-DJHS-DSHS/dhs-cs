@@ -37,8 +37,7 @@ import lab.blackbox.AquaSimGUI;
  *  @see AquaFish
  *  @see AquaSimGUI
  **/
-public class Simulation
-{
+public class Simulation {
     // Encapsulated data: aquarium in which fish swim, list of fish,
     // and user interface that can display the results.
     private Aquarium aqua;
@@ -50,8 +49,7 @@ public class Simulation
      *  @param numFish     the number of fish to put in the aquarium
      *  @param gui         graphical interface that displays the aquarium
      **/
-    public Simulation(Aquarium aquarium, int numFish, AquaSimGUI gui)
-    {
+    public Simulation(Aquarium aquarium, int numFish, AquaSimGUI gui) {
         // Initialize the instance variables.
 
         // Construct the fish.
@@ -64,21 +62,18 @@ public class Simulation
     /** Run the Aquarium Simulation.
      *  @param numSteps    the number of simulation steps to run
      **/
-    public void run(int numSteps)
-    {
+    public void run(int numSteps) {
     }
 
     /** Run through a single step of the simulation. **/
-    public void step()
-    {
+    public void step() {
     }
 
     /** Get all the fish in the aquarium.
      * @return an array of the fish in the aquarium being simulated
      */
-    public AquaFish[] getAllFish()
-    {
-		return allFish;
+    public AquaFish[] getAllFish() {
+        return allFish;
     }
 
 }

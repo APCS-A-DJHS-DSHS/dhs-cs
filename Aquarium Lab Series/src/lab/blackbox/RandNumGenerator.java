@@ -38,8 +38,7 @@ import java.util.Random;
  *  @version 1 June 2002
  *  @see java.util.Random
  **/
-public class RandNumGenerator
-{
+public class RandNumGenerator {
     // Class Variable: Only one generator is created by this class.
     private static Random theRandNumGenerator = new Random();
 
@@ -48,8 +47,7 @@ public class RandNumGenerator
      *  a better sequence of random numbers.
      * @return the Random object contained in this class
      **/
-    public static Random getInstance()
-    {
+    public static Random getInstance() {
         return theRandNumGenerator;
     }
 }

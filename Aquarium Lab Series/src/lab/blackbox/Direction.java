@@ -32,8 +32,7 @@ import java.util.Random;
  *  @version 1 July 2002
  **/
 
-public class Direction
-{
+public class Direction {
     // Named constants for some common compass directions
     public static final Direction NORTH = new Direction(0);
     public static final Direction NORTHEAST = new Direction (45);
@@ -63,37 +62,32 @@ public class Direction
 
     /** Constructs a default {@code Direction} object facing North.
      **/
-    public Direction()
-    {
+    public Direction() {
         dirInDegrees = 0;    // default to North
     }
 
     /** Constructs a {@code Direction} object.
      *  @param degrees    initial compass direction in degrees
      **/
-    public Direction(int degrees)
-    {
+    public Direction(int degrees) {
         dirInDegrees = degrees % FULL_CIRCLE;
-        if ( dirInDegrees < 0 )
+        if ( dirInDegrees < 0 ) {
             dirInDegrees += FULL_CIRCLE;
+        }
     }
 
     /** Constructs a {@code Direction} object.
      *  @param str    compass direction specified as a string, e.g. "North"
      *  @throws IllegalArgumentException if string doesn't match a known direction name 
      **/
-    public Direction(String str)
-    {
+    public Direction(String str) {
         int regionWidth = FULL_CIRCLE / dirNames.length;
-        
-	    for ( int k = 0; k < dirNames.length; k++ )
-	    {
-            if ( str.equalsIgnoreCase(dirNames[k]) )
-            {
-                 dirInDegrees = k * regionWidth;
-                 return;
+            for ( int k = 0; k < dirNames.length; k++ ) {
+                if ( str.equalsIgnoreCase(dirNames[k]) ) {
+                    dirInDegrees = k * regionWidth;
+                    return;
+                }
             }
-        }
         throw new IllegalArgumentException("Illegal direction specified: \"" +
                                 str + "\"");
     }
@@ -104,8 +98,7 @@ public class Direction
     /** Returns this direction value in degrees.
      *  @return  the value of this {@code Direction} object in degrees
      **/
-    public int inDegrees()
-    {
+    public int inDegrees() {
         return dirInDegrees;
     }
 
@@ -116,10 +109,10 @@ public class Direction
      *                 represents the same direction;
      *                 {@code false} otherwise
      **/
-    public boolean equals(Object other)
-    {
-        if ( ! (other instanceof Direction) )
+    public boolean equals(Object other) {
+        if ( ! (other instanceof Direction) ) {
             return false;
+        }
 
         Direction d = (Direction) other;
         return inDegrees() == d.inDegrees();
@@ -129,8 +122,7 @@ public class Direction
      *  (will not be tested on the Advanced Placement exam).
      *  @return     a hash code for a {@code Direction} object
      **/
-    public int hashCode()
-    {
+    public int hashCode() {
        return inDegrees();
     }
 
@@ -138,8 +130,7 @@ public class Direction
      *  to the right of this {@code Direction} object.
      *  @return     the new direction
      **/
-    public Direction toRight()
-    {
+    public Direction toRight() {
         return new Direction(dirInDegrees + (FULL_CIRCLE / 4));
     }
 
@@ -148,8 +139,7 @@ public class Direction
      *  @param deg    the number of degrees to turn
      *  @return     the new direction
      **/
-    public Direction toRight(int deg)
-    {
+    public Direction toRight(int deg) {
         return new Direction(dirInDegrees + deg);
     }
 
@@ -157,8 +147,7 @@ public class Direction
      *  to the left of this {@code Direction} object.
      *  @return     the new direction
      **/
-    public Direction toLeft()
-    {
+    public Direction toLeft() {
         return new Direction(dirInDegrees - (FULL_CIRCLE / 4));
     }
 
@@ -167,8 +156,7 @@ public class Direction
      *  @param deg    the number of degrees to turn
      *  @return     the new direction
      **/
-    public Direction toLeft(int deg)
-    {
+    public Direction toLeft(int deg) {
         return new Direction(dirInDegrees - deg);
     }
 
@@ -176,23 +164,22 @@ public class Direction
      *  {@code Direction} object.
      *  @return     the reverse direction
      **/
-    public Direction reverse()
-    {
+    public Direction reverse() {
        return new Direction(dirInDegrees + (FULL_CIRCLE / 2));
     }
 
     /** Represents this direction as a string.
      *  @return        a string indicating the direction
      **/
-    public String toString()
-    {
+    public String toString() {
         // If the direction is one of the compass points for which we have
         // a name, provide it; otherwise report in degrees. 
         int regionWidth = FULL_CIRCLE / dirNames.length;
-        if (dirInDegrees % regionWidth == 0)
+        if (dirInDegrees % regionWidth == 0) {
             return dirNames[dirInDegrees / regionWidth];
-        else
+        } else {
             return dirInDegrees + " degrees";
+        }
     }
 
     /** Rounds this direction to the nearest "cardinal" direction
@@ -209,8 +196,7 @@ public class Direction
      *  @param startingDir    the starting cardinal direction
      *  @return the current direction rounded to a "cardinal" direction
      **/
-    public Direction roundedDir(int numDirections, Direction startingDir)
-    {
+    public Direction roundedDir(int numDirections, Direction startingDir) {
         // Determine offset of this direction from startingDir.
         int degreesFromStartingDir = dirInDegrees - startingDir.inDegrees();
 
@@ -232,8 +218,7 @@ public class Direction
     /** Returns a random direction.
      *  @return a direction
      **/
-    public static Direction randomDirection()
-    {
+    public static Direction randomDirection() {
         Random randNumGen = RandNumGenerator.getInstance();
         return new Direction(randNumGen.nextInt(FULL_CIRCLE));
     }

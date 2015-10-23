@@ -38,8 +38,7 @@ import lab.AquaFish;
  *  @see Aquarium
  *  @see AquaFish
  **/
-public class AquaView
-{
+public class AquaView {
     // Encapsulated data
     private BufferedPanel displayPanel;   // where to display
     private Aquarium theAquarium;         // the aquarium to display
@@ -49,8 +48,7 @@ public class AquaView
      *      @param panel  the graphical panel in which to display environment
      *      @param a      the aquarium to display
      **/
-    public AquaView(BufferedPanel panel, Aquarium a)
-    {
+    public AquaView(BufferedPanel panel, Aquarium a) {
         displayPanel = panel;
         theAquarium = a;
 
@@ -65,8 +63,7 @@ public class AquaView
      *  the fish in the array.
      *  @param    fishList   the array of AquaFish to be displayed
      **/
-    public void show(AquaFish[] fishList)
-    {
+    public void show(AquaFish[] fishList) {
         // Redraw the environment to paint over previous positions of fish.
         displayPanel.fillPanel(theAquarium.color());
 
@@ -76,10 +73,10 @@ public class AquaView
             RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Draw all of the fish.
-        for (int i = 0; i < fishList.length; i++)
-        {
-            if ( fishList[i] != null )
+        for (int i = 0; i < fishList.length; i++) {
+            if ( fishList[i] != null ) {
                 drawFish (drawingSurface, fishList[i]);
+            }
         }
     }
 
@@ -90,8 +87,7 @@ public class AquaView
      *  the fish in the array.
      *  @param    fishList   the list of AquaFish to be displayed
      **/
-    public void show(ArrayList fishList)
-    {
+    public void show(ArrayList fishList) {
         // Redraw the environment to paint over previous positions of fish.
         displayPanel.fillPanel(theAquarium.color());
 
@@ -101,11 +97,11 @@ public class AquaView
             RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Draw all of the fish.
-        for (int i = 0; i < fishList.size(); i++)
-        {
+        for (int i = 0; i < fishList.size(); i++) {
             AquaFish fish = (AquaFish)fishList.get(i);
-            if ( fish != null )
+            if ( fish != null ) {
                 drawFish (drawingSurface, fish);
+            }
         }
     }
 
@@ -115,8 +111,7 @@ public class AquaView
      *  up old fish.  Not necessary when displaying an entire vector
      *  of fish.  
      **/
-    public void showAquarium()
-    {
+    public void showAquarium() {
         // Redraw the environment to paint over previous positions of fish.
         displayPanel.fillPanel(theAquarium.color());
     }
@@ -126,8 +121,7 @@ public class AquaView
      *  Display a single AquaFish.
      *  @param    fish the fish to be displayed
      **/
-    public void showFish(AquaFish fish)
-    {        
+    public void showFish(AquaFish fish) {
         // Get graphics context in which everything is displayed.
         Graphics2D drawingSurface = displayPanel.getBufferGraphics();
         drawingSurface.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -144,8 +138,7 @@ public class AquaView
      *  @param    drawingSurface   context in which to display fish
      *  @param    fish             the fish to be displayed
      **/
-    private void drawFish(Graphics2D drawingSurface, AquaFish fish)
-    {        
+    private void drawFish(Graphics2D drawingSurface, AquaFish fish) {
         // Get color of fish.
         drawingSurface.setPaint(fish.color());
 
@@ -174,15 +167,12 @@ public class AquaView
         double endOfTail;        // value depends on fish's direction
         double tailMeetsBody;    // value depends on fish's direction
 
-        if (fish.facingRight())    //draw the fish facing right
-        {
+        if (fish.facingRight()) {  //draw the fish facing right
             leftEndOfBody = rightEndOfFish - bodyLength;
             leftEndOfEye = rightEndOfFish - 0.26 * fishLength;
             endOfTail = leftEndOfFish;
             tailMeetsBody = endOfTail + tailLength;
-        }
-        else
-        {
+        } else {
             leftEndOfBody = leftEndOfFish;
             leftEndOfEye = leftEndOfFish + (0.26 * fishLength)
                               - eyeSize;

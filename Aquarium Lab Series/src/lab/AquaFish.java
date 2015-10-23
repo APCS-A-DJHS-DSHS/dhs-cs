@@ -36,8 +36,7 @@ import lab.blackbox.Direction;
  *  @see Aquarium
  *  @see AquaPoint
  **/
-public class AquaFish
-{
+public class AquaFish {
     // Named constants that specify how far a fish may move in one timestep
     private static final int MIN_DISTANCE = 10;
     private static final int MAX_DISTANCE = 70;
@@ -64,8 +63,7 @@ public class AquaFish
      *  plus 10 pixels of padding in all four directions.
      *  @param    aqua   the Aquarium in which to place the fish
      **/
-    public AquaFish(Aquarium aqua)
-    {
+    public AquaFish(Aquarium aqua) {
         // Place fish in aquarium and initialize ID and color.
         this (aqua, Color.white);
         
@@ -87,8 +85,7 @@ public class AquaFish
      *  @param    aqua   the Aquarium in which to place the fish
      *  @param    color  the Color to associate with the fish
      **/
-    public AquaFish(Aquarium aqua, Color color)
-    {
+    public AquaFish(Aquarium aqua, Color color) {
         // Place fish in aquarium and initialize ID and color.
         theAquarium = aqua;
         myID = nextAvailableID++;
@@ -103,16 +100,14 @@ public class AquaFish
      *  Get the unique identifier for this fish.
      *  @return    the ID of the fish
      **/
-    public int id()
-    {
+    public int id() {
         return myID;
     }
 
     /** Get fish's color.
      *  @return        the color of this fish
      **/
-    public Color color()
-    {
+    public Color color() {
         return myColor;
     }
 
@@ -120,24 +115,21 @@ public class AquaFish
      *  Get the fish's position in the aquarium.
      *  @return    the position (point in the aquarium) of the fish
      **/
-    public AquaPoint position()
-    {
+    public AquaPoint position() {
         return myPos;
     }
 
     /** Get the length of the fish.
      *  @return    fish length
      **/
-    public int length()
-    {
+    public int length() {
         return myLength;
     }
 
     /** Get the height of the fish.
      *  @return    fish height
      **/
-    public int height()
-    {
+    public int height() {
         return myHeight;
     }
 
@@ -146,8 +138,7 @@ public class AquaFish
      *  @return    {@code true} if fish is facing right;
      *              {@code false} otherwise
      **/
-    public boolean facingRight()
-    {
+    public boolean facingRight() {
         return myDir.equals(Direction.EAST);
     }
 
@@ -156,8 +147,7 @@ public class AquaFish
      *  @return    {@code true} if fish is facing left;
      *              {@code false} otherwise
      **/
-    public boolean facingLeft()
-    {
+    public boolean facingLeft() {
         return ! facingRight();
     }
 
@@ -165,14 +155,14 @@ public class AquaFish
      *  Compute how far the fish is from the wall in front of it.
      *  @return    distance from front of fish to facing wall
      **/
-    public int distanceToWall()
-    {
+    public int distanceToWall() {
         int leftEdgeOfFish = myPos.xCoord() - (halfLength + 1);
         int rightEdgeOfFish = myPos.xCoord() + (halfLength + 1);
-        if ( facingRight() )
+        if ( facingRight() ) {
             return (theAquarium.width() - rightEdgeOfFish);
-        else
+        } else {
             return leftEdgeOfFish;    // since left edge of aquarium is 0
+        }
     }
 
     /**
@@ -183,8 +173,7 @@ public class AquaFish
      *  @return    {@code true} if fish is at a wall;
      *              {@code false} otherwise
      **/
-    public boolean atWall()
-    {
+    public boolean atWall() {
         return (distanceToWall() <= MIN_DISTANCE);
     }
 
@@ -196,8 +185,7 @@ public class AquaFish
      *  @return    {@code true} if fish is at the surface;
      *              {@code false} otherwise
      **/
-    public boolean atSurface()
-    {
+    public boolean atSurface() {
         int topOfFish = myPos.yCoord() - (halfHeight + 1);
         return (topOfFish <= myHeight);
     }
@@ -210,8 +198,7 @@ public class AquaFish
      *  @return    {@code true} if fish is at the bottom;
      *              {@code false} otherwise
      **/
-    public boolean atBottom()
-    {
+    public boolean atBottom() {
         int bottomOfFish = myPos.yCoord() + (halfHeight + 1);
         return (bottomOfFish >= (theAquarium.height() - myHeight));
     }
@@ -220,12 +207,12 @@ public class AquaFish
      *  This function is provided primarily for debugging purposes.
      *  @return    a string representation of a fish
      **/
-    public String toString()
-    {
+    public String toString() {
         String s = new String();
         String dir = "R";
-        if ( facingLeft() )
+        if ( facingLeft() ) {
             dir = "L";
+        }
         s = s + myID + myPos + dir + " ";
         return s;
     }
@@ -234,8 +221,7 @@ public class AquaFish
      *  Move forward horizontally by random increments, staying
      *  within the aquarium.
      **/
-    public void moveForward()
-    {
+    public void moveForward() {
         // First get random number in range [0, MAX_DISTANCE-MIN_DISTANCE],
         // then shift to [MIN_DISTANCE, MAX_DISTANCE].  If moving that
         // far would mean swimming out of the aquarium, only move to edge
@@ -243,19 +229,21 @@ public class AquaFish
         // negative amount, depending on whether fish is facing right or left.
         int moveAmt = generator.nextInt(MAX_DISTANCE - MIN_DISTANCE + 1);
         moveAmt += MIN_DISTANCE;
-        if ( moveAmt >= distanceToWall() )
+        if ( moveAmt >= distanceToWall() ) {
             moveAmt = distanceToWall();
-        if ( facingRight() )
+        }
+
+        if ( facingRight() ) {
             myPos.moveRight(moveAmt);
-        else
+        } else {
             myPos.moveLeft(moveAmt);
+        }
     }
 
     /**
      *  Reverse direction.
      **/
-    public void changeDir()
-    {
+    public void changeDir() {
         myDir = myDir.reverse();
     }
 
@@ -265,8 +253,7 @@ public class AquaFish
      *  Fish are evenly distributed among 4 different sizes based on their 
      *  ID numbers.
      **/
-    private void initSize()
-    {
+    private void initSize() {
         myLength = 30 + (myID % 4) * 15;
         myHeight = (int)Math.round(0.4*myLength);
         halfLength = (int)Math.round(myLength/2.0);
@@ -281,8 +268,7 @@ public class AquaFish
      *  the biggest fish (currently 75 pixels long and 30 pixels high)
      *  plus 10 pixels of padding in all four directions.
      **/
-    private void initPos()
-    {
+    private void initPos() {
         // Find random position within the bounds of the aquarium.
         int padding = 20;
         int myX = generator.nextInt(theAquarium.width() - myLength

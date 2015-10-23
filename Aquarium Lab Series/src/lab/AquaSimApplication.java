@@ -38,14 +38,12 @@ import lab.blackbox.AquaSimGUI;
  *  @see AquaFish
  *  @see AquaSimGUI
  **/
-public class AquaSimApplication
-{
+public class AquaSimApplication {
     /**
      *  This is the main function.  It controls the execution of the program.
      *  @param args - never used
      **/
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         System.out.println("This will be an aquarium simulation.");
         System.out.println("Press the Start button to start the simulation.");
 
