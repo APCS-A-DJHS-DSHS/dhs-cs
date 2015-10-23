@@ -149,7 +149,6 @@ public class AquaView {
         double leftEndOfFish = fish.position().xCoord() - fishLength / 2.0;
         double topOfFish = fish.position().yCoord() - fishHeight / 2.0;
         double rightEndOfFish = leftEndOfFish + fishLength;
-        double bottomOfFish = topOfFish + fishHeight;
         double verticalCenter = fish.position().yCoord();
         // Fish body parts are drawn to scale.
         double bodyLength = 0.8 * fishLength;
