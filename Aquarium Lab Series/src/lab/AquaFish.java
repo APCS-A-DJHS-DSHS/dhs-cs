@@ -208,13 +208,7 @@ public class AquaFish {
      *  @return    a string representation of a fish
      **/
     public String toString() {
-        String s = new String();
-        String dir = "R";
-        if (facingLeft()) {
-            dir = "L";
-        }
-        s = s + myID + myPos + dir + " ";
-        return s;
+        return "" + myID + myPos + (facingLeft() ? "L" : "R");
     }
 
     /**
