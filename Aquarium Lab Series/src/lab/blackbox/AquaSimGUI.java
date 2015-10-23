@@ -255,7 +255,7 @@ public class AquaSimGUI extends DisplayPanel {
      *  the fish in the list.
      *  @param    fishList   the list of AquaFish to be displayed
      **/
-    public void show(ArrayList fishList) {
+    public void show(ArrayList<AquaFish> fishList) {
         drawingObject.show(fishList);
     }
 

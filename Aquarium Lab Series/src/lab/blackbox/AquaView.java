@@ -87,7 +87,7 @@ public class AquaView {
      *  the fish in the array.
      *  @param    fishList   the list of AquaFish to be displayed
      **/
-    public void show(ArrayList fishList) {
+    public void show(ArrayList<AquaFish> fishList) {
         // Redraw the environment to paint over previous positions of fish.
         displayPanel.fillPanel(theAquarium.color());
 
