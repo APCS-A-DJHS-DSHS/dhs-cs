@@ -179,9 +179,8 @@ public class AquaFish {
         int rightEdgeOfFish = myPos.xCoord() + (halfLength + 1);
         if (facingRight()) {
             return (theAquarium.width() - rightEdgeOfFish);
-        } else {
-            return leftEdgeOfFish;    // since left edge of aquarium is 0
         }
+        return leftEdgeOfFish;    // since left edge of aquarium is 0
     }
 
     /**
