@@ -98,7 +98,7 @@ public class AquaView {
 
         // Draw all of the fish.
         for (int i = 0; i < fishList.size(); i++) {
-            AquaFish fish = (AquaFish)fishList.get(i);
+            AquaFish fish = fishList.get(i);
             if (fish != null) {
                 drawFish (drawingSurface, fish);
             }
