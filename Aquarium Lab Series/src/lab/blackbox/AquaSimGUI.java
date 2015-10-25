@@ -96,7 +96,8 @@ public class AquaSimGUI extends DisplayPanel {
     // Action button to start the simulation and action panel to put it in.
     private SimpleAction start =
         new SimpleAction("Start") {
-           public void perform(){ start(); }
+            @Override
+            public void perform(){ start(); }
         };
     private Action[] startButtonList = {start};
     private ActionsPanel startPanel = new ActionsPanel(startButtonList);
@@ -105,11 +106,13 @@ public class AquaSimGUI extends DisplayPanel {
     // run the simulation continuously, and action panel to put them in.
     private SimpleAction step =
         new SimpleAction("Single Step") {
-           public void perform(){ step(); }
+            @Override
+            public void perform(){ step(); }
         };
     private SimpleAction run =
         new SimpleAction("Run") {
-           public void perform(){ run(); }
+            @Override
+            public void perform(){ run(); }
         };
     private Action[] runButtonsList = {step, run};
     private ActionsPanel runButtonsPanel = new ActionsPanel(runButtonsList);
