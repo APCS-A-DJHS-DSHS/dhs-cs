@@ -194,8 +194,8 @@ public class AquaSimGUI extends DisplayPanel {
         // Create the Simulation object (if appropriate) and tell the
         // control panel about it.
         if (useSimulationObj) {
-            int numFish = getNumberOfFish();
-            simulation = new Simulation (aqua, numFish, this);
+            int numInhabitants = getNumberOfFish();
+            simulation = new Simulation (aqua, numInhabitants, this);
 
             // View the initial configuration.
             // Draw the aquarium and fish, redisplay the user interface in the
@@ -335,7 +335,7 @@ public class AquaSimGUI extends DisplayPanel {
                 runButtonsPanel.setEnabled(false);
 
                 // Move the fish numSteps times.
-                for (int step = 0; step < numSteps; step++) {
+                for (int simStep = 0; simStep < numSteps; simStep++) {
                     step();
                     pauseToView();
                 }
