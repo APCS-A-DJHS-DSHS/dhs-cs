@@ -178,7 +178,7 @@ public class AquaFish {
         int leftEdgeOfFish = pos.xCoord() - (halfLength + 1);
         int rightEdgeOfFish = pos.xCoord() + (halfLength + 1);
         if (facingRight()) {
-            return (homeAquarium.width() - rightEdgeOfFish);
+            return homeAquarium.width() - rightEdgeOfFish;
         }
         return leftEdgeOfFish;    // since left edge of aquarium is 0
     }
@@ -192,7 +192,7 @@ public class AquaFish {
      *              {@code false} otherwise
      **/
     public boolean atWall() {
-        return (distanceToWall() <= MIN_OFFSET);
+        return distanceToWall() <= MIN_OFFSET;
     }
 
     /**
@@ -205,7 +205,7 @@ public class AquaFish {
      **/
     public boolean atSurface() {
         int topOfFish = pos.yCoord() - (halfHeight + 1);
-        return (topOfFish <= height);
+        return topOfFish <= height;
     }
 
     /**
@@ -218,7 +218,7 @@ public class AquaFish {
      **/
     public boolean atBottom() {
         int bottomOfFish = pos.yCoord() + (halfHeight + 1);
-        return (bottomOfFish >= (homeAquarium.height() - height));
+        return bottomOfFish >= (homeAquarium.height() - height);
     }
 
     /**
