@@ -23,8 +23,8 @@ package lab.blackbox;
  **/
 
 public class AquaPoint {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
   // constructor
 
     /** Constructs an {@code AquaPoint} object.
@@ -55,34 +55,33 @@ public class AquaPoint {
     /** Moves this point {@code distance} units to the right.
      *  @param  distance   distance to move right
      **/
-    public void moveRight(int distance) {
-        translate(distance, 0);
+    public AquaPoint moveRight(int distance) {
+        return translate(distance, 0);
     }
 
     /** Moves this point {@code distance} units to the left.
      *  @param  distance   distance to move left
      **/
-    public void moveLeft(int distance) {
-        translate(-distance, 0);
+    public AquaPoint moveLeft(int distance) {
+        return translate(-distance, 0);
     }
 
     /** Moves this point {@code distance} units up.
      *  @param  distance   distance to move up
      **/
-    public void rise(int distance) {
-        translate(0, -distance);   // y coordinates get smaller going up
+    public AquaPoint rise(int distance) {
+        return translate(0, -distance);   // y coordinates get smaller going up
     }
 
     /** Moves this point {@code distance} units down.
      *  @param  distance   distance to move down
      **/
-    public void sink(int distance) {
-        translate(0, distance);   // y coordinates get bigger going down
+    public AquaPoint sink(int distance) {
+        return translate(0, distance);   // y coordinates get bigger going down
     }
 
-    private void translate(int dX, int dY) {
-        x += dX;
-        y += dY;
+    private AquaPoint translate(int dX, int dY) {
+        return new AquaPoint(x + dX, y + dY);
     }
 
     /** Represents this point as a string.

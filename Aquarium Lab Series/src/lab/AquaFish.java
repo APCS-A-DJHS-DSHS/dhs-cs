@@ -247,9 +247,9 @@ public class AquaFish {
         }
 
         if (facingRight()) {
-            pos.moveRight(moveAmt);
+            pos = pos.moveRight(moveAmt);
         } else {
-            pos.moveLeft(moveAmt);
+            pos = pos.moveLeft(moveAmt);
         }
     }
 
