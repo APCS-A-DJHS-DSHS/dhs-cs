@@ -75,7 +75,7 @@ public class AquaView {
         // Draw all of the fish.
         for (int i = 0; i < fishList.length; i++) {
             if (fishList[i] != null) {
-                drawFish (drawingSurface, fishList[i]);
+                drawFish(drawingSurface, fishList[i]);
             }
         }
     }
@@ -100,7 +100,7 @@ public class AquaView {
         for (int i = 0; i < fishList.size(); i++) {
             AquaFish fish = fishList.get(i);
             if (fish != null) {
-                drawFish (drawingSurface, fish);
+                drawFish(drawingSurface, fish);
             }
         }
     }
@@ -128,7 +128,7 @@ public class AquaView {
             RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Draw the fish.
-        drawFish (drawingSurface, fish);
+        drawFish(drawingSurface, fish);
     }
 
 
