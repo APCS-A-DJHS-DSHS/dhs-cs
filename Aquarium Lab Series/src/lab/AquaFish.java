@@ -67,13 +67,6 @@ public class AquaFish {
     public AquaFish(Aquarium aqua) {
         // Place fish in aquarium and initialize ID and color.
         this (aqua, Color.white);
-
-        /* NOTE: for randomly colored fish, use the statement below
-           instead of the statement above.
-        this (aqua, new Color (generator.nextInt(256),        // amount of red
-                               generator.nextInt(256),        // amount of green
-                               generator.nextInt(256)));      // amount of blue
-         */
     }
 
     /**
@@ -113,6 +106,26 @@ public class AquaFish {
         // Initialize my position and direction.
         pos = new AquaPoint(fishX, fishY);
         dir = Direction.EAST;
+    }
+
+    /**
+     * A static factory method that returns a randomly colored fish.
+     *
+     * Static factories are a way of acquiring objects, much like a
+     * constructor. While somewhat more verbose to write, static factories can
+     * be more flexible than normal constructors; for example, if you want to
+     * create a "default" AquaFish and randomly-colored AquaFish, you can't
+     * use two constructors, as both would have a single Aquarium argument,
+     * making things ambiguous when one of the two constructors is used.
+     * Static factory methods are not required to have the same name as the
+     * class, so arguments are not as big of an issue.
+     *
+     * @param aqua
+     * @return
+     */
+    public static AquaFish getRandomColorFish(Aquarium aqua) {
+        return new AquaFish(aqua, new Color (generator.nextInt(256),
+                generator.nextInt(256), generator.nextInt(256)));
     }
 
     /**
