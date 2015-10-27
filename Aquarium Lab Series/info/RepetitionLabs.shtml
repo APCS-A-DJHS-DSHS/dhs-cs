@@ -1,0 +1,362 @@
+<html>
+<head>
+   <title>Mini-Lab: Repetition Statements</title>
+   <LINK REL=STYLESHEET TYPE="text/css" HREF="aquaLabs.css">
+</head>
+
+<body>
+
+<!--#include file="siteTitle.html" -->
+
+<DIV ID=pageTitle>
+<h1>Mini-Lab:
+Keep On Moving</h1>
+
+  <p> <strong>Introducing Loops and Complex Conditions</strong> 
+</DIV>
+
+<p>
+<!--#include file="author.html" -->
+
+<p>
+<HR>
+
+<p>
+This set of Mini-Lab Exercises is the third in a series in which students
+build a small program with several fish moving around in an aquarium.
+The set includes the following exercises:
+
+  	<ul>
+	<li><a href="#for">Keep on Moving</a> &nbsp;&nbsp;&nbsp;
+		(Pattern: <strong>Counted Repetition</strong>)
+	<li><a href="#input">Put the User in the Driver's Seat</a>
+		&nbsp;&nbsp;&nbsp;
+		(Pattern: <strong>Prompted Input</strong>)
+	
+  <li><a href="#or">Showing an Independent Spirit</a>
+		&nbsp;&nbsp;&nbsp;
+  		(<strong>Complex Expressions</strong>)
+</ul>
+
+<p>
+Each section contains an <strong>Introduction</strong> to a problem
+or task, (usually) abridged versions of one or more
+<strong>Patterns</strong> that will be useful in solving the problem or
+completing the task, and an <strong>Exercise</strong>.
+
+<p> In the exercises that precede this one, students will have created three fish, 
+  moved them forward one step (changing the fish's direction when it is about 
+  to hit a wall), and displayed them graphically. Students should be familiar 
+  with constructing objects, invoking methods, using conditional statements and 
+  logical expressions (including the <code>&amp;&amp;</code> and <code>||</code> 
+  operators), and the <a href="http://java.sun.com/j2se/1.3/docs/api/java/util/Random.html">Random class</a>. 
+<p>
+Students should read over the patterns that appear in this
+document before the lab.
+
+<p>
+<HR>
+<HR>
+
+<p>
+<a name="for"></a>
+<H2>Keep on Moving</H2>
+
+<p>
+<h3>Introduction</h3>
+Our program would be more interesting if we had the fish move more than just once 
+or twice. We can use the <strong>Counted Repetition</strong> pattern to allow 
+the simulation to continue for several timesteps.
+<ul>
+<a name="CountedRep"></a>
+<h3><b>Pattern: Counted Repetition</b> (Repetition) -- Abridged</h3>
+<!-- (Also known as: Repeat N Times?) -->
+<p>
+You are in a situation in which some action should be repeated a known
+number (N) of times, where N might be a constant number or a value in a
+variable.  The number of repetitions does not depend on any aspect of
+the repeated action, i.e., you know the value of N before you start the
+repetition.
+<!-- You want to write simply understood code. -->
+<p>
+<b>Therefore</b>, use a FOR statement that creates a variable
+to count the number of times the action has been repeated.  The counting
+variable is created and initialized and then, so long as the action has
+not been repeated too many times (the "test"), the action is done and
+the count is incremented (the "step").
+Express
+the test as a
+<a href="http://csis.pace.edu/~bergin/patterns/Patternsv4.html#pc">Positive
+Condition</a> if possible.
+
+<p>
+The structure of a FOR loop is:
+<ul>
+    <pre>&nbsp;<code>for (&lt;initialization> ; &lt;test> ; &lt;step>)
+</code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code>&lt;repeated action></code></pre>
+  </ul>
+<!-- Actual pattern should recommend FOR statement in C-based languages,
+REPEAT statement in languages that support that construct.  Repeat
+statements, in particular, are "safer" than while loops because the
+initialization and step are automatic (or have automatic defaults).
+C-ish FOR loops are also "safer" because they make the critical
+initialization and step aspects of the loop control explicit and
+up-front (follows <a
+href="http://c2.com/cgi/wiki?LocalVariablesReassignedAboveTheirUses">Local
+Variables Reassigned Above Their Uses (<a href="#gabriel">Gabriel</a>)).
+
+Related patterns include Boolean Condition, Positive Condition, Linear
+Indexed Traversal, ....
+-->
+
+<p>
+There are two common idioms for controlling the loop.  The first is to
+count from 0 to N-1, which is the idiom used to ensure a
+<a href="http://max.cs.kzoo.edu/patterns/LinearIndexDS.shtml#ValInd">Valid Index</a> in a
+<strong>Linear Indexed Traversal</strong> (see the
+<a href="http://max.cs.kzoo.edu/patterns/Repetition.shtml#LinIndTrav">Repetition
+pattern</a> for detailed information on Linear Indexed Traversal).
+For example, at the beginning of a card game each player is dealt a hand
+of cards: 
+<ul>
+<pre><code>for (int i = 0; i &lt; nbrPlayers; i++)
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dealHand();
+}</code></pre>
+</ul>
+
+<!--
+[Future: Describe: Under what circumstances do you declare i as part of the
+	initialization in the for loop?]
+-->
+
+<p>
+The second common idiom for controlling the loop is to
+count from 1 to N.  For example,
+<ul>
+<pre><code>for (int i = 1; i &lt= nbrPlayers; i++)
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dealHand();
+}</code></pre>
+</ul>
+
+<p>
+You might choose to use the second alternative because it corresponds
+more closely with counting.  On the other hand, the
+<a href="http://max.cs.kzoo.edu/patterns/Repetition.shtml#LinIndTrav">Linear Indexed
+Traversal</a>
+pattern is a very common, and important, pattern because it
+is used to step through one of the most common data structures.
+  <ul>
+    <strong>WARNING:</strong> It is important to note that your loop will have 
+    an <em>off-by-one</em> boundary error if you mix the two idioms. If, for example, 
+    you write 
+    <ul>
+      <pre><code>for (int i = 0; i &lt= nbrPlayers; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <font color="red">INCORRECT!</font>
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dealHand();
+}</code></pre>
+    </ul>
+    your action will be repeated nbrPlayers+1 times, not nbrPlayers times. If, 
+    on the other hand, you write 
+    <ul>
+      <pre><code>for (int i = 1; i &lt nbrPlayers; i++) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="red">INCORRECT!</font>
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dealHand();
+}</code></pre>
+    </ul>
+    your action will be repeated nbrPlayers-1 times. To avoid these kinds of mistakes 
+    many people find it easiest to consistently use the <a href="http://max.cs.kzoo.edu/patterns/Repetition.shtml#LinIndTrav">Linear 
+    Indexed Traversal</a> pattern 
+    <ul>
+      <code>(i = 0; i < N; i++)</code>
+    </ul>
+    for counting as well as for accessing indexable structures. 
+  </ul>
+
+<p>
+Another alternative is to count down rather than counting up.
+This alternative and other types of Repetition are described in the
+complete <a href="http://max.cs.kzoo.edu/patterns/Repetition.shtml">Repetition Pattern</a>
+document.
+<!-- 
+This alternative is described in the complete <a href="#IterRep">Iterative
+Repetition</a> pattern.
+-->
+
+</ul>
+
+<p>
+<center><table width="90%" border=1>
+<tr><td>
+<H4>Exercise: Simulate Fish Moving Forward</H4>
+<ul>
+          <li>Modify the <code>main</code> method to make your program become 
+            a simulation of three fish moving in the aquarium over time. Initially, 
+            set the number of time steps in the simulation to 10. Choose one of 
+            the loop control idioms above and use it correctly. Make sure that 
+            your loop body includes moving and displaying the fish (and pausing 
+            the animation long enough for you to see it). 
+</ul>
+</td>
+    </tr>
+</table></center>
+
+<p>
+<HR>
+<HR>
+
+<p>
+<a name="input"></a>
+<H2>Put the User in the Driver's Seat</H2>
+
+<p>
+<h3>Introduction</h3>
+Our program would be more flexible if we allowed the user to specify how many 
+times they want the simulation to run. We can use a <strong>Prompted Input</strong> 
+to ask the user to provide the desired number.
+<ul>
+<a name="PromptedInput"></a>
+<h3><b>Pattern: Prompted Input</b></h3>
+
+<p>
+In the <strong>Prompted Input</strong> pattern, we print a prompt that
+describes the type of input required from the user and then read in the
+desired value.
+A well-written and robust version of this pattern verifies that the
+input actually provided by the user matches the expectations of the
+program.  For example, if we prompt the user to provide an integer, we
+should verify that the input is, in fact, a valid integer and not a
+string, floating point number, or other type.
+
+</ul>
+
+<!--
+<p>
+<ul>
+<em>
+[Future:  Need Prompted Input pattern:  "Irresponsible, Unchecked
+Prompted Input," or Filtered Prompted Input (Rasala's input pattern).]
+</em>
+</ul>
+-->
+
+<p>
+<center><table width="90%" border=1>
+<tr><td>
+<H4>Exercise: Allow User to Control Simulation Steps</H4>
+        <ul>
+          <li> The <code>AquaSimGUI</code> class, which provides the graphical 
+            user interface for the Aquarium Lab Series, has a second constructor 
+            that allows you to specify whether or not to prompt for the number 
+            of simulation steps to run. Research the abbreviated specification 
+            for the <a href="JavaDocs/AquaSimGUI.html">AquaSimGUI</a> 
+            class to discover how to use this constructor. Modify your program 
+            to indicate that the graphical user interface should prompt the user 
+            for the number of simulation steps. 
+
+            <p> 
+          <li>Research the abbreviated specification for the <a href="JavaDocs/AquaSimGUI.html">AquaSimGUI</a> 
+            class to discover how to ask the graphical user interface for the 
+            number of simulation steps specified by the user. Store the result 
+            in a local variable with an <strong>Intention Revealing Name</strong>. 
+            Then use that number to control your loop. 
+            <p> 
+            <HR WIDTH="90%">
+            <blockquote> 
+              <H4><font color=red>Stop and Think</font></H4>
+              Where's the earliest point in your program that it would make sense 
+              to ask for the number of simulation steps? Where's the latest point? 
+            </blockquote>
+            <HR WIDTH="90%">
+            <p> 
+          <li>Test your modified program. 
+            <p> 
+            <HR WIDTH="90%">
+            <blockquote> 
+              <H4><font color=red>Stop and Experiment</font></H4>
+              How &quot;well-written and robust&quot; is the graphical user interface's 
+              implementation of the <strong>Prompted Input</strong> pattern? What 
+              happens if the user types in something other than what the program 
+              expects? (What kind of input do you think the program should expect?)</blockquote>
+        </ul>
+      </td></tr>
+</table></center>
+
+<p>
+<HR>
+<HR>
+
+<p>
+<a name="or"></a>
+<H2>Showing an Independent Spirit</H2>
+
+<p>
+<h3>Introduction</h3>
+Our three fish are moving in lock-step with one another, more like a marching 
+band than fish. A fish only changes direction when it comes to a wall. It would 
+be more interesting if, in each time step, a fish randomly decides whether to 
+change direction before moving forward. (Of course, if it is at a wall, it will 
+always change direction). We can use a complex boolean expression to check for 
+two conditions, whether the fish is at a wall, and so must move, or randomly chooses 
+to move even though it is not at a wall. 
+<!-- Should have a pattern (or two)  for complex boolean expressions here! -->
+<p>
+<center><table width="90%" border=1>
+<tr><td>
+        <H4>Exercise: Fish Doing Their Own Thing</H4>
+<ul>
+          <li>Review your use of the <a href="http://java.sun.com/j2se/1.3/docs/api/java/util/Random.html">Random</a> 
+            class to determine how to calculate a one in four chance of changing 
+            direction for any given fish. Modify your <code>main</code> method 
+            to introduce a more complex check: each fish should change direction 
+            if it is up against a wall or if it randomly chooses to change direction.
+<p>
+  Note:
+            Use the same <code>Random</code> object you constructed earlier 
+              to influence fish color.
+
+<!--
+<p>
+In a previous exercise you wrote the selection statement to change
+direction when a fish is facing a wall.  You do not need to add any
+new selection statements to your code in order to implement the random
+behavior for this exercise.  
+-->
+
+<p>
+          <li>Test your modified program. 
+            <p>
+          <li>Make sure that you have updated the program documentation at the 
+            top of the file to reflect your changes. 
+        </ul>
+
+<!--
+<p>
+<HR WIDTH="90%">
+
+<blockquote>
+<H4>Stop and Think</H4>
+Does it matter which expression comes first in your complex
+condition?
+</blockquote>
+-->
+
+</td></tr>
+</table></center>
+
+<p>
+<HR>
+<HR>
+<!--
+<p>
+<H2>Looking Ahead:</H2>
+If you run your program enough times you may discover that we have just
+introduced a logic error into our program.  On rare occasions a fish
+may swim out through the left wall of the aquarium.  We will explore
+this behavior further, and fix the underlying problem, in a later
+exercise.
+
+<p>
+<HR>
+<HR>
+-->
+<font size="-2"><em>Copyright Alyce Faulstich Brady, 2001-2002.</em></font> 
+</body>
+</html>

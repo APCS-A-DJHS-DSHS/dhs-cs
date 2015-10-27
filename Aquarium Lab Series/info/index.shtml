@@ -1,0 +1,122 @@
+<HTML>
+<HEAD>
+<TITLE>Aquarium Lab Series</TITLE>
+<LINK href="mailto:abrady@kzoo.edu">
+<LINK REL=STYLESHEET TYPE="text/css" HREF="aquaLabs.css">
+</HEAD>
+
+<BODY>
+
+<!--#include file="siteTitle.html" -->
+
+<p>
+<!--#include file="author.html" -->
+
+<p>
+<center>
+<HR WIDTH="100%">
+</center>
+
+<p> The Aquarium Lab Series is a series of mixed-length laboratory exercises that 
+  provide students with an opportunity to put introductory programming concepts 
+  to work immediately. Thus, the series is meant to be used very early in an introductory 
+  course on programming in Java. 
+<p> The labs in this series were inspired by the Java-based AP<sup>&reg;</sup> <a
+href="http://www.collegeboard.com/ap/students/compsci/download.html">Marine Biology 
+  Simulation Case Study</a>, available from the College Board. These labs, however, 
+  are meant to be used even earlier in the school year, as students learn about 
+  constructing objects, using if statements and for loops, calling functions, 
+  and defining their own classes. 
+<p> <strong>Downloading the Aquarium Lab Series:</strong> 
+<p>Download the zip file containing the starting code files for the Aquarium Lab 
+  Series by right-clicking or shift-clicking on the following link: <a href="http://max.cs.kzoo.edu/patterns/AquariumLabSeries.zip">AquariumLabSeries.zip</a>. 
+<p>When you unzip this file, it will create a folder called <code>AquariumLabSeries</code>&nbsp; 
+  that contains the instructions for the labs, a folder called <code>StartingCode</code>, 
+  and a folder containing documentation.&nbsp; The <code>StartingCode</code> folder 
+  contains three classes you will viewing and modifying, a sub-folder with other 
+  &quot;black-box classes&quot; needed by the program (that you do not need to 
+  study), and a graphics library.</p>
+
+<p> NOTE: Teachers may wish to download the starting source files in advance, 
+  create a project or makefile, and then provide these materials to students as 
+  a unit. &nbsp; (If you happen to use CodeWarrior Learning Edition 3 , you can 
+  use the CodeWarrior project file in the <code>StartingCode</code> folder.)
+<p> <strong>Labs in the Aquarium Lab Series</strong> 
+<p> The Aquarium Lab Series consists of several mini-labs, which are meant to 
+  be short enough to complete in a single class period, and a longer lab, which 
+  may need a longer time-block or several class periods to complete. 
+<p>
+<strong>Mini-Lab:
+<a href="ObjConstLabs.shtml">Reading
+Specifications and Constructing Objects</a></strong>
+
+<p>
+Tasks include:
+<UL>
+<LI>Read several class specifications.
+<LI>Write client code to construct objects and invoke member functions:
+  <ul>
+  <LI>Modify the <tt>main</tt> function to construct three fish in the
+  aquarium.
+  <LI>Display the fish in the aquarium.
+  <LI>Move all three fish one space.
+  <LI>Redisplay the fish in the aquarium.
+  </ul>
+</UL>
+
+<p>
+<strong>Mini-Lab:
+<a href="ConditionalLabs.shtml">If
+Statements</a></strong>
+
+<p>
+Tasks include:
+<UL>
+  <LI>Have each of the three fish change direction instead of getting stuck at 
+    the aquarium walls. 
+  <LI>Use a random number generator to give fish random colors.
+</UL>
+
+<p>
+<strong>Mini-Lab:
+<a href="RepetitionLabs.shtml">For
+Loops</a></strong>
+
+<p>
+Tasks include:
+<UL>
+  <LI>Prompt the user for how many time steps the simulation should run. 
+  <LI> Modify fish movement so that in each time step a fish randomly chooses 
+    whether to change direction (unless it would otherwise swim right through 
+    a wall, in which case it always changes direction). 
+</UL>
+
+<p> <strong>Mini-Lab: <a href="MoreFish.shtml">Java Arrays</a></strong> 
+<p>
+Tasks include:
+<UL>
+  <LI>Prompt the user for how many fish they want in the aquarium. 
+  <LI>Construct an array, specifying the size.
+  <LI>Insert fish into the array. 
+  <LI>Traverse the array to move and display all the fish in each time step, . 
+</UL>
+
+<p> <strong>Full-Length Lab: <a href="ImplementingClasses.shtml">Implementing 
+  Classes</a></strong> 
+<p>
+Tasks include:
+<UL>
+  <LI>Modify the <code>AquaFish</code> class to provide methods that allow fish 
+    to ascend and descend in the aquarium.
+  <LI>Move the logic of deciding how fish move from the <code>main</code> method 
+    to the <code>AquaFish</code> class.
+  <LI>Flesh out a skeleton <code>Simulation</code> class by implementing the constructor 
+    and a <code>step</code> method that encapsulates the behavior for a single 
+    step through the simulation.
+</UL>
+
+<p>
+<HR WIDTH="100%">
+
+</BODY>
+</HTML>
