@@ -40,8 +40,8 @@ import lab.AquaFish;
  **/
 public class AquaView {
     // Encapsulated data
-    private BufferedPanel displayPanel;   // where to display
-    private Aquarium theAquarium;         // the aquarium to display
+    private final BufferedPanel display;   // where to display
+    private final Aquarium displayedAquarium;         // the aquarium to display
 
     /** Construct an AquaView object to display a particular
      *  aquarium.
@@ -49,10 +49,10 @@ public class AquaView {
      *      @param a      the aquarium to display
      **/
     public AquaView(BufferedPanel panel, Aquarium a) {
-        displayPanel = panel;
-        theAquarium = a;
+        display = panel;
+        displayedAquarium = a;
 
-        displayPanel.setBackground(theAquarium.color());
+        display.setBackground(displayedAquarium.color());
 
     }
 
@@ -65,10 +65,10 @@ public class AquaView {
      **/
     public void show(AquaFish[] fishList) {
         // Redraw the environment to paint over previous positions of fish.
-        displayPanel.fillPanel(theAquarium.color());
+        display.fillPanel(displayedAquarium.color());
 
         // Get graphics context in which everything is displayed.
-        Graphics2D drawingSurface = displayPanel.getBufferGraphics();
+        Graphics2D drawingSurface = display.getBufferGraphics();
         drawingSurface.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -89,10 +89,10 @@ public class AquaView {
      **/
     public void show(ArrayList<AquaFish> fishList) {
         // Redraw the environment to paint over previous positions of fish.
-        displayPanel.fillPanel(theAquarium.color());
+        display.fillPanel(displayedAquarium.color());
 
         // Get graphics context in which everything is displayed.
-        Graphics2D drawingSurface = displayPanel.getBufferGraphics();
+        Graphics2D drawingSurface = display.getBufferGraphics();
         drawingSurface.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -113,7 +113,7 @@ public class AquaView {
      **/
     public void showAquarium() {
         // Redraw the environment to paint over previous positions of fish.
-        displayPanel.fillPanel(theAquarium.color());
+        display.fillPanel(displayedAquarium.color());
     }
 
 
@@ -123,7 +123,7 @@ public class AquaView {
      **/
     public void showFish(AquaFish fish) {
         // Get graphics context in which everything is displayed.
-        Graphics2D drawingSurface = displayPanel.getBufferGraphics();
+        Graphics2D drawingSurface = display.getBufferGraphics();
         drawingSurface.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON);
 

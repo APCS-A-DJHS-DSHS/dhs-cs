@@ -55,22 +55,22 @@ public class AquaSimGUI extends DisplayPanel {
     // Static Data: Constants not tied to any one instance //
     /////////////////////////////////////////////////////////
 
-    private static final int DEFAULT_FISH = 10;  // default # of fish
-    private static final int DEFAULT_STEPS = 15; // # steps to run simulation
-    private static final int VIEW_TIME = 1000;  // allow viewer to see display
-    private static final int WAIT_TIME = 100;   // between Start button checks
+    private static final int DEFAULT_NUM_FISH = 10;  // default # of fish
+    private static final int DEFAULT_STEPS_TO_SIMULATE = 15; // # steps to run simulation
+    private static final int TICK_PAUSE_TIME = 1000;  // allow viewer to see display
+    private static final int START_CHECK_DELAY = 100;   // between Start button checks
 
 
     ////////////////////////
     // Instance Variables //
     ////////////////////////
 
-    private Aquarium aqua = null;             // aquarium in which fish swim
-    private AquaView drawingObject = null;    // to draw fish in aquarium
-    private int numFish = DEFAULT_FISH;       // number of fish in aquarium
-    private int numSteps = DEFAULT_STEPS;     // number of sim. steps to run
-    private Simulation simulation = null;     // controls timesteps
-    private boolean started = false;          // has simulation started yet?
+    private final Aquarium aqua;             // aquarium in which fish swim
+    private AquaView drawingObject;    // to draw fish in aquarium
+    private int numFish = DEFAULT_NUM_FISH;       // number of fish in aquarium
+    private int numSteps = DEFAULT_STEPS_TO_SIMULATE;     // number of sim. steps to run
+    private Simulation simulation;     // controls timesteps
+    private boolean started;          // has simulation started yet?
 
 
     /////////////////////////////////////////////
@@ -82,14 +82,14 @@ public class AquaSimGUI extends DisplayPanel {
     // Text field to prompt for number of fish.
     private TextFieldView numFishTF =
         new TextFieldView(
-            "" + DEFAULT_FISH,           // initial value displayed in the TFV
+            "" + DEFAULT_NUM_FISH,           // initial value displayed in the TFV
             "Number must be positive:",  // prompt for correcting input
             "Incorrect input");          // title for the error dialog box
 
     // Text field to prompt for number of simulation steps.
     private TextFieldView numStepsTF =
         new TextFieldView(
-            "" + DEFAULT_STEPS,          // initial value displayed in the TFV
+            "" + DEFAULT_STEPS_TO_SIMULATE,          // initial value displayed in the TFV
             "Number must be positive:",  // prompt for correcting input
             "Incorrect input");          // title for the error dialog box
 
@@ -216,7 +216,7 @@ public class AquaSimGUI extends DisplayPanel {
      **/
     public void waitForStart() {
         while (!started) {
-            JPTUtilities.pauseThread(WAIT_TIME);
+            JPTUtilities.pauseThread(START_CHECK_DELAY);
         }
     }
 
@@ -284,7 +284,7 @@ public class AquaSimGUI extends DisplayPanel {
      *  Pause so user can view the display.
      **/
     public void pauseToView() {
-        JPTUtilities.pauseThread(VIEW_TIME);
+        JPTUtilities.pauseThread(TICK_PAUSE_TIME);
     }
 
 
@@ -393,9 +393,9 @@ public class AquaSimGUI extends DisplayPanel {
         // Set up text field views in which to prompt for number
         // of fish and number of simulation steps.
         numFishTF.setPreferredWidth(50);
-        numFishTF.getInputProperties().setSuggestion("" + DEFAULT_FISH);
+        numFishTF.getInputProperties().setSuggestion("" + DEFAULT_NUM_FISH);
         numStepsTF.setPreferredWidth(50);
-        numStepsTF.getInputProperties().setSuggestion("" + DEFAULT_STEPS);
+        numStepsTF.getInputProperties().setSuggestion("" + DEFAULT_STEPS_TO_SIMULATE);
 
         // Add text field views if appropriate.
         if (promptForNumFish) {
@@ -448,7 +448,7 @@ public class AquaSimGUI extends DisplayPanel {
      **/
     private void waitForStartPanel() {
         while (startPanel == null) {
-            JPTUtilities.pauseThread(WAIT_TIME);
+            JPTUtilities.pauseThread(START_CHECK_DELAY);
         }
     }
 

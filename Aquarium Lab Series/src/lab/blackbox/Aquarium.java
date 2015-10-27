@@ -27,20 +27,20 @@ import java.awt.Color;
  *  @version 10 July 2002
  **/
 public class Aquarium {
-    private int myWidth;
-    private int myHeight;
-    private Color myColor;
+    private final int width;
+    private final int height;
+    private final Color color;
 
     /**
         Construct an Aquarium with user-specified size.
-        @param    width    width of the aquarium when displayed (in pixels)
-        @param    height   height of the aquarium when displayed (in pixels)
+        @param    w    width of the aquarium when displayed (in pixels)
+        @param    h   height of the aquarium when displayed (in pixels)
     */
-    public Aquarium(int width, int height) {
-        myWidth = (width > 0 ? width : 640);
-        myHeight = (height > 0 ? height : 480);
+    public Aquarium(int w, int h) {
+        width = (w > 0 ? w : 640);
+        height = (h > 0 ? h : 480);
 
-        myColor = new Color(0.0f, .6f, 1.0f);
+        color = new Color(0.0f, .6f, 1.0f);
     }
 
     /**
@@ -48,7 +48,7 @@ public class Aquarium {
         @return    the width of the aquarium
     */
     public int width() {
-        return myWidth;
+        return width;
     }
 
     /**
@@ -56,7 +56,7 @@ public class Aquarium {
         @return    the height of the aquarium
     */
     public int height() {
-        return myHeight;
+        return height;
     }
 
     /**
@@ -64,7 +64,7 @@ public class Aquarium {
         @return    the Color of the aquarium
     */
     public Color color() {
-        return myColor;
+        return color;
     }
 
     /**
@@ -77,7 +77,7 @@ public class Aquarium {
                     of the aquarium
     */
     public boolean validLoc(int xCoord, int yCoord) {
-        return  ((0 <= xCoord && xCoord < myWidth) &&
-                 (0 <= yCoord && yCoord < myHeight));
+        return  ((0 <= xCoord && xCoord < width) &&
+                 (0 <= yCoord && yCoord < height));
     }
 }    //end Aquarium class
