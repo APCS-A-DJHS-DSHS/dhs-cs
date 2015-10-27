@@ -66,18 +66,4 @@ public class Aquarium {
     public Color color() {
         return color;
     }
-
-    /**
-        This function determines whether the given coordinates specify
-            a valid location (one that exists within the bounds of the
-            aquarium).
-        @param xCoord a x coordinate to be checked
-        @param yCoord a y coordinate to be checked
-        @return    true if the specified location is within the bounds
-                    of the aquarium
-    */
-    public boolean validLoc(int xCoord, int yCoord) {
-        return  ((0 <= xCoord && xCoord < width) &&
-                 (0 <= yCoord && yCoord < height));
-    }
 }    //end Aquarium class
