@@ -69,14 +69,125 @@ elements are set to their default values:
     object           --> null
 
 The various types of 0 can be treated more or less as the same thing. The main
-gotcha is the last line. That is why the following bit of code won't work:
+gotcha is the last line; you have to remember to initialize the objects in an
+object array before you use them!
 
-    String[] array = new String[5];
-    for (int i = 0; i < array.length; i++) {
-        System.out.println(array[i].length()); // NullPointerException!
-    }
+# 2D arrays
 
-    int[][] matrix = new int[5][5];
-    for (int i = 0; i < array.length; i++) {
-        int[i][i] = i; // NullPointerException!
-    }
+Creating square 2D arrays is fairly simple:
+
+    int[][] board        = new int[9][9];       // Creates 9x9 int array
+    ChessPiece[][] board = new ChessPiece[8][8] // Creates chessboard
+
+How do you work with these? Remember what regular arrays look like:
+
+    int[] array = new int[5];
+
+          ---------------------
+          |   |   |   |   |   |
+          ---------------------
+    index:  0   1   2   3   4
+
+2D arrays are simply arrays of arrays. So 2D int array is an array of int
+arrays:
+
+    int[][] example = new int[5][5];
+
+    index:  0   1   2   3   4
+          ---------------------
+          |   |   |   |   |   |
+          ---------------------   0   1   2   3   4  : index
+            |   |   |   |   |   ---------------------
+            |   |   |   |   --> |   |   |   |   |   |
+            |   |   |   |       ---------------------
+            |   |   |   |       ---------------------
+            |   |   |   ------> | y |   |   |   |   |
+            |   |   |           ---------------------
+            |   |   |           ---------------------
+            |   |   ----------> |   |   |   | x |   |
+            |   |               ---------------------
+            |   |               ---------------------
+            |   --------------> |   |   |   |   |   |
+            |                   ---------------------
+            |                   ---------------------
+            ------------------> |   |   |   |   |   |
+                                ---------------------
+
+To access any particular element, you first select the array it's in, then
+select the element in that array. For example, if you want to access the
+element marked by `x` above:
+
+    // Third array --> index 2
+    // Fourth element --> index 3
+    //
+    // Third array is example[2]
+    // Fourth element of third array is example[2][3]
+    example[2][3] = 1;
+
+Similarly for `y`:
+
+    // y
+    // Fourth array --> index 1
+    // First element --> index 0
+    //
+    // Fourth array is example[3]
+    // First element of second array is example[3][0]
+    example[3][0] = 6;
+
+You can also think of square 2D arrays as a matrix:
+
+    int[][] example = new int[5][5];
+
+    ---------------------
+    |   |   |   |   |   |
+    ---------------------
+    |   |   |   |   |   |
+    ---------------------
+    |   |   |   | x |   |
+    ---------------------
+    |   |   |   |   |   |
+    ---------------------
+    |   |   |   |   |   |
+    ---------------------
+
+In this case, the number in the first set of brackets usually refers to the
+row, while the second refers to the column. Thus, the `x` would be at
+`example[2][3]` in this case.
+
+You *can* switch what number represents rows and what number represents
+columns; just be sure that if you're working with/doing something for other
+people that you are using the convention they are expecting.
+
+The inner arrays in 2D arrays do not have to be the same size:
+
+    int[][] example = new int[5][];
+    example[0] = new int[2];
+    example[1] = new int[3];
+    example[2] = new int[5];
+    example[3] = new int[7];
+    example[4] = new int[11];
+
+    index:  0   1   2   3   4
+          ---------------------
+          |   |   |   |   |   |
+          ---------------------   0   1   2   3   4   5   6   7   8   9   10 : index
+            |   |   |   |   |   ---------------------------------------------
+            |   |   |   |   --> |   |   |   |   |   |   |   |   | x |   |   |
+            |   |   |   |       ---------------------------------------------
+            |   |   |   |       -----------------------------
+            |   |   |   ------> |   |   |   |   |   |   |   |
+            |   |   |           -----------------------------
+            |   |   |           ---------------------
+            |   |   ----------> |   |   |   | y |   |
+            |   |               ---------------------
+            |   |               -------------
+            |   --------------> |   |   |   |
+            |                   -------------
+            |                   ---------
+            ------------------> | z |   |
+                                ---------
+
+Here, `x` is at `example[4][8]`, `y` is at `example[2][3]`, and `z` is at `example[0][0]`
+
+Unfortunately, there isn't an equivalent to `new int[5][5]` for uneven inner
+arrays. You will have to create them manually.
