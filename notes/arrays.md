@@ -61,7 +61,7 @@ sitting side-by-side, and the index `i` being the `i`th element after the first:
 
 Arrays can hold a limited number of objects. This is referred to as the array's
 "size" or "length". An array's size is determined when the array is created,
-and cannot be changed. An array's size can be accessed using its 'length' field:
+and cannot be changed. An array's size can be accessed using its `length` field:
 
     System.out.println(special.length); // Prints "5"
 
@@ -96,7 +96,7 @@ How do you work with these? Remember what regular arrays look like:
           ---------------------
     index:  0   1   2   3   4
 
-2D arrays are simply arrays of arrays. So 2D int array is an array of int
+2D arrays are simply arrays of arrays. So 2D `int` array is an array of `int`
 arrays:
 
     int[][] example = new int[5][5];
@@ -158,13 +158,9 @@ You can also think of square 2D arrays as a matrix:
     |   |   |   |   |   |
     ---------------------
 
-In this case, the number in the first set of brackets usually refers to the
-row, while the second refers to the column. Thus, the `x` would be at
-`example[2][3]` in this case.
-
-You *can* switch what number represents rows and what number represents
-columns; just be sure that if you're working with/doing something for other
-people that you are using the convention they are expecting.
+The number in the first set of brackets usually refers to the row, while the
+second refers to the column. Thus, the `x` would be at `example[2][3]` in this
+case.
 
 The inner arrays in 2D arrays do not have to be the same size:
 
@@ -206,7 +202,7 @@ arrays. You will have to create them manually.
 involves more steps, but in the end it boils down to nested regular array
 iteration.
 
-Say you have an int matrix:
+Say you have an `int` matrix:
 
     int[][] matrix = new int[5][5];
     <do some math stuff>
@@ -260,10 +256,10 @@ Doubling each element is going to take a few steps:
 
 Let's translate the above to code:
 
-  1. For this step, we want to access each inner array. `matrix` is an int[][],
-     so matrix[<num>] should get us one of the int[] inside. So we write a
-     `for` loop that covers each index in `matrix` to access each of the inner
-     arrays:
+  1. For this step, we want to access each inner array. `matrix` is an
+     `int[][]`, so `matrix[<num>]` should get us one of the `int[]` inside. So
+     we write a `for` loop that covers each index in `matrix` to access each of
+     the inner arrays:
 
          for (int i = 0; i < matrix.length; i++) {
 
@@ -273,7 +269,7 @@ Let's translate the above to code:
 
   2. We now have a reference to an inner array -- `matrix[i]`. We want to
      iterate across each element in this array, which means another `for` loop.
-     For a "regular" int array, the loop would look like:
+     For a "regular" `int` array, the loop would look like:
 
          int[] array = new int[5];
          for (int j = 0; j < array.length; j++) {
