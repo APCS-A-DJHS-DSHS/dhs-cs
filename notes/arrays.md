@@ -20,14 +20,22 @@ Arrays in Java are objects. They are declared like any other object:
 
     int[] numbers; // Declares a variable that holds arrays of integers
 
-And they have three different "constructors". Two of them work the same way as
-they do for other objects:
+And they have three different "constructors". The first works in a similar
+fashion to constructors for regular objects. The differences are that
+parentheses are not required and that the array's size goes between the square
+brackets:
 
     numbers = new int[5];                // Creates an array with default values
+
+The second one doesn't require a size between the square brackets. Instead, the
+square brackets are followed by the desired contents of the array, surrounded by
+braces:
+
     numbers = new int[] {1, 2, 3, 4, 5}; // Creates an array with the specified values
 
-And the last one works only if you declare *and* create the array at the same
-time:
+The last works like the second one without the `new <constructor>` part. There
+is one limitation, though -- you have to declare the array at the same time you
+construct it:
 
     int[] special = {2, 3, 5, 7, 11};    // OK
     special = {0, 1, 1, 2, 3};           // Not OK
