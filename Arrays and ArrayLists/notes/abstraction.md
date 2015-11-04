@@ -16,11 +16,13 @@ you "open" that file.
 The first example shows "procedural abstraction" -- separating the promise of
 "you will get fuel in your car if you follow these steps" from the details of
 "use a rotary pump to move gas from the underground storage tank through a
-meter into your car". This is sort of the equivalent of something like the
+meter into your car until the air outflow suddenly increases at which point
+pumping will stop". This is sort of the equivalent of something like the
 `length()` method in the String class, which promises to give you the length
 of the String, but doesn't tell you exactly how it comes up with that number.
 
-The second example shows "data abstraction" -- separating the promise of "if
-you save, using open will restore the contents of what you saved" from the
-contents of the file itself. This is sort of the equivalent of creating/printing
-a String.
+The second example shows "data abstraction" -- the idea that you can obtain a
+Word file by saving your document, and opening that Word file will give you
+that same document. Nothing is said about how the file works -- whether it's
+encrypted, encoded in Morse code, or represented as a zipped folder with
+multiple files inside.
