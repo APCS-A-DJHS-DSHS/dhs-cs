@@ -1,84 +1,325 @@
-# Quick array review
+# Intro to arrays
 
-Arrays are collections of elements of the same type. The type of the array is
-given by:
+So far, we've been dealing with individual objects. This works fine when you're
+dealing with a few things at once:
 
-    <element type>[] // An "array of <element type>" or an "<element type> array"
+    public String interleave(String a, String b) { ... }
+    public int gcd(int x, int y) { ... }
+    public long max(long a, long b, long c) { ... }
 
-For example:
+But things can get interesting once you start working with a few more objects:
 
-    String[]  array1; // Array of String objects or a String array
-    int[]     array2; // Array of ints or an int array
-    double[]  array3; // Array of doubles
-    Scanner[] array4; // Array of Scanners
-    int[][]   array5; // Array of int arrays or an int array array
-    int[][][] array6; // Array of arrays of int arrays
-    int[][][][][][][] pleaseDoNotActuallyUseThis;
-        // Array of arrays of arrays of arrays of arrays of arrays of int arrays
+    public class Deck {
+        private Card card1;
+        private Card card2;
+        private Card card3;
+        private Card card4;
+        private Card card5;
+        private Card card6;
+        private Card card7;
+        private Card card8;
+        private Card card9;
+        private Card card10;
+        private Card card11;
+        private Card card12;
+        private Card card13;
+        private Card card14;
+        private Card card15;
+        private Card card16;
+        private Card card17;
+        private Card card18;
+        private Card card19;
+        private Card card20;
+        private Card card21;
+        private Card card22;
+        private Card card23;
+        private Card card24;
+        private Card card25;
+        private Card card26;
+        private Card card27;
+        private Card card28;
+        private Card card29;
+        private Card card30;
+        private Card card31;
+        private Card card32;
+        private Card card33;
+        private Card card34;
+        private Card card35;
+        private Card card36;
+        private Card card37;
+        private Card card38;
+        private Card card39;
+        private Card card40;
+        private Card card41;
+        private Card card42;
+        private Card card43;
+        private Card card44;
+        private Card card45;
+        private Card card46;
+        private Card card47;
+        private Card card48;
+        private Card card49;
+        private Card card50;
+        private Card card51;
+        private Card card52;
 
-Arrays in Java are objects. They are declared like any other object:
+        public Deck() {
+            card1 = new Card("Spade", 1);
+            card2 = new Card("Spade", 2);
+            card3 = new Card("Spade", 3);
+            card4 = new Card("Spade", 4);
+            card5 = new Card("Spade", 5);
+            card6 = new Card("Spade", 6);
+            card7 = new Card("Spade", 7);
+            card8 = new Card("Spade", 8);
+            card9 = new Card("Spade", 9);
+            card10 = new Card("Spade", 10);
+            card11 = new Card("Spade", 11);
+            card12 = new Card("Spade", 12);
+            card13 = new Card("Spade", 13);
+            card14 = new Card("Heart", 1);
+            card15 = new Card("Heart", 2);
+            card16 = new Card("Heart", 3);
+            card17 = new Card("Heart", 4);
+            card18 = new Card("Heart", 5);
+            card19 = new Card("Heart", 6);
+            card20 = new Card("Heart", 7);
+            card22 = new Card("Heart", 8);
+            card22 = new Card("Heart", 9);
+            card23 = new Card("Heart", 10);
+            card24 = new Card("Heart", 11);
+            card25 = new Card("Heart", 12);
+            card26 = new Card("Heart", 13);
+            card27 = new Card("Diamond", 1);
+            card28 = new Card("Diamond", 2);
+            card29 = new Card("Diamond", 3);
+            card30 = new Card("Diamond", 4);
+            card33 = new Card("Diamond", 5);
+            card32 = new Card("Diamond", 6);
+            card33 = new Card("Diamond", 7);
+            card34 = new Card("Diamond", 8);
+            card35 = new Card("Diamond", 9);
+            card36 = new Card("Diamond", 10);
+            card37 = new Card("Diamond", 11);
+            card38 = new Card("Diamond", 12);
+            card39 = new Card("Diamond", 13);
+            card40 = new Card("Club", 1);
+            card44 = new Card("Club", 2);
+            card42 = new Card("Club", 3);
+            card43 = new Card("Club", 4);
+            card44 = new Card("Club", 5);
+            card45 = new Card("Club", 6);
+            card46 = new Card("Club", 7);
+            card47 = new Card("Club", 8);
+            card48 = new Card("Club", 9);
+            card49 = new Card("Club", 10);
+            card50 = new Card("Club", 11);
+            card55 = new Card("Club", 12);
+            card52 = new Card("Club", 13);
+        }
 
-    int[] numbers; // Declares a variable that holds arrays of integers
+It sure would be nice if those cards could be handled as a group of 52 `Cards`
+instead of 52 individual `Cards`.
 
-And they have three different "constructors". The first works in a similar
-fashion to constructors for regular objects. The differences are that
-parentheses are not required and that the array's size goes between the square
-brackets:
+Luckily, Java has arrays, which are exactly what we need. Arrays are fixed-size
+groups of things where all the things are the same type. When talking about
+arrays, these things are typically called "elements".
 
-    numbers = new int[5];                // Creates an array with default values
+## Declaring an array variable
 
-The second one doesn't require a size between the square brackets. Instead, the
-square brackets are followed by the desired contents of the array, surrounded by
-braces:
+Array variables/parameters/etc. are declared in the same way as any other
+thing in Java -- the type of the element followed by the name of the variable.
 
-    numbers = new int[] {1, 2, 3, 4, 5}; // Creates an array with the specified values
+In code, an array's type looks like the type of the elements followed by a set
+of square brackets (`[` and ` ]`). For example:
 
-The last works like the second one without the `new <constructor>` part. There
-is one limitation, though -- you have to declare the array at the same time you
-construct it:
+    Scanner scanner; // Declares a Scanner
+    String name;     // Declares a String
+    Card[] cards;    // Declares a Card array
+    int[] nums;      // Declares an int array
 
-    int[] special = {2, 3, 5, 7, 11};    // OK
-    special = {0, 1, 1, 2, 3};           // Not OK
+The type of an array can be read a few different ways:
 
-The element at index `i` can be accessed by typing the name of the array,
-followed by the index surrounded by square brackets:
+    Letter[] englishAlphabet; // A Letter array
+    Letter[] latinAlphabet;   // An array of Letters
+    Letter[] greekAlphabet;   // A Letter[]
 
-    System.out.println(special[3]); // Prints "7"
+Each way is equally valid, although the last one is probably not too useful when
+talking about arrays.
 
-And you can assign the element at index `i` in a similar way:
+## Array properties
 
-    special[3] = 2; // Array is now {2, 3, 5, 2, 11}
+### Fields
 
-One way of looking at indices is to imagine an array being a line of elements
-sitting side-by-side, and the index `i` being the `i`th element after the first:
+Arrays have one publicly accessible field:
 
-    int[] array = new int[5];
+    public final int length;
+
+As the name suggests, it holds the array's length, which is the number of
+elements it can hold. An array's length is set when it is created, and once set
+it cannot be changed -- hence the `final` modifier.
+
+### Constructors
+
+Array constructors look a bit different from other object constructors, but they
+create an object just like any other constructor. One of them, however, has a
+few strings attached.
+
+#### Constructing empty arrays
+
+The first one is only a little different:
+
+    new int[4];    // Array of 4 ints
+    new String[10] // Array of 10 Strings
+    new byte[16]   // Array of 16 bytes
+    new Card[52]   // Array of 52 cards
+
+Arrays created this way have default values for all their elements, and are
+sometimes called "empty arrays".
+
+Default values for array elements are:
+
+    boolean - false
+    byte    - 0        // The byte way of writing 0 in Java 7 and up
+    char    - '\u0000' // The char way of writing 0
+    short   - 0
+    int     - 0
+    long    - 0L       // The long way of writing 0
+    float   - 0f       // The float way of writing 0
+    double  - 0d       // The double way of writing 0
+    Object  - null
+
+Thus, the above constructors would produce:
+
+    new int[4]     // Array of 4 ints with value 0
+    new String[10] // Array of 10 Strings, but each one is null
+    new byte[16]   // Array of 16 bytes, each set to 0
+    new Card[52]   // Array of 52 Cards, but each Card is null
+
+#### Constructing arrays with contents
+
+The second constructor looks like this:
+
+    new int[] {1, 2, 3, 4}
+    new String[] {"Hello", "world!"}
+    new byte[] {0b0000, 0b0001, 0b0010, 0b0011, 0b0100, ... , 0b1111}
+    new Card[] {new Card(SPADE, ONE), ... , new Card(DIAMOND, KING)}
+
+This constructor creates an array of the type you specified, and fills it with
+the elements you list between the braces. Thus:
+
+  1. Creates an `int` array with length 4, holding the values `1`, `2`, `3`, and
+     `4`
+  2. Creates a `String` array with length 2, holding the `String`s `"Hello"` and
+     `"world!"`
+  3. Creates a `byte` array with length 16, holding the values `0b0000` through
+     `0b1111`, or 0 through 15
+  4. Creates a `Card` array with length 52 and 52 `Card` objects, one `Card` for
+     each card in a regular deck
+
+This is a nice way of getting an array with values ready to go, instead of
+setting them one by one.
+
+#### Constructing arrays with contents, but with less typing
+
+The last constructor looks like this:
+
+    int[] nums = {1, 2, 3, 4}
+    String[] words = {"Hello", "world!"}
+    byte[] testBits = {0b0000, ... , 0b1111}
+    Card[] deck = {new Card(SPADE, ONE), ... , new Card(DIAMOND, KING)}
+
+This works just like the second constructor, with one restriction: you can only
+use this if you declare a variable variable **and** use the constructor to set
+the variable's value at the same time:
+
+    int[] nums = {1, 2, 3, 4};            // OK
+    int[] moreNums;
+    moreNums = {5, 6, 7, 8};              // Not OK
+
+    int[] evenMoreNums = {9, 10, 11, 12}; // OK
+    evenMoreNums = {13, 14, 15, 16};      // Not OK
+
+#### Methods
+
+The only methods that arrays have are the methods that all objects have:
+
+  - `clone()`
+  - `equals(Object)`
+  - `finalize()`
+  - `getClass()`
+  - `hashCode()`
+  - `notify()`
+  - `notifyAll()`
+  - `toString()`
+  - `wait()`
+  - `wait(long)`
+  - `wait(long, int)`
+
+In most cases, you won't have to worry about these. The main one to keep in
+mind, though, is `toString()`. Arrays use the default implementations of their
+methods, which means you can get some interesting results:
+
+    int[] fibs = {0, 1, 1, 2, 3};
+    String fibsString = fibs.toString();
+    System.out.println(fibsString);
+
+Instead of something nice like "{0, 1, 1, 2, 3}", you get something like this:
+
+
+    [I@203ce91c
+
+Well, that's not very useful. A better way to turn an array into a `String` is
+by using the `Arrays.toString()` method:
+
+    String goodResult = Arrays.toString(fibs);
+    System.out.println(goodResult); // prints "[0, 1, 1, 2, 3]"
+
+## Working with arrays
+
+### What exactly are arrays?
+
+The most common way to visualize the way that arrays group their elements is by
+lining them up in a row:
+
+          ---------------------
+          |   |   |   |   |   |
+          ---------------------
+
+Each element has a number, called its "index". The first element is numbered
+"0", the second element is numbered "1", and so on:
 
           ---------------------
           |   |   |   |   |   |
           ---------------------
     index:  0   1   2   3   4
 
-Arrays can hold a limited number of objects. This is referred to as the array's
-"size" or "length". An array's size is determined when the array is created,
-and cannot be changed. An array's size can be accessed using its `length` field:
 
-    System.out.println(special.length); // Prints "5"
 
-If you don't use braces to specify an array's elements when you create it, the
-elements are set to their default values:
+### Accessing array elements
 
-    int, short, byte --> 0
-    char             --> '\u0000' // char equivalent of 0
-    long             --> 0L
-    float            --> 0.0f
-    double           --> 0.0d
-    boolean          --> false
-    object           --> null
+The element at index `i` can be accessed by typing the name of the array
+followed by the element's index surrounded by square brackets:
 
-The various types of 0 can be treated more or less as the same thing. The main
-gotcha is the last line; you have to remember to initialize the objects in an
-object array before you use them!
+    int[] primes = new int[] {2, 3, 5, 7, 11};
+    System.out.println(primes[3]); // Prints "7"
+    System,out.println(primes[0]);  // Prints "2"
+    System.out.println(primes[4]);  // Prints "11"
+
+And you can assign the element at index `i` in a similar way:
+
+    primes[3] = 2;     // Array is now {2, 3, 5, 2, 11}
+    primes[0] = 16384; // Array is now {16384, 3, 5, 2, 11}
+
+Be careful not to use an invalid index, i.e. a negative index, or an index for
+a nonexistant element. If you do so, the runtime will complain:
+
+    int[] primes = new int[] {2, 3, 5, 7, 11};
+    primes[-1]    // The runtime will throw an
+    primes[5]     // ArrayIndexOutOfBoundsException
+    primes[1294]  // in each of these cases
+
+### Iterating over arrays
 
 # 2D arrays
 
