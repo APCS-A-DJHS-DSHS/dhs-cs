@@ -302,21 +302,79 @@ The element at index `i` can be accessed by typing the name of the array
 followed by the element's index surrounded by square brackets:
 
     int[] primes = new int[] {2, 3, 5, 7, 11};
-    System.out.println(primes[3]); // Prints "7"
+    // primes is now this array:
+    //
+    //       --------------------------
+    //       |  2 |  3 |  5 |  7 | 11 |
+    //       --------------------------
+    // index:   0    1    2    3    4
+
+    System.out.println(primes[3]);
+    // primes[3] = the element at index 3
+    // So in our case:
+    //       --------------------------
+    //       |  2 |  3 |  5 |  7 | 11 |
+    //       --------------------------
+    // index:   0    1    2    3    4
+    //                         |
+    //                         | ----this one
+    //
+    // So "7" will be printed out
+
     System,out.println(primes[0]);  // Prints "2"
     System.out.println(primes[4]);  // Prints "11"
 
-And you can assign the element at index `i` in a similar way:
+You can assign the element at index `i` in a similar way:
 
     primes[3] = 2;     // Array is now {2, 3, 5, 2, 11}
+    // primes[3] = the element at index 3
+    //       --------------------------
+    //       |  2 |  3 |  5 |  7 | 11 |
+    //       --------------------------
+    // index:   0    1    2    3    4
+    //                         |
+    //                         | ---- 2 goes here
+    //
+    // Result:
+    //       --------------------------
+    //       |  2 |  3 |  5 |  2 | 11 |
+    //       --------------------------
+    // index:   0    1    2    3    4
+    //
+    // Primes is now {2, 3, 5, 2, 11}
+
     primes[0] = 16384; // Array is now {16384, 3, 5, 2, 11}
 
 Be careful not to use an invalid index, i.e. a negative index, or an index for
-a nonexistant element. If you do so, the runtime will complain:
+a nonexistant element. If you do so, the runtime will complain with an
+`ArrayIndexOutOfBoundsException`:
 
     int[] primes = new int[] {2, 3, 5, 7, 11};
-    primes[-1]    // The runtime will throw an
-    primes[5]     // ArrayIndexOutOfBoundsException
-    primes[1294]  // in each of these cases
+    primes[-1]
+    //                --------------------------
+    //                |  2 |  3 |  5 |  7 | 11 |
+    //                --------------------------
+    // index:     -1?    0    1    2    3    4
+    //             |
+    //             |---- This... isn't pointing to anything. Can't get that
+    //                   element, so throw an exception
+
+    primes[5]
+    //                --------------------------
+    //                |  2 |  3 |  5 |  7 | 11 |
+    //                --------------------------
+    // index:            0    1    2    3    4    5?
+    //                                            |
+    //  This also isn't pointing to anything...---|
+
+    primes[1294]
+    //                --------------------------
+    //                |  2 |  3 |  5 |  7 | 11 |
+    //                --------------------------
+    // index:            0    1    2    3    4    5?    6?    7?    8?    9?...
+    //
+    //         Element to return: ------------------------------------------...
+    //
+    //         Definitely not pointing to anything
 
 ### Iterating over arrays
