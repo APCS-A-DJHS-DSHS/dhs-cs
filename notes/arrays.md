@@ -256,9 +256,9 @@ The only methods that arrays have are the methods that all objects have:
   - `wait(long)`
   - `wait(long, int)`
 
-In most cases, you won't have to worry about these. The main one to keep in
-mind, though, is `toString()`. Arrays use the default implementations of their
-methods, which means you can get some interesting results:
+These are useless in most scenarios, though -- and that includes `toString()`!
+Arrays use the default implementations of their methods, which means you can get
+some interesting results:
 
     int[] fibs = {0, 1, 1, 2, 3};
     String fibsString = fibs.toString();
@@ -269,8 +269,8 @@ Instead of something nice like "{0, 1, 1, 2, 3}", you get something like this:
 
     [I@203ce91c
 
-Well, that's not very useful. A better way to turn an array into a `String` is
-by using the `Arrays.toString()` method:
+Definitely *not* the best way to show your user an array. A better way could be
+throught the `Arrays.toString()` method:
 
     String goodResult = Arrays.toString(fibs);
     System.out.println(goodResult); // prints "[0, 1, 1, 2, 3]"
