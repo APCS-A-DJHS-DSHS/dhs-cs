@@ -19,45 +19,44 @@ arrays:
 
     int[][] example = new int[5][5];
 
-    index:  0   1   2   3   4
+                                   index:  0   1   2   3   4
+                                         ---------------------
+                                         |   |   |   |   |   |
+     index: 0   1   2   3   4            ---------------------
+          ---------------------            |   |   |   |   |
+          |   |   |   |   |   | <-----------   |   |   |   |
+          ---------------------                |   |   |   |
+          ---------------------                |   |   |   |
+          |   |   |   |   |   | <---------------   |   |   |
+          ---------------------                    |   |   |
+          ---------------------                    |   |   |
+          |   |   |   | x |   | <-------------------   |   |
+          ---------------------                        |   |
+          ---------------------                        |   |
+          | y |   |   |   |   | <-----------------------   |
+          ---------------------                            |
+          ---------------------                            |
+          |   |   |   |   |   | <---------------------------
           ---------------------
-          |   |   |   |   |   |
-          ---------------------   0   1   2   3   4  : index
-            |   |   |   |   |   ---------------------
-            |   |   |   |   --> |   |   |   |   |   |
-            |   |   |   |       ---------------------
-            |   |   |   |       ---------------------
-            |   |   |   ------> | y |   |   |   |   |
-            |   |   |           ---------------------
-            |   |   |           ---------------------
-            |   |   ----------> |   |   |   | x |   |
-            |   |               ---------------------
-            |   |               ---------------------
-            |   --------------> |   |   |   |   |   |
-            |                   ---------------------
-            |                   ---------------------
-            ------------------> |   |   |   |   |   |
-                                ---------------------
 
 To access any particular element, you first select the array it's in, then
-select the element in that array. For example, if you want to access the
-element marked by `x` above:
+select the element in that array. For example, if you want to set the element
+marked by `x` above to 1:
 
-    // Third array --> index 2
-    // Fourth element --> index 3
+    // Third array is at index 2
+    // Fourth element of third array is at index 3
     //
     // Third array is example[2]
     // Fourth element of third array is example[2][3]
     example[2][3] = 1;
 
-Similarly for `y`:
+A similar process can be used for `y`. Let's set `y` to `6`:
 
-    // y
-    // Fourth array --> index 1
-    // First element --> index 0
+    // Fourth array is at index 3
+    // First element of fourth array is at index 0
     //
     // Fourth array is example[3]
-    // First element of second array is example[3][0]
+    // First element of fourth array is example[3][0]
     example[3][0] = 6;
 
 You can also think of square 2D arrays as a matrix:
@@ -80,34 +79,33 @@ The number in the first set of brackets usually refers to the row, while the
 second refers to the column. Thus, the `x` would be at `example[2][3]` in this
 case.
 
-The inner arrays in 2D arrays do not have to be the same size:
+The inner arrays in 2D arrays do not have to be the same size. Here's code that
+creates a "jagged" 2D array and a visualization of the result:
 
-    int[][] example = new int[5][];
-    example[0] = new int[2];
-    example[1] = new int[3];
-    example[2] = new int[5];
-    example[3] = new int[7];
-    example[4] = new int[11];
-
-    index:  0   1   2   3   4
-          ---------------------
-          |   |   |   |   |   |
-          ---------------------   0   1   2   3   4   5   6   7   8   9   10 : index
-            |   |   |   |   |   ---------------------------------------------
-            |   |   |   |   --> |   |   |   |   |   |   |   |   | x |   |   |
-            |   |   |   |       ---------------------------------------------
-            |   |   |   |       -----------------------------
-            |   |   |   ------> |   |   |   |   |   |   |   |
-            |   |   |           -----------------------------
-            |   |   |           ---------------------
-            |   |   ----------> |   |   |   | y |   |
-            |   |               ---------------------
-            |   |               -------------
-            |   --------------> |   |   |   |
-            |                   -------------
-            |                   ---------
-            ------------------> | z |   |
-                                ---------
+          int[][] example = new int[5][];
+          example[0] = new int[2];
+          example[1] = new int[3];
+          example[2] = new int[5];                Index:  0   1   2   3   4
+          example[3] = new int[7];                      ---------------------
+          example[4] = new int[11];                     |   |   |   |   |   |
+                                                        ---------------------
+                                                          |   |   |   |   |
+    index:  0   1   2   3   4   5   6   7   8   9   10    |   |   |   |   |
+          ---------                                       |   |   |   |   |
+          | z |   | <--------------------------------------   |   |   |   |
+          ---------                                           |   |   |   |
+          -------------                                       |   |   |   |
+          |   |   |   | <--------------------------------------   |   |   |
+          -------------                                           |   |   |
+          ---------------------                                   |   |   |
+          |   |   |   | y |   | <----------------------------------   |   |
+          ---------------------                                       |   |
+          -----------------------------                               |   |
+          |   |   |   |   |   |   |   | <------------------------------   |
+          -----------------------------                                   |
+          ---------------------------------------------                   |
+          |   |   |   |   |   |   |   |   | x |   |   | <------------------
+          ---------------------------------------------
 
 Here, `x` is at `example[4][8]`, `y` is at `example[2][3]`, and `z` is at `example[0][0]`
 
