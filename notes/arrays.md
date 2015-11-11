@@ -377,4 +377,92 @@ a nonexistant element. If you do so, the runtime will complain with an
     //
     //         Definitely not pointing to anything
 
-### Iterating over arrays
+# Array iteration
+
+Accessing every element in an array is fairly simple. Consider an array of
+`Client` objects, which represent the clients at a particular bank:
+
+    Client[] clients = new Client[NUM_CLIENTS];
+    // Initialize stuff
+
+Say that it's the end of the quarter, and it's time to dish out cash from
+interest on their accounts. To keep things concise, let's say we already have a
+method that will do the calculations and deposits for any particular client:
+
+    public static void giveInterest(Client client) {
+        // Implementation here
+    }
+
+We want to do something like:
+
+    for each Client
+        give money
+
+That is the same as something like
+
+    give client 1 money
+    give client 2 money
+    give client 3 money
+    ...
+
+This translates more or less directly into code:
+
+    giveInterest(clients[0]);
+    giveInterest(clients[1]);
+    giveInterest(clients[2]);
+    ...
+
+So basically we need to execute `giveInterest(clients[i])`, with `i` being every
+valid index for `clients`. Perfect time for a loop!
+
+    for (int index = 0; index < clients.length; index++) {
+        giveInterest(clients[index]);
+    }
+
+Want to charge everyone a fee? Use a loop!
+
+    for (int index = 0; index < clients.length; index++) {
+        chargeFee(clients[index]);
+    }
+
+Everyone is mad and wants to withdraw their money? Ue a loop!
+
+    for (int i = 0; i < clients.length; i++) {
+        clients[0].withdraw(clients[0].balance());
+    }
+
+## For-each loops
+
+Because iterating over every element of a collection is so common, there's
+shortcut of sorts in the for-each loop:
+
+    for (Client c : clients) {
+        // Do something
+    }
+
+Here, `c` is approximately equal to `clients[<index>]`, with one exception
+listed below.
+
+This particular loop could read something like "for each `Client` in `clients`,
+make `c` refer to that `Client` and do whatever is in the body of the loop".
+Another way might be "for each `Client` called `c` in `clients`, do whatever is
+in the body of the loop".
+
+For-each loops have a few advantages over regular for loops:
+
+    - Usually less typing
+    - Easier to read (sometimes)
+    - Helps avoid out-of-bounds or off-by-one errors
+    - Dealing with a variable like `'c'` is usually more readable than dealing
+      with `arrayName[index]`
+
+They don't allow you to do as much as regular arrays do:
+
+    - You cannot alter the collection itself through `c` -- it aliases the
+      reference in the collection, so changing where `c` points to leaves the
+      collection untouched.
+    - You can only access one element at a time. If you need to do something
+      with both the current element and a different one, you'll have to use a
+      regular for loop.
+    - You can only iterate over one loop at a time. Need to swap elements
+      between collections? Have to use a regular for loop, unfortunately
