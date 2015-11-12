@@ -43,20 +43,17 @@ To access any particular element, you first select the array it's in, then
 select the element in that array. For example, if you want to set the element
 marked by `x` above to 1:
 
-    // Third array is at index 2
-    // Fourth element of third array is at index 3
+    // x is in the third inner array, so it's somewhere in example[2]
     //
-    // Third array is example[2]
-    // Fourth element of third array is example[2][3]
+    // x is at index 3 of example[2], so it's at (example[2])[3]
+    // Parentheses aren't necessary, so we end up with...
     example[2][3] = 1;
 
 A similar process can be used for `y`. Let's set `y` to `6`:
 
-    // Fourth array is at index 3
-    // First element of fourth array is at index 0
+    // y is in the fourth inner array, so somewhere in example[3]
     //
-    // Fourth array is example[3]
-    // First element of fourth array is example[3][0]
+    // y is the first element, so it's at (example[3])[0]
     example[3][0] = 6;
 
 You can also think of square 2D arrays as a matrix:
