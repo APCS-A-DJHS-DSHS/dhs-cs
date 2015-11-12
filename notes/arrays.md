@@ -266,7 +266,6 @@ some interesting results:
 
 Instead of something nice like "{0, 1, 1, 2, 3}", you get something like this:
 
-
     [I@203ce91c
 
 Definitely *not* the best way to show your user an array. A better way could be

@@ -1,43 +1,90 @@
-# 2D arrays
+# Mulidimensional arrays
 
-Creating square 2D arrays is fairly simple:
+## What are multidimensional arrays?
 
-    int[][] board        = new int[9][9];       // Creates 9x9 int array
-    ChessPiece[][] board = new ChessPiece[8][8] // Creates chessboard
+Regular arrays of objects look like this:
 
-How do you work with these? Remember what regular arrays look like:
+    String [] array1;
+    ^~~~~~ ^~ ^~~~~~
+    |      |  |
+    |      -----------An array...
+    |         |
+    -------------------------------- of Strings...
+              |
+              ------------------------------------------ called array1
 
-    int[] array = new int[5];
+    String[] array1 = new String[][] {"Hello", "World",
+                                      "Lorem", "Ipsum"};
 
-          ---------------------
-          |   |   |   |   |   |
-          ---------------------
-    index:  0   1   2   3   4
+           index: 0   1   2   3
+                -----------------
+                |   |   |   |   |
+                -----------------
+                  |   |   |   |
+    "Hello" <------   |   |   |
+                      |   |   |
+    "World" <----------   |   |
+                          |   |
+    "Lorem" <--------------   |
+                              |
+    "Ipsum" <------------------
 
-2D arrays are simply arrays of arrays. So 2D `int` array is an array of `int`
-arrays:
+So what happens if that object happens to be an array? Let's replace `String`
+with `int[]`:
 
-    int[][] example = new int[5][5];
+    int[]   []    array2;
+    ^~~~~   ^~    ^~~~~~
+    |       |     |
+    |       -------------- An array...
+    |             |
+    ------------------------------------- of int arrays...
+                  |
+                  ------------------------------------------ called array2
 
-                                   index:  0   1   2   3   4
-                                         ---------------------
-                                         |   |   |   |   |   |
-     index: 0   1   2   3   4            ---------------------
-          ---------------------            |   |   |   |   |
-          |   |   |   |   |   | <-----------   |   |   |   |
-          ---------------------                |   |   |   |
-          ---------------------                |   |   |   |
-          |   |   |   |   |   | <---------------   |   |   |
-          ---------------------                    |   |   |
-          ---------------------                    |   |   |
-          |   |   |   | x |   | <-------------------   |   |
-          ---------------------                        |   |
-          ---------------------                        |   |
-          | y |   |   |   |   | <-----------------------   |
-          ---------------------                            |
-          ---------------------                            |
-          |   |   |   |   |   | <---------------------------
-          ---------------------
+    int[][] array2 = new int[][] {new int[2], new int[4],
+                                  new int[1], new int[6]};
+
+                                     index: 0   1   2   3
+                                          -----------------
+                                          |   |   |   |   |
+                                          -----------------
+    index: 0   1   2   3   4   5            |   |   |   |
+         ---------                          |   |   |   |
+         | 0 | 0 | <-------------------------   |   |   |
+         ---------                              |   |   |
+         -----------------                      |   |   |
+         | 0 | 0 | 0 | 0 | <---------------------   |   |
+         -----------------                          |   |
+         -----                                      |   |
+         | 0 | <-------------------------------------   |
+         -----                                          |
+         -------------------------                      |
+         | 0 | 0 | 0 | 0 | 0 | 0 | <---------------------
+         -------------------------
+
+That gives us an array of arrays, or a 2D array.
+
+What happens if we make an array of `int[][]`?
+
+    int[][]   []    array3;
+    ^~~~~~~   ^~    ^~~~~~
+    |         |     |
+    |         ------------ An array...
+    |               |
+    ------------------------------------- of arrays of int arrays...
+                    |
+                    ---------------------------------------- called array3
+
+    int[][][] array3 = new int[][][] {new int[][] {new int[1], new int[3]},
+                                      new int[][] {new int[2], new int[4]},
+                                      new int[][] {new int[5], new int[2]}};
+
+
+## Declaring multidimensional arrays
+
+## Creating multidimensional arrays
+
+## Working with multidimensional arrays
 
 To access any particular element, you first select the array it's in, then
 select the element in that array. For example, if you want to set the element
@@ -56,7 +103,8 @@ A similar process can be used for `y`. Let's set `y` to `6`:
     // y is the first element, so it's at (example[3])[0]
     example[3][0] = 6;
 
-You can also think of square 2D arrays as a matrix:
+You can also think of square 2D arrays as a matrix. The 2D array above, for
+example, can also be visualized like this:
 
     int[][] example = new int[5][5];
 
@@ -104,12 +152,13 @@ creates a "jagged" 2D array and a visualization of the result:
           |   |   |   |   |   |   |   |   | x |   |   | <------------------
           ---------------------------------------------
 
-Here, `x` is at `example[4][8]`, `y` is at `example[2][3]`, and `z` is at `example[0][0]`
+Here, `x` is at `example[4][8]`, `y` is at `example[2][3]`, and `z` is at
+`example[0][0]`
 
 Unfortunately, there isn't an equivalent to `new int[5][5]` for uneven inner
 arrays. You will have to create them manually.
 
-## Iterating over 2D arrays
+## Iterating over multidimensional arrays
 
 2D array iteration isn't much different than regular array iteration. It
 involves more steps, but in the end it boils down to nested regular array
