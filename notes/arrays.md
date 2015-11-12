@@ -450,19 +450,19 @@ in the body of the loop".
 
 For-each loops have a few advantages over regular for loops:
 
-    - Usually less typing
-    - Easier to read (sometimes)
-    - Helps avoid out-of-bounds or off-by-one errors
-    - Dealing with a variable like `'c'` is usually more readable than dealing
-      with `arrayName[index]`
+  - Usually less typing
+  - Easier to read (sometimes)
+  - Helps avoid out-of-bounds or off-by-one errors
+  - Dealing with a variable like `'c'` is usually more readable than dealing
+    with `arrayName[index]`
 
 They don't allow you to do as much as regular arrays do:
 
-    - You cannot alter the collection itself through `c` -- it aliases the
-      reference in the collection, so changing where `c` points to leaves the
-      collection untouched.
-    - You can only access one element at a time. If you need to do something
-      with both the current element and a different one, you'll have to use a
-      regular for loop.
-    - You can only iterate over one loop at a time. Need to swap elements
-      between collections? Have to use a regular for loop, unfortunately
+  - You cannot alter the collection itself through `c` -- it aliases the
+    reference in the collection, so changing where `c` points to leaves the
+    collection untouched.
+  - You can only access one element at a time. If you need to do something
+    with both the current element and a different one, you'll have to use a
+    regular for loop.
+  - You can only iterate over one loop at a time. Need to swap elements
+    between collections? Have to use a regular for loop, unfortunately
