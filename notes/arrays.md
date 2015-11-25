@@ -424,7 +424,7 @@ Want to charge everyone a fee? Use a loop!
         chargeFee(clients[index]);
     }
 
-Everyone is mad and wants to withdraw their money? Ue a loop!
+Everyone is mad and wants to withdraw their money? Use a loop!
 
     for (int i = 0; i < clients.length; i++) {
         clients[0].withdraw(clients[0].balance());
