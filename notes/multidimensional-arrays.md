@@ -2,7 +2,115 @@
 
 ## What are multidimensional arrays?
 
-Regular arrays of objects look like this:
+Consider how locations are represented:
+
+A particular location in n-dimensional space can be described using n numbers.
+For example, on a number line, a single number is enough to identify a position:
+
+    <----|----|---->
+         0    4
+
+Two-dimensional objects require two numbers to describe a location:
+
+
+                          |
+                          |
+                          -       x
+                          |         (1, 2)
+    (-1.5, 1)             |
+              x           -
+                          |
+                          |
+      ----|-------|-------o-------|-------|----
+                          |
+                          |
+                  x       -
+          (-1, -1)        |
+                          |
+                          -
+                          |
+                          |
+
+Three dimensional objects require three numbers:
+
+       (0, 1, 1)            ^
+                \          /
+                 \        /
+                  |      /
+       Z axis  ^  |     /
+               |  |    /
+               |  x--------x (1, 1, 1)
+               | /|  /    /|
+               |/ | /    / |
+    (0, 0, 1)  x---------  |
+               |  /-----|--x (1, 1, 0)
+               | /      | /
+               |/       |/
+               x--------x-------------------->
+               (0, 0, 0) \                 X axis
+                          \
+                           \
+                            (1, 0, 1)
+
+And so on.
+
+Multidimensional arrays are arrays that require more than one number to locate a
+particular element, like how you need multiple numbers to define a location in
+space.
+
+"Regular" arrays are one-dimensional arrays, because a particular element can be
+located with a single number:
+
+           index: 0   1   2   3
+                -----------------
+                |   |   |   |   |
+                -----------------
+                  |   |   |   |          "Hello" is at array[0]
+    "Hello" <------   |   |   |          "Lorem" is at array[2]
+                      |   |   |
+    "World" <----------   |   |
+                          |   |
+    "Lorem" <--------------   |
+                              |
+    "Ipsum" <------------------
+
+Two-dimensional arrays require two numbers. Note that these drawings follow the
+convention that the numbers on the *vertical* axis go fist, *then* the numbers
+on the horizontal axis. The reason why is described in the next section:
+
+        0   1   2
+      -------------
+    0 | o |   |   |      o is at (0, 0), or array[0][0]
+      -------------      x is at (2, 0), or array[2][0]
+    1 |   |   | y |      y is at (1, 2), or array[1][2]
+      -------------
+    2 | x |   |   |
+      -------------
+
+2D arrays don't have to be square or rectangular -- each row can have a
+different number of valid indices:
+
+        0   1   2   3   4   5
+      ---------
+    0 |   |   |         l
+      -------------------------   // i is at (1, 1), or array[1][1]
+    1 |   | i |   |   |   | j |   // j is at (1, 5), or array[1][5]
+      -------------------------   // k is at (2, 0), or array[2][0]
+    2 | k |   |   |   |           // l would be at (0, 4), but that is not a
+      -----------------           // valid location
+
+Three dimensional arrays require three numbers, and so on.
+
+    // Sorry, no drawing yet :(
+
+### How multidimensional arrays work in Java
+
+In Java, multidimensional arrays are represented as nested sets of arrays. Each
+nesting level corresponds to the dimension of the elements. For example:
+
+    // TODO
+
+## Declaring multidimensional arrays
 
     String [] array1;
     ^~~~~~ ^~ ^~~~~~
@@ -13,25 +121,6 @@ Regular arrays of objects look like this:
               |
               ------------------------------------------ called array1
 
-    String[] array1 = new String[][] {"Hello", "World",
-                                      "Lorem", "Ipsum"};
-
-           index: 0   1   2   3
-                -----------------
-                |   |   |   |   |
-                -----------------
-                  |   |   |   |
-    "Hello" <------   |   |   |
-                      |   |   |
-    "World" <----------   |   |
-                          |   |
-    "Lorem" <--------------   |
-                              |
-    "Ipsum" <------------------
-
-So what happens if that object happens to be an array? Let's replace `String`
-with `int[]`:
-
     int[]   []    array2;
     ^~~~~   ^~    ^~~~~~
     |       |     |
@@ -40,31 +129,6 @@ with `int[]`:
     ------------------------------------- of int arrays...
                   |
                   ------------------------------------------ called array2
-
-    int[][] array2 = new int[][] {new int[2], new int[4],
-                                  new int[1], new int[6]};
-
-                                     index: 0   1   2   3
-                                          -----------------
-                                          |   |   |   |   |
-                                          -----------------
-    index: 0   1   2   3   4   5            |   |   |   |
-         ---------                          |   |   |   |
-         | 0 | 0 | <-------------------------   |   |   |
-         ---------                              |   |   |
-         -----------------                      |   |   |
-         | 0 | 0 | 0 | 0 | <---------------------   |   |
-         -----------------                          |   |
-         -----                                      |   |
-         | 0 | <-------------------------------------   |
-         -----                                          |
-         -------------------------                      |
-         | 0 | 0 | 0 | 0 | 0 | 0 | <---------------------
-         -------------------------
-
-That gives us an array of arrays, or a 2D array.
-
-What happens if we make an array of `int[][]`?
 
     int[][]   []    array3;
     ^~~~~~~   ^~    ^~~~~~
@@ -75,14 +139,29 @@ What happens if we make an array of `int[][]`?
                     |
                     ---------------------------------------- called array3
 
-    int[][][] array3 = new int[][][] {new int[][] {new int[1], new int[3]},
-                                      new int[][] {new int[2], new int[4]},
-                                      new int[][] {new int[5], new int[2]}};
-
-
-## Declaring multidimensional arrays
-
 ## Creating multidimensional arrays
+
+
+    int[][] array2 = new int[][] {new int[2], new int[4],
+                                  new int[1], new int[6]};
+
+                                     index: 0   1   2   3
+                                          -----------------
+                                          |   |   |   |   |
+                                          -----------------
+    index: 0   1   2   3   4   5            |   |   |   |
+         ---------                          |   |   |   |
+         | 3 | 1 | <-------------------------   |   |   |
+         ---------                              |   |   |
+         -----------------                      |   |   |
+         | 4 | 1 | 5 | 9 | <---------------------   |   |
+         -----------------                          |   |
+         -----                                      |   |
+         | 2 | <-------------------------------------   |
+         -----                                          |
+         -------------------------                      |
+         | 6 | 5 | 3 | 6 | 0 | 0 | <---------------------
+         -------------------------
 
 ## Working with multidimensional arrays
 
