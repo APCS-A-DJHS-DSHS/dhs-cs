@@ -110,10 +110,11 @@ arrays, four-dimensional arrays are arrays of arrays of arrays of arrays, etc.
 This is an important thing to keep in mind; this explains most of the behavior
 of multidimensional arrays.
 
-### Declaring multidimensional arrays
+### Declaring and working with multidimensional arrays
 
-Declaring multidimensional arrays is fairly straightforward, as long as you
-remember that "multidimensional" really means "nested one-dimensional" in Java.
+Declaring and creating multidimensional arrays is fairly straightforward, as
+long as you remember that "multidimensional" really means "nested
+one-dimensional" in Java.
 
 One-dimensional array declarations are nothing new:
 
@@ -143,34 +144,18 @@ of arrays:
                   |
                   ------------------------------ called twoDimensionalArray
 
-Three dimensions means three levels of nesting, so three-dimensional arrays are
-arrays of arrays of arrays:
+For example, take this matrix you might see in a math class:
 
-    int[][][] threeDimensionalArray;
+    -------------
+    | x | 0 | 0 |
+    -------------
+    | 0 | 0 | y |
+    -------------
+    | z | 0 | 0 |
+    -------------
 
-    int[][]   []    threeDimensionalArray;
-    ^~~~~~~   ^~    ^~~~~~~~~~~~~~~~~~~~~
-    |         |     |
-    |         ------------ An array...
-    |               |
-    ------------------------------------- of arrays of int arrays...
-                    |
-                    ---------------------------- called threeDimensionalArray
-
-This nesting makes figuring out an array's dimension fairly easy -- just count
-the number of square bracket pairs. The number of bracket pairs corresponds to
-the nesting level and the array's dimension.
-
-### Working with multidimensional arrays
-
-Accessing elements in multidimensional arrays is also fairly straightforward.
-Say we have the following two-dimensional array (0s left blank for clarity):
-
-    int[][] array = {{x,  ,  },
-                     { ,  , y},
-                     {z,  ,  }};
-
-It technically is represented as this:
+You can represent it like this in Java (don't worry about how this is created;
+that will be covered later):
 
                             0   1   2
                           -------------
@@ -187,6 +172,7 @@ It technically is represented as this:
       | z |   |   | <----------------
       -------------
 
+Based on this, figuring out how to access elements is fairly straightforward.
 Say we want to square `x` and store the result as the element following `x`. To
 access `x`, we need to access the array `x` is in. `x` is in the first inner
 array, so that array could be identified as:
@@ -218,14 +204,10 @@ This would also work:
 
     inner[0][1] = square;
 
-Because Java's multidimensional arrays are nested one-dimensional arrays, the
-inner arrays could actually be different sizes:
-
-    int[][] array = {{0, 0},
-                     {0, i, 0, 0, 0, j},
-                     {k, 0, 0, 0}};
-
-results in:
+Because Java's multidimensional arrays are nested one-dimensional arrays,
+though, you can do some things that you don't typically see with matrices, like
+having rows of different sizes. For example, the following would be a valid
+array:
 
                                 0   1   2
                               -------------
@@ -244,6 +226,29 @@ results in:
 
 Accessing elements still works in the same way, though. `i` is at `array[1][1]`,
 and `j` is at `array[1][5]`.
+
+Higher-dimensional arrays work more or less the same way. Three dimensions means
+three levels of nesting, so three-dimensional arrays are arrays of arrays of
+arrays:
+
+    int[][][] threeDimensionalArray;
+
+    int[][]   []    threeDimensionalArray;
+    ^~~~~~~   ^~    ^~~~~~~~~~~~~~~~~~~~~
+    |         |     |
+    |         ------------ An array...
+    |               |
+    ------------------------------------- of arrays of int arrays...
+                    |
+                    ---------------------------- called threeDimensionalArray
+
+And accessing elements would be done by accessing the proper two-dimensional
+array, then the proper one-dimensional array in the two-dimensional array, then
+the element in the one-dimensional array.
+
+This nesting makes figuring out an array's dimension fairly easy -- just count
+the number of square bracket pairs. The number of bracket pairs corresponds to
+the nesting level and the array's dimension.
 
 ### Creating multidimensional arrays
 
