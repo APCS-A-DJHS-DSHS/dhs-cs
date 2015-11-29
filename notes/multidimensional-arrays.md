@@ -312,11 +312,11 @@ the same time also works in a similar way:
 Creating an empty multidimensional array is a bit different, though. You might
 expect that an array of `int` arrays, (a `int[] []`) would look like:
 
-    int[][] array = new int[][4];
+    int[][] array = new int[][4]; // This actually doesn't work
 
 or that an array of arrays of `int` arrays (a `int[][] []`) would look like:
 
-    int[][][] array = new int[][][MAX_SIZE];
+    int[][][] array = new int[][][MAX_SIZE]; // This doesn't work either
 
 The actual syntax, though, has the numbers on the *inside*.
 
@@ -332,7 +332,7 @@ creates an array of 4 `int` arrays. Adding another number like this, though:
 
     int[][] array = new int[4][5];
 
-creates an array of 4 `int` arrays, each of which holds 4 `int`s. Similarly,
+creates an array of 4 `int` arrays, each of which holds 5 `int`s. Similarly,
 
     int[][][] array = new int[MAX_SIZE][][];
 
