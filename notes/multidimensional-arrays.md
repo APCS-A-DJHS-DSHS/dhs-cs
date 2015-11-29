@@ -2,36 +2,79 @@
 
 ## What are multidimensional arrays?
 
-Consider how locations are represented:
+Multidimensional arrays are arrays that require more than one index to locate an
+element.
 
-A particular location in n-dimensional space can be described using n numbers.
-For example, on a number line, a single number is enough to identify a position:
+The "dimension" part of the name comes from the way identifying elements in a
+multidimensional array resembles identifying a point in space.
 
-    <----|----|---->
-         0    4
+Consider a number line:
 
-Two-dimensional objects require two numbers to describe a location:
+    <----|----|----|----x----|----|---->
+        -2   -1    0    1    2    3
+
+The number line is a one-dimensional space -- only one number is required to
+uniquely identify a location on the line. For example, if you were told to put
+an "x" on the point marked "1", you know exactly what point is being named.
+Likewise, a one-dimensional array requires only one number to uniquely identify
+an element. The arrays described in arrays.md are one-dimensional arrays.
+
+One number isn't enough to uniquely identify a point on the Cartesian coordinate
+plane, though. Say you were supposed to mark the point at "1" with an "x":
 
 
                           |
                           |
-                          -       x
+                        2 -       x <------ Would this be considered "1" or "2"?
+                          |
+                          |
+                        1 x <--- Should the x go at this "1"?
+                          |
+                          |
+      ----|-------|-------o-------x-------|----
+         -2      -1       |       1       2
+                          |       ^
+                       -1 -       |
+                          |       |
+                          |       Or this "1"?
+                       -2 -
+                          |
+                          |
+
+Two numbers are needed to uniquely identify a point, which means the Cartesian
+coordinate plane is a two-dimensional space:
+
+                          |
+                          |
+                        2 -       x
                           |         (1, 2)
     (-1.5, 1)             |
-              x           -
+              x         1 -
                           |
                           |
       ----|-------|-------o-------|-------|----
+         -2      -1       |       1       2
                           |
-                          |
-                  x       -
+                  x    -1 -
           (-1, -1)        |
                           |
-                          -
+                       -2 -
                           |
                           |
+Two-dimensional arrays, then, require two numbers to uniquely name an element.
 
-Three dimensional objects require three numbers:
+    // This is a two-dimensional array. Placing an "x" at element "1" is
+    // ambiguous, but placing an "x" at element "1, 1" is not
+
+        0   1   2
+      -------------
+    0 |   |   |   |
+      -------------
+    1 |   | x |   |
+      -------------
+
+The same extends to three dimensions and above. Points in three-dimensional
+space require three numbers:
 
        (0, 1, 1)            ^
                 \          /
@@ -52,98 +95,163 @@ Three dimensional objects require three numbers:
                            \
                             (1, 0, 1)
 
-And so on.
+And a three-dimensional array would require 3 numbers to uniquely identify an
+element.
 
-Multidimensional arrays are arrays that require more than one number to locate a
-particular element, like how you need multiple numbers to define a location in
-space.
+    // No diagram yet :(
 
-"Regular" arrays are one-dimensional arrays, because a particular element can be
-located with a single number:
+## Multidimensional arrays in Java
 
-           index: 0   1   2   3
-                -----------------
-                |   |   |   |   |
-                -----------------
-                  |   |   |   |          "Hello" is at array[0]
-    "Hello" <------   |   |   |          "Lorem" is at array[2]
-                      |   |   |
-    "World" <----------   |   |
-                          |   |
-    "Lorem" <--------------   |
-                              |
-    "Ipsum" <------------------
+Java does not have "true" multidimensional arrays; instead, multidimensional
+arrays are represented as nested one-dimensional arrays, where each level of
+nesting corresponds to a dimension, i.e.  two-dimensional arrays are arrays of
+arrays, four-dimensional arrays are arrays of arrays of arrays of arrays, etc.
 
-Two-dimensional arrays require two numbers. Note that these drawings follow the
-convention that the numbers on the *vertical* axis go fist, *then* the numbers
-on the horizontal axis. The reason why is described in the next section:
+This is an important thing to keep in mind; this explains most of the behavior
+of multidimensional arrays.
 
-        0   1   2
-      -------------
-    0 | o |   |   |      o is at (0, 0), or array[0][0]
-      -------------      x is at (2, 0), or array[2][0]
-    1 |   |   | y |      y is at (1, 2), or array[1][2]
-      -------------
-    2 | x |   |   |
-      -------------
+### Declaring multidimensional arrays
 
-2D arrays don't have to be square or rectangular -- each row can have a
-different number of valid indices:
+Declaring multidimensional arrays is fairly straightforward, as long as you
+remember that "multidimensional" really means "nested one-dimensional" in Java.
 
-        0   1   2   3   4   5
-      ---------
-    0 |   |   |         l
-      -------------------------   // i is at (1, 1), or array[1][1]
-    1 |   | i |   |   |   | j |   // j is at (1, 5), or array[1][5]
-      -------------------------   // k is at (2, 0), or array[2][0]
-    2 | k |   |   |   |           // l would be at (0, 4), but that is not a
-      -----------------           // valid location
+One-dimensional array declarations are nothing new:
 
-Three dimensional arrays require three numbers, and so on.
+    String[] oneDimensionalArray;
 
-    // Sorry, no drawing yet :(
-
-### How multidimensional arrays work in Java
-
-In Java, multidimensional arrays are represented as nested sets of arrays. Each
-nesting level corresponds to the dimension of the elements. For example:
-
-    // TODO
-
-## Declaring multidimensional arrays
-
-    String [] array1;
-    ^~~~~~ ^~ ^~~~~~
+    String [] oneDimensionalArray;
+    ^~~~~~ ^~ ^~~~~~~~~~~~~~~~~~~
     |      |  |
     |      -----------An array...
     |         |
     -------------------------------- of Strings...
               |
-              ------------------------------------------ called array1
+              ---------------------------------- called oneDimensionalArray
 
-    int[]   []    array2;
-    ^~~~~   ^~    ^~~~~~
+
+Two dimensions means two levels of nesting, so two-dimensional arrays are arrays
+of arrays:
+
+    int[][] twoDimensionalArray;
+
+    int[]   []    twoDimensionalArray;
+    ^~~~~   ^~    ^~~~~~~~~~~~~~~~~~~
     |       |     |
     |       -------------- An array...
     |             |
     ------------------------------------- of int arrays...
                   |
-                  ------------------------------------------ called array2
+                  ------------------------------ called twoDimensionalArray
 
-    int[][]   []    array3;
-    ^~~~~~~   ^~    ^~~~~~
+Three dimensions means three levels of nesting, so three-dimensional arrays are
+arrays of arrays of arrays:
+
+    int[][][] threeDimensionalArray;
+
+    int[][]   []    threeDimensionalArray;
+    ^~~~~~~   ^~    ^~~~~~~~~~~~~~~~~~~~~
     |         |     |
     |         ------------ An array...
     |               |
     ------------------------------------- of arrays of int arrays...
                     |
-                    ---------------------------------------- called array3
+                    ---------------------------- called threeDimensionalArray
 
-## Creating multidimensional arrays
+This nesting makes figuring out an array's dimension fairly easy -- just count
+the number of square bracket pairs. The number of bracket pairs corresponds to
+the nesting level and the array's dimension.
 
+### Working with multidimensional arrays
 
-    int[][] array2 = new int[][] {new int[2], new int[4],
-                                  new int[1], new int[6]};
+Accessing elements in multidimensional arrays is also fairly straightforward.
+Say we have the following two-dimensional array (0s left blank for clarity):
+
+    int[][] array = {{x,  ,  },
+                     { ,  , y},
+                     {z,  ,  }};
+
+It technically is represented as this:
+
+                            0   1   2
+                          -------------
+                          |   |   |   |
+                          -------------
+        0   1   2           |   |   |
+      -------------         |   |   |
+      | x |   |   | <--------   |   |
+      -------------             |   |
+      -------------             |   |
+      |   |   | y | <------------   |
+      -------------                 |
+      -------------                 |
+      | z |   |   | <----------------
+      -------------
+
+Say we want to square `x` and store the result as the element following `x`. To
+access `x`, we need to access the array `x` is in. `x` is in the first inner
+array, so that array could be identified as:
+
+    int[] inner = array[0];
+
+`x` is the first element in that inner array, so:
+
+    int before = inner[0];
+
+We can simplify this by substituting `array[0]` for `inner`:
+
+    int before = inner[0][0];
+
+It might help to think of this as
+
+    int before = (inner[0])[0];
+
+Now we can do our computation:
+
+    int square = x * x;
+
+Storing the result works in a similar fashion to reading `x`:
+
+    int[] inner = array[0];
+    inner[1] = square;
+
+This would also work:
+
+    inner[0][1] = square;
+
+Because Java's multidimensional arrays are nested one-dimensional arrays, the
+inner arrays could actually be different sizes:
+
+    int[][] array = {{0, 0},
+                     {0, i, 0, 0, 0, j},
+                     {k, 0, 0, 0}};
+
+results in:
+
+                                0   1   2
+                              -------------
+                              |   |   |   |
+                              -------------
+      0   1   2   3   4   5     |   |   |
+    ---------                   |   |   |
+    |   |   | <------------------   |   |
+    ---------                       |   |
+    -------------------------       |   |
+    |   | i |   |   |   | j | <------   |
+    -------------------------           |
+    -----------------                   |
+    | k |   |   |   | <------------------
+    -----------------
+
+Accessing elements still works in the same way, though. `i` is at `array[1][1]`,
+and `j` is at `array[1][5]`.
+
+### Creating multidimensional arrays
+
+Creating multidimensional arrays isn't much different than creating a
+one-dimensional array, because you technically *are* working with
+one-dimensional arrays.
+
+For example, this array:
 
                                      index: 0   1   2   3
                                           -----------------
@@ -163,85 +271,83 @@ nesting level corresponds to the dimension of the elements. For example:
          | 6 | 5 | 3 | 6 | 0 | 0 | <---------------------
          -------------------------
 
-## Working with multidimensional arrays
+Is an array of `int` arrays.
 
-To access any particular element, you first select the array it's in, then
-select the element in that array. For example, if you want to set the element
-marked by `x` above to 1:
+We know one-dimensional arrays can be created like this:
 
-    // x is in the third inner array, so it's somewhere in example[2]
-    //
-    // x is at index 3 of example[2], so it's at (example[2])[3]
-    // Parentheses aren't necessary, so we end up with...
-    example[2][3] = 1;
+    int[] array = new int[] {3, 1};
+    String[] array = new String[] {"Hello", "world!"};
 
-A similar process can be used for `y`. Let's set `y` to `6`:
+So creating an array of `int` arrays should look something like:
 
-    // y is in the fourth inner array, so somewhere in example[3]
-    //
-    // y is the first element, so it's at (example[3])[0]
-    example[3][0] = 6;
+    int[][] array = new int[][] { <int array>,
+                                  <int array>,
+                                  <int array>,
+                                  ...,
+                                  <int array>};
 
-You can also think of square 2D arrays as a matrix. The 2D array above, for
-example, can also be visualized like this:
+A more concrete example could be:
 
-    int[][] example = new int[5][5];
+    int[][] array = new int[][] {new int[] {1, 6},
+                                 new int[] {1, 8, 5, 3},
+                                 new int[] {3},
+                                 new int[] {9, 8, 8, 7, 5}};
 
-    ---------------------
-    |   |   |   |   |   |
-    ---------------------
-    |   |   |   |   |   |
-    ---------------------
-    |   |   |   | x |   |
-    ---------------------
-    |   |   |   |   |   |
-    ---------------------
-    |   |   |   |   |   |
-    ---------------------
+The short array constructor you can use when declaring and creating an array at
+the same time also works in a similar way:
 
-The number in the first set of brackets usually refers to the row, while the
-second refers to the column. Thus, the `x` would be at `example[2][3]` in this
-case.
+    int[] array = {3, 1};
+    String[] array = {"Hello", "world!"};
 
-The inner arrays in 2D arrays do not have to be the same size. Here's code that
-creates a "jagged" 2D array and a visualization of the result:
+    int[][] array = {{3, 1, 4},
+                     {1, 5, 9},
+                     {2, 6, 5},
+                     {3, 5, 9}};
 
-          int[][] example = new int[5][];
-          example[0] = new int[2];
-          example[1] = new int[3];
-          example[2] = new int[5];                Index:  0   1   2   3   4
-          example[3] = new int[7];                      ---------------------
-          example[4] = new int[11];                     |   |   |   |   |   |
-                                                        ---------------------
-                                                          |   |   |   |   |
-    index:  0   1   2   3   4   5   6   7   8   9   10    |   |   |   |   |
-          ---------                                       |   |   |   |   |
-          | z |   | <--------------------------------------   |   |   |   |
-          ---------                                           |   |   |   |
-          -------------                                       |   |   |   |
-          |   |   |   | <--------------------------------------   |   |   |
-          -------------                                           |   |   |
-          ---------------------                                   |   |   |
-          |   |   |   | y |   | <----------------------------------   |   |
-          ---------------------                                       |   |
-          -----------------------------                               |   |
-          |   |   |   |   |   |   |   | <------------------------------   |
-          -----------------------------                                   |
-          ---------------------------------------------                   |
-          |   |   |   |   |   |   |   |   | x |   |   | <------------------
-          ---------------------------------------------
+Creating an empty multidimensional array is a bit different, though. You might
+expect that an array of `int` arrays, (a `int[] []`) would look like:
 
-Here, `x` is at `example[4][8]`, `y` is at `example[2][3]`, and `z` is at
-`example[0][0]`
+    int[][] array = new int[][4];
 
-Unfortunately, there isn't an equivalent to `new int[5][5]` for uneven inner
-arrays. You will have to create them manually.
+or that an array of arrays of `int` arrays (a `int[][] []`) would look like:
+
+    int[][][] array = new int[][][MAX_SIZE];
+
+The actual syntax, though, has the numbers on the *inside*.
+
+    int[][] array = new int[4][];
+    int[][][] array = new int[MAX_SIZE][][];
+
+This is because this allows you to create multiple dimensions at once. For
+example,
+
+    int[][] array = new int[4][];
+
+creates an array of 4 `int` arrays. Adding another number like this, though:
+
+    int[][] array = new int[4][5];
+
+creates an array of 4 `int` arrays, each of which holds 4 `int`s. Similarly,
+
+    int[][][] array = new int[MAX_SIZE][][];
+
+creates an array of `MAX_SIZE` two-dimensional arrays,
+
+    int[][][] array = new int[MAX_SIZE][MAX_SIZE][];
+
+creates an array of `MAX_SIZE` two-dimensional arrays, each of which holds
+`MAX_SIZE` `int` arrays, and
+
+    int[][][] array = new int[MAX_SIZE][MAX_SIZE][MAX_SIZE];
+
+creates an array of two-dimensional arrays, each of which holds `MAX_SIZE` `int`
+arrays which each hold `MAX_SIZE` `int`s.
 
 ## Iterating over multidimensional arrays
 
-2D array iteration isn't much different than regular array iteration. It
-involves more steps, but in the end it boils down to nested regular array
-iteration.
+Multidimensional array iteration isn't much different than regular array
+iteration. It involves more steps, but in the end it boils down to nested
+regular array iteration.
 
 Say you have an `int` matrix:
 
