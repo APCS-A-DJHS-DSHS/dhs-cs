@@ -143,3 +143,27 @@ a subtype hierarchy:
 
 In a hierarchy like this, lines connect types with subtyping relationships. This
 particular hierarchy places subtypes below their parent type.
+
+## Abstract data types
+
+An abstract data type is a description of a type using its visible behavior and
+properties instead of describing how that type implements its functionality. For
+example, a "timer" abstract data type may be defined as such:
+
+  - A timer has three functions:
+    - `set(Delay delay)`, which sets the delay time
+    - `notify()`, which performs some action that will attract attention
+    - `start()`, which causes the timer to wait for a period of time defined by
+      `delay`, then calls `notify()`
+
+Note that the above only describes *what* a timer does -- no indication of how a
+timer works. This means the following would all qualify as "timers" under the
+above definition:
+
+  - A mechanical alarm clock, which causes a bell to ring once the minute hand
+    has passed a certain point
+  - A digital clock, which starts beeping obnoxiously when the timer reaches 0
+  - A person sits next to you with a stopwatch and punches you when the delay
+    elapses
+  - A fuse is set to a certain length by `set()`, and starts pyrotechnics of
+    some type when the delay has elapsed
