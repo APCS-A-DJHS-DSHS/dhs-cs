@@ -1,0 +1,9 @@
+This repository holds experimental content for the DUblin City Schools AP
+Computer Science curriculum. Much of what appears here is stil being tweaked
+and/or rewritten, so it wouldn't hurt to check the changelog to see if something
+you need changed.
+
+# References and sources
+  - Luca Cardelli and Peter Wegner, "On Understanding Types, Data Abstraction,
+    and Polymorphism", 1985.
+  - Andrew Myers, lectures and notes
