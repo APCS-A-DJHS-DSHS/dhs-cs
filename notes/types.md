@@ -2,9 +2,8 @@
 
 ## What is a "type"?
 
-The "type" of an entity describes attributes about that entity. Entities that
-share those attributes are said to be the same "type". These attributes can
-include:
+The "type" of an entity describes attributes about that entity. These attributes
+can include:
 
   - What the entity means and how it's used
   - What values make a valid entity of that type
@@ -37,6 +36,23 @@ We can also say that this is a string:
     number 1000
   - Arithmetic operations such as `+` and `-` can*not* be performed on it
   - String operations like concatenations and substring can be performed on it
+
+## Why use types?
+
+Types are part of what is known as a "type system". A type system defines types
+for pieces of data and rules for how entities with those types can interact.
+
+One of the primary uses of type systems is to prevent "type errors". A piece of
+code contains a type error if it attempts to perform an invalid operation on
+some entity. For example, in Java's type system, this piece of code:
+
+    String s1 = "Hello";
+    String s2 = "world!";
+
+    String result = s1 / s2;
+
+contains a type error, because dividing `String` objects does not have a meaning
+under Java's type system.
 
 ## Subtypes
 
