@@ -7,7 +7,11 @@ outlined below:
 
 ## Universal polymorphism
 
+Universally polymorphic code works the same way for different types.
 ### Parametric polymorphism
+
+Parametric polymorphism allows a symbol -- a "type parameter" -- to represent
+any type that exhibits a certain characteristic.
 
 "Generics" are Java's version of parametric polymorphism
 
