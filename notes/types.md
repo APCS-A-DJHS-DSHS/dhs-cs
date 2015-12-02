@@ -160,6 +160,15 @@ a subtype hierarchy:
 In a hierarchy like this, lines connect types with subtyping relationships. This
 particular hierarchy places subtypes below their parent type.
 
+## Java's type system
+
+Java is statically typed, and is relatively strict about enforcing type
+correctness.
+
+Entities in Java have two types. One is the static type, which is the type that
+the compiler sees. This type is set by the type you declare the variable as. The
+other is the dynamic type, which is the actual type of the entity at runtime.
+
 ## Abstract data types
 
 An abstract data type is a description of a type using its visible behavior and
