@@ -161,18 +161,20 @@ it cannot be changed -- hence the `final` modifier.
 
 ### Constructors
 
-Array constructors look a bit different from other object constructors, but they
-create an object just like any other constructor. One of them, however, has a
-few strings attached.
+Constructors for arrays look a bit different than the constructors of other
+objects.
 
 #### Constructing empty arrays
 
-The first one is only a little different:
+The first constructor closely resembles the constructor for other objects. These
+constructors have the form `new <type>[<size>]`:
 
-    new int[4];    // Array of 4 ints
-    new String[10] // Array of 10 Strings
-    new byte[16]   // Array of 16 bytes
-    new Card[52]   // Array of 52 cards
+    new <type>[<size>] // Array of <size> <type>s
+
+    new int[4];        // Array of 4 ints
+    new String[10]     // Array of 10 Strings
+    new byte[16]       // Array of 16 bytes
+    new Card[52]       // Array of 52 cards
 
 Arrays created this way have default values for all their elements, and are
 sometimes called "empty arrays".
@@ -180,7 +182,7 @@ sometimes called "empty arrays".
 Default values for array elements are:
 
     boolean - false
-    byte    - 0        // The byte way of writing 0 in Java 7 and up
+    byte    - 0
     char    - '\u0000' // The char way of writing 0
     short   - 0
     int     - 0
@@ -242,7 +244,8 @@ the variable's value at the same time:
 
 #### Methods
 
-The only methods that arrays have are the methods that all objects have:
+Arrays don't declare any new methods, so the only methods that they have are
+those that are common to all objects:
 
   - `clone()`
   - `equals(Object)`
@@ -258,7 +261,7 @@ The only methods that arrays have are the methods that all objects have:
 
 These are useless in most scenarios, though -- and that includes `toString()`!
 Arrays use the default implementations of their methods, which means you can get
-some interesting results:
+some potentially surprising results:
 
     int[] fibs = {0, 1, 1, 2, 3};
     String fibsString = fibs.toString();
@@ -268,8 +271,8 @@ Instead of something nice like "{0, 1, 1, 2, 3}", you get something like this:
 
     [I@203ce91c
 
-Definitely *not* the best way to show your user an array. A better way could be
-throught the `Arrays.toString()` method:
+Definitely *not* the best way to show an array. A better way could be through
+the `Arrays.toString()` method:
 
     String goodResult = Arrays.toString(fibs);
     System.out.println(goodResult); // prints "[0, 1, 1, 2, 3]"
@@ -355,7 +358,7 @@ a nonexistant element. If you do so, the runtime will complain with an
     //                --------------------------
     // index:     -1?    0    1    2    3    4
     //             |
-    //             |---- This... isn't pointing to anything. Can't get that
+    //             ----- This... isn't pointing to anything. Can't get that
     //                   element, so throw an exception
 
     primes[5]
@@ -364,7 +367,7 @@ a nonexistant element. If you do so, the runtime will complain with an
     //                --------------------------
     // index:            0    1    2    3    4    5?
     //                                            |
-    //  This also isn't pointing to anything...---|
+    //  This also isn't pointing to anything...----
 
     primes[1294]
     //                --------------------------
@@ -427,7 +430,7 @@ Want to charge everyone a fee? Use a loop!
 Everyone is mad and wants to withdraw their money? Use a loop!
 
     for (int i = 0; i < clients.length; i++) {
-        clients[0].withdraw(clients[0].balance());
+        clients[i].withdraw(clients[i].balance());
     }
 
 ## For-each loops
